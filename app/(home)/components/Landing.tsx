@@ -2,7 +2,7 @@ import React from 'react'
 
 const Landing = () => {
   return (
-    <main className='flex flex-col gap-20 justify-center  w-[60rem]'>
+    <main className='flex flex-col gap-20 justify-center basis-2/3 '>
       <section className='space-y-5'>
         <h1 className='text-4xl font-bold'>Hi Candidate,</h1>
         <h1 className='text-2xl'>RANGAM will help you in building an AI-enabled</h1>
