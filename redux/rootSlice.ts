@@ -2,7 +2,7 @@ import { IinitialState } from "@/lib/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState:IinitialState = {
-    progress:0
+    progress:10
 }
 
 const rootSlice = createSlice({

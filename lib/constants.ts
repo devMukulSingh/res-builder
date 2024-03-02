@@ -20,7 +20,7 @@ export const sidebarOptions = [
   },
   {
     icon: FaUserPen,
-    title: 'Experince'
+    title: 'Experience'
   },
   {
     icon: GiSkills,

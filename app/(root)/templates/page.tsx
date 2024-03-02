@@ -14,7 +14,7 @@ const TemplatesPage = () => {
 
     const handleTemplateSelect = () => {
         if (templateId) {
-            router.push(`/builder/${templateId}`);
+            router.push(`/builder/${templateId}/personal`);
         }
         else {
             toast.error('No template Selected');

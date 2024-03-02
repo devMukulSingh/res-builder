@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const Language = () => {
   return (
-    <div>page</div>
+    <div>Language</div>
   )
 }
 
-export default page
+export default Language

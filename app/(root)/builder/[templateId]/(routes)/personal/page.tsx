@@ -1,9 +1,11 @@
-import React from 'react'
+import PersonalForm from './components/PersonalForm'
 
-const page = () => {
+const Personal = () => {
   return (
-    <div>page</div>
+    <main>
+      <PersonalForm/>
+    </main>
   )
 }
 
-export default page
+export default Personal
