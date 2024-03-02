@@ -8,7 +8,7 @@ const SignUp = () => {
         <form>
           <div className='flex flex-col gap-3  '>
             <label htmlFor="name">Full name</label>
-            <input className='px-2 py-3 rounded-md outline-none sm:w-[20rem] w-[15rem]  '
+            <input className='px-2 py-3 rounded-md outline-none sm:w-[20rem] min-w-[15rem]  '
               placeholder='Deepak Prakash'
             />
             <label htmlFor="email">Email address</label>
