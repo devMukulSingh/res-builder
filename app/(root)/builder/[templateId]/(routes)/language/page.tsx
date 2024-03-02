@@ -1,8 +1,11 @@
 import React from 'react'
+import LanguageForm from './components/LanguageForm'
 
 const Language = () => {
   return (
-    <div>Language</div>
+    <div>
+        <LanguageForm/>
+    </div>
   )
 }
 

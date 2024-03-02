@@ -1,8 +1,10 @@
-import React from 'react'
+import EducationForm from './components/EducationForm'
 
 const Education = () => {
   return (
-    <div>Education</div>
+    <div>
+      <EducationForm/>
+    </div>
   )
 }
 

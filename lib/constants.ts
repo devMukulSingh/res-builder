@@ -1,6 +1,7 @@
 import { Contact, GraduationCap, Languages, User } from 'lucide-react'
+import { BiCertification } from 'react-icons/bi'
 import { FaUserPen } from 'react-icons/fa6'
-import { GiSkills } from 'react-icons/gi';
+import { GiSkills } from 'react-icons/gi'
 
 export const templatesUrl = [
   {
@@ -33,6 +34,10 @@ export const sidebarOptions = [
   {
     icon: Contact,
     title: 'Contact Information'
+  },
+  {
+    icon: BiCertification,
+    title: 'Certification'
   },
   {
     icon: Languages,

@@ -1,0 +1,98 @@
+'use client'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { FieldValue, FieldValues, useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button";
+
+const EducationForm = () => {
+
+    const form = useForm({
+
+    });
+
+    const onSubmit = (data: FieldValues) => {
+        console.log(data);
+    }
+
+    return (
+        <main className="p-5">
+            <Form {...form} >
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div className="flex flex-col gap-5">
+                        <FormField
+                            name="linkedinLink"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem >
+                                    <FormLabel>Linkedin Profile Link</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            className="py-8 bg-white" {...field}
+                                            placeholder="eg https://johndoe.com" />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            name="twitterLink"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem >
+                                    <FormLabel>Twitter Profile Link</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            className="py-8 bg-white" {...field}
+                                            placeholder="eg https://johndoe.com"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            name="githubLink"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem >
+                                    <FormLabel>Github Profile Link</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="eg https://johndoe.com"
+                                            className="bg-white py-8 " {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            name="portforlioLink"
+                            control={form.control}
+                            render={({ field }) => (
+                                <FormItem >
+                                    <FormLabel>Portfolio Link</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            className="py-8 bg-white" {...field}
+                                            placeholder="eg https://johndoe.com"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <Button
+                            type="submit"
+                            className="w-full">
+                            Next
+                        </Button>
+
+                    </div>
+                </form>
+            </Form>
+        </main>
+    )
+}
+
+export default EducationForm

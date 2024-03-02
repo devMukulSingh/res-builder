@@ -1,8 +1,10 @@
-import React from 'react'
+import ExperienceForm from './components/ExperienceForm'
 
 const Experience = () => {
   return (
-    <div>Experience</div>
+    <div>
+      <ExperienceForm/>
+    </div>
   )
 }
 

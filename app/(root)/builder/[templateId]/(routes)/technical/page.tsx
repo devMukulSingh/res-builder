@@ -1,8 +1,11 @@
 import React from 'react'
+import TechnicalForm from './components/TechnicalForm'
 
 const Technical = () => {
   return (
-    <div>Technical</div>
+    <div>
+      <TechnicalForm/>
+    </div>
   )
 }
 

@@ -6,7 +6,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
 
-const PersonalForm = () => {
+const LanguageForm = () => {
 
     const schema = z.object({
         fullName: z.string().min(3, {
@@ -218,4 +218,4 @@ const PersonalForm = () => {
     )
 }
 
-export default PersonalForm
+export default LanguageForm

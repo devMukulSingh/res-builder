@@ -7,7 +7,9 @@ export default function TemplateLayout({ children }: {
     return (
         <main className="flex gap-5">
             <Sidebar />
-            {children}
+            <div className="w-[30rem]">
+                {children}
+            </div>
         </main>
     )
 }
