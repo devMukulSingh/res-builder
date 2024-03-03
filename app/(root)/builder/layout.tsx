@@ -1,5 +1,5 @@
-import Resume from "./[templateId]/components/Resume"
 import Sidebar from "./[templateId]/components/Sidebar"
+import Template1 from "./[templateId]/components/Template1"
 
 
 export default function TemplateLayout({ children }: {
@@ -11,7 +11,7 @@ export default function TemplateLayout({ children }: {
             <div className="w-[30rem]">
                 {children}
             </div>
-            <Resume/>
+            <Template1/>
         </main>
     )
 }

@@ -3,21 +3,26 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
+import { setExperience } from "@/redux/slice/userSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
 
 const ExperienceForm = () => {
 
-    const form = useForm({
+    const dispatch = useAppDispatch();
 
-    });
+    const form = useForm({});
 
     const onSubmit = (data:FieldValues) => {
-        console.log(data);
+        dispatch(setExperience(data));    
+    }
+    const handleChange = () => {
+        dispatch(setExperience(form.getValues()));        
     }
 
     return (
         <main className="p-5">
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange} >
                     <div className="flex flex-col gap-5">
                         <FormField
                             name="company"

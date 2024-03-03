@@ -5,19 +5,25 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { languages, strengths } from "@/lib/constants";
 import { PlusCircle } from "lucide-react";
+import { setLanguages } from "@/redux/slice/userSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
 
 const LanguageForm = () => {
 
+    const dispatch = useAppDispatch();
     const form = useForm();
 
     const onSubmit = (data: FieldValues) => {
-        console.log(data);
+        dispatch(setLanguages(data));
+    }
+    const handleChange = () => {
+        dispatch(setLanguages(form.getValues()));
     }
 
     return (
         <main className="p-5">
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5 ">
 
                         <div className="flex gap-2 ">
@@ -41,7 +47,7 @@ const LanguageForm = () => {
                                                 {
                                                     languages.map((language) => (
                                                         <SelectItem
-                                                            
+                                                            key={language}
                                                             value={language}
                                                         >
                                                             {language}
@@ -75,6 +81,7 @@ const LanguageForm = () => {
                                                 {
                                                     strengths.map((strength) => (
                                                         <SelectItem
+                                                            key={strength}
                                                             value={strength}
                                                         >
                                                             {strength}
@@ -111,6 +118,7 @@ const LanguageForm = () => {
                                                 {
                                                     languages.map((language) => (
                                                         <SelectItem
+                                                            key={language}
                                                             value={language}
                                                         >
                                                             {language}
@@ -145,6 +153,7 @@ const LanguageForm = () => {
                                                     strengths.map((strength) => (
                                                         <SelectItem
                                                             value={strength}
+                                                            key={strength}
                                                         >
                                                             {strength}
                                                         </SelectItem>
@@ -181,6 +190,7 @@ const LanguageForm = () => {
                                                     languages.map((language) => (
                                                         <SelectItem
                                                             value={language}
+                                                            key={language}
                                                         >
                                                             {language}
                                                         </SelectItem>
@@ -214,6 +224,7 @@ const LanguageForm = () => {
                                                     strengths.map((strength) => (
                                                         <SelectItem
                                                             value={strength}
+                                                            key={strength}
                                                         >
                                                             {strength}
                                                         </SelectItem>

@@ -1,41 +1,57 @@
-import { Linkedin, LinkedinIcon, Mail, Phone } from 'lucide-react'
-import React from 'react'
+'use client'
+import { useAppSelector } from '@/redux/hooks/hooks'
+import { Mail, Phone } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import { FaLinkedin, FaLocationPin } from 'react-icons/fa6'
 
-const Resume = () => {
+const Template1 = () => {
+
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    }, [])
+    const personalInfo = useAppSelector(state => state.persistedReducer.userSlice.personalInfo);
+    const experience = useAppSelector(state => state.persistedReducer.userSlice.experience);
+    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
+    const technical = useAppSelector(state => state.persistedReducer.userSlice.technicalSkills);
+    const contact = useAppSelector(state => state.persistedReducer.userSlice.contact);
+    const achievements = useAppSelector(state => state.persistedReducer.userSlice.achievements);
+    const languages = useAppSelector(state => state.persistedReducer.userSlice.languages);
+
+    if (!isMounted) return null;
+
     return (
         <>
-            <main className='w-[calc(100vw-50rem)] pb-20 whitespace-nowrap pr-10 '>
+            <main className='w-[calc(100vw-50rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh]'>
 
-                <div className=' bg-white pb-10'>
+                <div className=' bg-white pb-10 h-full'>
                     <hr className='h-4 bg-blue-400 w-full ' />
-                    <div className='flex flex-col gap-5 py-5 px-10'>
-
+                    <div className='flex flex-col gap-5 py-5 px-14'>
 
                         {/* ABOUT */}
                         <header className='flex flex-col gap-2'>
                             <h1 className='text-2xl font-semibold text-blue-400'>
-                                Deepak Prakash
+                                {personalInfo?.fullName}
                             </h1>
                             <h1>
-                                Software engineer obsessed with building exceptional products that people love
+                                {personalInfo?.profession}
                             </h1>
                             <div className='flex gap-10'>
                                 <div className='flex items-center gap-2'>
                                     <Mail size={20} />
-                                    hello@openresume.com
+                                    {personalInfo?.email}
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <Phone size={20} />
-                                    23-456-7890
+                                    {personalInfo?.mobile}
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <FaLocationPin size={20} />
-                                    NYC, NY
+                                    {personalInfo?.address}
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <FaLinkedin size={20} />
-                                    inkedin.com/in/john-doe
+                                    {contact?.linkedIn}
                                 </div>
                             </div>
                         </header>
@@ -49,13 +65,13 @@ const Resume = () => {
                                 </h1>
                             </div>
                             <h1 className='font-bold'>
-                                ABC Company
+                                {experience?.company}
                             </h1>
                             <div className='flex justify-between'>
-                                <h1>Software Engineer</h1>
-                                <h1>May 2023 - Present</h1>
+                                <h1>{experience?.role}</h1>
+                                <h1>{`${experience?.startDate}-${experience?.endDate}`}</h1>
                             </div>
-                            <ul className='list-disc pl-2'>
+                            <ul className='list-disc pl-8'>
                                 <li className='whitespace-normal'>
                                     Lead a cross-functional team of 5 engineers in developing a search bar, which enables thousands
                                     of daily active users to search content across the entire platform
@@ -75,15 +91,15 @@ const Resume = () => {
                                 </h1>
                             </div>
                             <h1 className='font-bold'>
-                                XYZ University
+                                {education?.schoolName}
                             </h1>
                             <div className='flex justify-between'>
                                 <h1>
-                                    Bachelor of Science in Computer Science - 3.8 GPA
+                                    {education?.degree}
                                 </h1>
-                                <h1>Sep 2019 - May 2023</h1>
+                                {/* <h1>{education?.endDate}</h1> */}
                             </div>
-                            <ul className='list-disc pl-2'>
+                            <ul className='list-disc pl-8'>
                                 <li className='whitespace-normal'>
                                     Won 1st place in 2022 Education Hackathon, 2nd place in 2023 Health Tech Competition
                                 </li >
@@ -104,11 +120,11 @@ const Resume = () => {
 
                             <div className='flex justify-between'>
                                 <h1 className='font-bold'>
-                                    OpenResume
+                                    { }
                                 </h1>
                                 <h1>Spring 2023</h1>
                             </div>
-                            <ul className='list-disc pl-2'>
+                            <ul className='list-disc pl-8'>
                                 <li className='whitespace-normal'>
                                     Created and launched a free resume builder web app that allows thousands of users to create
                                     professional resume easily and land their dream jobs
@@ -128,7 +144,7 @@ const Resume = () => {
                                     SKILLS
                                 </h1>
                             </div>
-                            <ul className='list-disc pl-2'>
+                            <ul className='list-disc pl-8'>
                                 <li className='whitespace-normal'>
                                     Tech: React Hooks, GraphQL, Node.js, SQL, Postgres, NoSql, Redis, REST API, Git
                                 </li>
@@ -147,4 +163,4 @@ const Resume = () => {
     )
 }
 
-export default Resume
+export default Template1

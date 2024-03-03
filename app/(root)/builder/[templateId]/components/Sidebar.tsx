@@ -68,7 +68,7 @@ const Sidebar = () => {
             <ul className="space-y-2">
                 {
                     sidebarOptions.map((option) => (
-                        <SidebarOption option={option} />
+                        <SidebarOption option={option} key={option.title} />
                     ))
                 }
             </ul>

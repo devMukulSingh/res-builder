@@ -1,5 +1,5 @@
 import React from 'react'
-import CertificationForm from './components/CertificationForm'
+import CertificationForm from './components/Achievements'
 
 const Certification = () => {
   return (

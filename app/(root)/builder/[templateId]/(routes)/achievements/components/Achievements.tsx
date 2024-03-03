@@ -4,21 +4,24 @@ import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
+import { setAchievements } from "@/redux/slice/userSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
 
-const CertificationForm = () => {
+const AchievementsForm = () => {
 
-    const form = useForm({
-
-    });
+    const dispatch = useAppDispatch();
+    const form = useForm();
 
     const onSubmit = (data: FieldValues) => {
-        console.log(data);
+        dispatch(setAchievements(data));
     }
-
+    const handleChange = () => {
+        dispatch(setAchievements(form.getValues()));     
+    }
     return (
         <main className="p-5">
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
                         <FormField
                             name="linkedinLink"
@@ -86,4 +89,4 @@ const CertificationForm = () => {
     )
 }
 
-export default CertificationForm
+export default AchievementsForm

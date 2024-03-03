@@ -3,22 +3,26 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
+import { useAppDispatch } from "@/redux/hooks/hooks";
+import { setExperience } from "@/redux/slice/userSlice";
 
 const TechnicalForm = () => {
 
-    const form = useForm({
-
-    });
+    const form = useForm();
+    const dispatch = useAppDispatch();
 
     const onSubmit = (data: FieldValues) => {
-        console.log(data);
+        dispatch(setExperience(data))
+    }
+    const handleChange = () => {
+        dispatch(setExperience(form.getValues()));        
     }
 
     return (
         <main className="p-5">
             <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onSubmit={form.handleSubmit(onSubmit)} onChange={ handleChange}>
                     <div className="flex flex-col gap-5">
 
                         <div className="flex gap-5">

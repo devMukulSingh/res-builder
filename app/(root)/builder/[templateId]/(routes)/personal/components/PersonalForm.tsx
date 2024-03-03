@@ -77,12 +77,15 @@ const PersonalForm = () => {
 
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
-
+    }
+    const handleChange = () => {
+        dispatch(setPersonalInfo(form.getValues()));        
     }
     return (
         <main className="p-5">
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onChange={ handleChange } 
+                    onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-5">
                         <FormField
                             name="fullName"
