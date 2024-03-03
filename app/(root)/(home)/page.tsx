@@ -1,5 +1,5 @@
 import Landing from "./components/Landing"
-import SignUp from "./components/SignUp"
+import SignUp from "./components/PersonalForm"
 
 
 const Page = () => {

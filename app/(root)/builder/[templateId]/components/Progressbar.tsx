@@ -1,9 +1,9 @@
 'use client'
 import { Progress } from '@/components/ui/progress';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks/hooks';
 
 const Progressbar = () => {
-    
+
     const progress = useAppSelector(state => state.rootSlice.progress);
     return (
         <main className="px-10 py-5 mt-10 flex flex-col gap-2">

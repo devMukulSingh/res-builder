@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import Providers from "@/redux/Providers";
+import Providers from "@/redux/providers/Providers";
+import PersistProvider from "@/redux/providers/PersistProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Toaster/>
+          <PersistProvider>
+            <Toaster />
+          </PersistProvider>
           {children}
         </Providers>
       </body>

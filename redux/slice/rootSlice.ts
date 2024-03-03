@@ -1,8 +1,12 @@
-import { IinitialState } from "@/lib/types";
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface IinitialState{
+    progress:number,
+}
+
 const initialState:IinitialState = {
-    progress:10
+    progress:10,
+
 }
 
 const rootSlice = createSlice({
@@ -11,7 +15,7 @@ const rootSlice = createSlice({
     reducers:{
         setProgress : (state,action ) => {
             state.progress = action.payload;
-        }
+        },
     }
 });
 

@@ -12,7 +12,7 @@ const Landing = () => {
         <h1 className='text-2xl'>resume and finding a properly suitable job.</h1>
       </section>
       <button
-        onClick={ () => router.push('/templates')} 
+        onClick={ () =>{} } 
         className='px-5 py-2 w-52 text-white rounded-md bg-red-500'>
         Get Started
       </button>

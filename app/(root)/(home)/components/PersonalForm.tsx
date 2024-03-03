@@ -6,10 +6,12 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
 import { setPersonalInfo } from "@/redux/slice/userSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useRouter } from "next/navigation";
 
 const PersonalForm = () => {
 
+    const router = useRouter();
     const dispatch = useAppDispatch();
     const schema = z.object({
         fullName: z.string().min(3, {
@@ -46,44 +48,25 @@ const PersonalForm = () => {
         }).max(20, {
             message: 'State should be max 20 characters'
         }),
-        dob: z.any(),
-        birthPlace: z.string().min(3, {
-            message: 'BirthPlace should be minimum 3 characters'
-        }).max(20, {
-            message: 'BirthPlace should be max 20 characters'
-        })
+
 
     })
 
     type formSchema = z.infer<typeof schema>
-    const personalInfo = useAppSelector(state => state.persistedReducer.userSlice.personalInfo);
 
     const form = useForm<formSchema>({
-        resolver: zodResolver(schema),
-        defaultValues: personalInfo || {
-            address: '',
-            birthPlace: '',
-            city: '',
-            countryCode: '+91',
-            dob: '',
-            email: '',
-            fullName: '',
-            mobile: '',
-            profession: '',
-            state: ''
-        }
+        resolver: zodResolver(schema)
     });
-    const { errors } = form.formState;
 
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
-
+        router.push('/templates');
     }
     return (
-        <main className="p-5">
+        <main className=" text-neutral-500">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="flex flex-col gap-5">
+                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-5 w-4/5">
                         <FormField
                             name="fullName"
                             control={form.control}
@@ -194,38 +177,10 @@ const PersonalForm = () => {
                             />
                         </div>
 
-                        <div className="flex gap-5 w-full">
-                            <FormField
-                                name="dob"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem className="w-1/2">
-                                        <FormLabel>Date of Birth</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white "  {...field} type="date" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name="birthPlace"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem className="w-1/2" >
-                                        <FormLabel>Birth Place</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
 
                         <Button
                             type="submit"
-                            className="w-full">
+                            className="w-full mt-5">
                             Next
                         </Button>
                     </div>
