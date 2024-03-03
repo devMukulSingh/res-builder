@@ -24,9 +24,9 @@ const Template1 = () => {
 
     return (
         <>
-            <main className='w-[calc(100vw-50rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh] max-w-[60rem]'>
+            <main className='w-[calc(100vw-53rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh] max-w-[60rem] shrink-0'>
 
-                <div className=' bg-white pb-10 h-full'>
+                <div className=' bg-white pb-10 h-full min-w-[40rem]'>
                     <hr className='h-4 bg-blue-400 w-full ' />
                     <div className='flex flex-col gap-5 py-5 px-14'>
 
@@ -38,25 +38,33 @@ const Template1 = () => {
                             <h1>
                                 {personalInfo?.profession}
                             </h1>
-                            <div className='flex gap-10 '>
-                                <div className='flex items-center gap-2'>
-                                    <Mail size={20} />
-                                    {personalInfo?.email || 'john@gmail.com'}
+
+                            <div className='flex gap-5 '>
+                                <div >
+
+                                    <div className='flex items-center gap-2'>
+                                        <Mail size={20} />
+                                        {personalInfo?.email || 'john@gmail.com'}
+                                    </div>
+
+                                    <div className='flex items-center gap-2'>
+                                        <FaLinkedin size={20} />
+                                        {contact?.linkedIn || 'https://linkedin.com'}
+                                    </div>
                                 </div>
 
-                                <div className='flex items-center gap-2'>
-                                    <FaLinkedin size={20} />
-                                    {contact?.linkedIn || 'https://linkedin.com'}
-                                </div>
-                            </div>
-                            <div className='flex gap-5'>
-                                <div className='flex items-center gap-2'>
-                                    <Phone size={20} />
-                                    {personalInfo?.mobile || '9808088888'}
-                                </div>
-                                <div className='flex items-center gap-2'>
-                                    <FaLocationPin size={20} />
-                                    {personalInfo?.address || 'pune'}
+                                <div className='flex gap-5'>
+                                    <div>
+
+                                        <div className='flex items-center gap-2'>
+                                            <Phone size={20} />
+                                            {personalInfo?.mobile || '9808088888'}
+                                        </div>
+                                        <div className='flex items-center gap-2'>
+                                            <FaLocationPin size={20} />
+                                            {personalInfo?.address || 'pune'}
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

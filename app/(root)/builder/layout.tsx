@@ -8,10 +8,12 @@ export default function TemplateLayout({ children }: {
     return (
         <main className="flex gap-5">
             <Sidebar />
-            <div className="w-[30rem]">
-                {children}
+            <div className="md:flex-row flex flex-col">
+                <div className="w-[30rem]">
+                    {children}
+                </div>
+                <Template1 />
             </div>
-            <Template1/>
         </main>
     )
 }

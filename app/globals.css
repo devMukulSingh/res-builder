@@ -5,6 +5,9 @@
 @layer base {
   html,body{
     background-color: #f9f9f9;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
   }
   :root {
     /* --background: 0 0% 100%; */
