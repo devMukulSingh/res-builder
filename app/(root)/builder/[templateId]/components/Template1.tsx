@@ -18,11 +18,13 @@ const Template1 = () => {
     const achievements = useAppSelector(state => state.persistedReducer.userSlice.achievements);
     const languages = useAppSelector(state => state.persistedReducer.userSlice.languages);
 
+    console.log(contact);
+
     if (!isMounted) return null;
 
     return (
         <>
-            <main className='w-[calc(100vw-50rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh]'>
+            <main className='w-[calc(100vw-50rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh] max-w-[60rem]'>
 
                 <div className=' bg-white pb-10 h-full'>
                     <hr className='h-4 bg-blue-400 w-full ' />
@@ -36,23 +38,27 @@ const Template1 = () => {
                             <h1>
                                 {personalInfo?.profession}
                             </h1>
-                            <div className='flex gap-10'>
+                            <div className='flex gap-10 '>
                                 <div className='flex items-center gap-2'>
                                     <Mail size={20} />
-                                    {personalInfo?.email}
+                                    {personalInfo?.email || 'john@gmail.com'}
                                 </div>
+
+                                <div className='flex items-center gap-2'>
+                                    <FaLinkedin size={20} />
+                                    {contact?.linkedIn || 'https://linkedin.com'}
+                                </div>
+                            </div>
+                            <div className='flex gap-5'>
                                 <div className='flex items-center gap-2'>
                                     <Phone size={20} />
-                                    {personalInfo?.mobile}
+                                    {personalInfo?.mobile || '9808088888'}
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <FaLocationPin size={20} />
-                                    {personalInfo?.address}
+                                    {personalInfo?.address || 'pune'}
                                 </div>
-                                <div className='flex items-center gap-2'>
-                                    <FaLinkedin size={20} />
-                                    {contact?.linkedIn}
-                                </div>
+
                             </div>
                         </header>
 
