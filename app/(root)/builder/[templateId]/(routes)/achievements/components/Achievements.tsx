@@ -14,7 +14,7 @@ const AchievementsForm = () => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const dispatch = useAppDispatch();
 
-    const { handleSubmit, control, watch, getValues } = useForm({
+    const form = useForm({
         defaultValues: {
             achievements: [
                 { value: '' },
@@ -23,14 +23,14 @@ const AchievementsForm = () => {
             ]
         }
     });
-    const { fields, append } = useFieldArray({
+    const fieldArray = useFieldArray({
         name: 'achievements',
-        control
+        control: form.control
     })
 
-    const watchFieldsArray = watch('achievements');
+    const watchFieldsArray = form.watch('achievements');
 
-    const controlledFields = fields.map((field, index) => {
+    const controlledFields = fieldArray.fields.map((field, index) => {
         return {
             ...field,
             ...watchFieldsArray[index]
@@ -38,66 +38,72 @@ const AchievementsForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        const temp = data?.achievements.map((item) => item.value)
-        dispatch(setAchievements(data.achievements));
+        const parsedAchievements = data?.achievements.map((item : { value:string,id:string}) => item.value)
+        dispatch(setAchievements(parsedAchievements));
     }
 
     const handleChange = () => {
-        const achievements = getValues().achievements;
-        const temp = achievements.map(item => item.value)
-        dispatch(setAchievements(temp));
+        const achievements = form.getValues().achievements;
+        const parsedAchievements = achievements.map(item => item.value);
+        dispatch(setAchievements(parsedAchievements));
     }
 
     const handleAddMore = () => {
-        append({ value: '' });
+        fieldArray.append({ value: '' });
         if (buttonRef.current) {
             buttonRef.current.style.display = 'none'
         }
     }
     return (
         <main className="p-5">
-            <form onSubmit={handleSubmit(onSubmit)} onChange={handleChange}>
-                <div className="flex flex-col gap-5">
-                    {
-                        controlledFields.map((item, i) => {
-                            return (
-                                <>
+            <Form {...form}>
 
-
-                                    <Controller
+                <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
+                    <div className="flex flex-col gap-5">
+                        {
+                            controlledFields.map((item, i) => {
+                                return (
+                                    <FormField
                                         key={item.id}
-                                        control={control}
+                                        control={form.control}
                                         name={`achievements.${i}.value`}
                                         render={({ field }) => (
-                                            <Input
-                                                {...field}
-                                                className="py-8 bg-white"
-                                                placeholder="eg Certificate of Engineering" />
+                                            <FormItem >
+                                                <FormLabel>{`Achievement#${i + 1}`}</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        {...field}
+                                                        className="py-8 bg-white" {...field}
+                                                        placeholder="eg Certificate of Engineering"
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
                                         )}
                                     />
-                                </>
-                            )
-                        })
+                                )
+                            })
 
-                    }
+                        }
 
-                    <Button
-                        ref={buttonRef}
-                        variant="ghost"
-                        onClick={handleAddMore}
-                        className="flex mr-auto items-center gap-2 bg-transparent"
-                    >
-                        <PlusCircle />
-                        Add Achievement/License
-                    </Button>
-                    <Button
-                        type="submit"
-                        className="w-full mt-20 py-6">
-                        Submit
-                    </Button>
+                        <Button
+                            ref={buttonRef}
+                            variant="ghost"
+                            onClick={handleAddMore}
+                            className="flex mr-auto items-center gap-2 bg-transparent"
+                        >
+                            <PlusCircle />
+                            Add Achievement/License
+                        </Button>
+                        <Button
+                            type="submit"
+                            className="w-full mt-20 py-6">
+                            Submit
+                        </Button>
 
-                </div>
-            </form>
+                    </div>
+                </form>
+            </Form>
 
         </main>
     )
@@ -106,32 +112,18 @@ const AchievementsForm = () => {
 export default AchievementsForm
 
 
-{/* <FormField
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Achievement #2</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="py-8 bg-white" {...field}
-                                            placeholder="eg Certificate of Engineering"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> */}
-{/* <FormField
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Achievement #3</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder="eg Certificate of Engineering"
-                                            className="bg-white py-8 " {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> */}
+
+
+
+
+//     <Controller
+//     key={item.id}
+//     control={control}
+//     name={`achievements.${i}.value`}
+//     render={({ field }) => (
+//         <Input
+//             {...field}
+//             className="py-8 bg-white"
+//             placeholder="eg Certificate of Engineering" />
+//     )}
+// />
