@@ -1,7 +1,7 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Controller, FieldValue, FieldValues, useForm } from "react-hook-form"
+import { FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { setAchievements } from "@/redux/slice/userSlice";
@@ -38,7 +38,7 @@ const AchievementsForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        const parsedAchievements = data?.achievements.map((item : { value:string,id:string}) => item.value)
+        const parsedAchievements = data?.achievements.map((item: { value: string, id: string }) => item.value)
         dispatch(setAchievements(parsedAchievements));
     }
 
@@ -112,18 +112,3 @@ const AchievementsForm = () => {
 export default AchievementsForm
 
 
-
-
-
-
-//     <Controller
-//     key={item.id}
-//     control={control}
-//     name={`achievements.${i}.value`}
-//     render={({ field }) => (
-//         <Input
-//             {...field}
-//             className="py-8 bg-white"
-//             placeholder="eg Certificate of Engineering" />
-//     )}
-// />
