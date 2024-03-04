@@ -23,11 +23,11 @@ const Template1 = () => {
 
     return (
         <>
-            <main className='w-[calc(100vw-53rem)] pb-20 whitespace-nowrap pr-10 min-h-[100vh] max-w-[60rem] shrink-0'>
+            <main className='w-[calc(100vw-53rem)] pb-20 whitespace-nowrap pr-10 max-w-[60rem] shrink-0 '>
 
-                <div className=' bg-white pb-10 h-full min-w-[40rem]'>
+                <div className=' bg-white pb-10  min-w-[40rem] '>
                     <hr className='h-4 bg-blue-400 w-full ' />
-                    <div className='flex flex-col gap-5 py-5 px-14'>
+                    <div className='flex flex-col gap-5 py-5 px-14  '>
 
                         {/* ABOUT */}
                         <header className='flex flex-col gap-2'>
@@ -78,7 +78,7 @@ const Template1 = () => {
                                 </h1>
                             </div>
                             <h1 className='font-bold'>
-                                {experience?.company}
+                                {experience?.companyName}
                             </h1>
                             <div className='flex justify-between'>
                                 <h1>{experience?.role}</h1>

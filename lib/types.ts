@@ -9,11 +9,12 @@ export interface IpersonalInfo{
     mobile:string,
     state:string,
     dob:Date,
-    birthPlace:string
+    birthPlace:string,
+    bio:string
 }
 
 export interface Iexperience{
-    company:string,
+    companyName:string,
     employer:string,
     role:string,
     address:string,

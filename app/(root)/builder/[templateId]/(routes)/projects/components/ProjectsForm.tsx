@@ -5,8 +5,10 @@ import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
+import { Textarea } from "@/components/ui/textarea";
+import { PlusCircle } from "lucide-react";
 
-const EducationForm = () => {
+const ProjectsForm = () => {
 
     const dispatch = useAppDispatch();
     const form = useForm();
@@ -15,7 +17,7 @@ const EducationForm = () => {
         dispatch(setContact(data));
     }
     const handleChange = () => {
-        dispatch(setContact(form.getValues()));     
+        dispatch(setContact(form.getValues()));
     }
 
     return (
@@ -28,11 +30,11 @@ const EducationForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Linkedin Profile Link</FormLabel>
+                                    <FormLabel>Name of Project</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="py-8 bg-white" {...field}
-                                            placeholder="eg https://johndoe.com" />
+                                            placeholder="eg Google Lance" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -43,11 +45,11 @@ const EducationForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Twitter Profile Link</FormLabel>
+                                    <FormLabel>Project Url</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="py-8 bg-white" {...field}
-                                            placeholder="eg https://johndoe.com"
+                                            placeholder="eg www.google.com"
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -59,33 +61,27 @@ const EducationForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Github Profile Link</FormLabel>
+                                    <FormLabel>Description</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="eg https://johndoe.com"
-                                            className="bg-white py-8 " {...field} />
+                                        <Textarea
+                                            placeholder="Google Lens has many uses, including:
+                                            Identifying objects: Google Lens can identify objects by reading barcodes, QR codes, labels, and text.
+                                            Translating text: Google Lens can translate text into your language by pointing it at a sign or piece of paper in a foreign language.
+                                            Exploring locales or menus."
+                                            className="bg-white py-8 h-60 " {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            name="portforlioLink"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Portfolio Link</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="py-8 bg-white" {...field}
-                                            placeholder="eg https://johndoe.com"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
+                        
+                        <Button
+                            variant='ghost'
+                            className="gap-2 self-start bg-transparent text-neutral-700"
+                        >
+                            <PlusCircle />
+                            Add More Projects
+                        </Button>
                         <Button
                             type="submit"
                             className="w-full py-6">
@@ -99,4 +95,4 @@ const EducationForm = () => {
     )
 }
 
-export default EducationForm
+export default ProjectsForm

@@ -50,9 +50,7 @@ const AchievementsForm = () => {
 
     const handleAddMore = () => {
         fieldArray.append({ value: '' });
-        if (buttonRef.current) {
-            buttonRef.current.style.display = 'none'
-        }
+
     }
     return (
         <main className="p-5">

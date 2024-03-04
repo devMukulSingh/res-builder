@@ -30,7 +30,7 @@ const SidebarOption: React.FC<SidebarOptionProps> = ({
                         flex 
                         gap-3 
                         hover:bg-red-100 
-                        px-10 py-5 items-center 
+                        px-10 py-4 items-center 
                         cursor-pointer
                         text-lg
                         whitespace-nowrap

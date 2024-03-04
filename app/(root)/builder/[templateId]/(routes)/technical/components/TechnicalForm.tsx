@@ -157,7 +157,7 @@ const TechnicalForm = () => {
                             />
                         <Button
                             type="submit"
-                            className="w-full mt-20">
+                            className="w-full mt-20 py-6">
                             Next
                         </Button>
                     </div>

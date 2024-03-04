@@ -4,7 +4,7 @@ import SidebarOption from "./SidebarOption";
 import Progressbar from "./Progressbar";
 import { Contact, GraduationCap, Languages, User } from 'lucide-react'
 import { BiCertification } from 'react-icons/bi'
-import { FaUserPen } from 'react-icons/fa6'
+import { FaDiagramProject, FaUserPen } from 'react-icons/fa6'
 import { GiSkills } from 'react-icons/gi'
 import { usePathname } from "next/navigation";
 
@@ -21,25 +21,31 @@ const Sidebar = () => {
         {
             icon: FaUserPen,
             title: 'Experience',
-            isActive:  pathName.endsWith('/experience')
+            isActive: pathName.endsWith('/experience')
 
         },
         {
             icon: GiSkills,
             title: 'Technical Skills',
-            isActive:  pathName.endsWith('/technical')
+            isActive: pathName.endsWith('/technical')
 
         },
         {
             icon: GraduationCap,
             title: 'Education',
-            isActive:  pathName.endsWith('/education')
+            isActive: pathName.endsWith('/education')
 
         },
         {
             icon: Contact,
             title: 'Contact Information',
             isActive: pathName.endsWith('/contact')
+
+        },
+        {
+            icon: FaDiagramProject,
+            title: 'Projects',
+            isActive: pathName.endsWith('/projects')
 
         },
         {
@@ -51,14 +57,15 @@ const Sidebar = () => {
         {
             icon: Languages,
             title: 'Language',
-            isActive:  pathName.endsWith('/language')
+            isActive: pathName.endsWith('/language')
 
-        }
+        },
+
     ]
 
 
     return (
-        <main className='w-[20rem] h-[calc(100vh-6.5rem)] bg-white py-5'>
+        <main className='w-[20rem] h-[calc(100vh-6.5rem)] bg-white py-3 fixed'>
             <MdOutlineSort
                 className="ml-auto
              mr-5

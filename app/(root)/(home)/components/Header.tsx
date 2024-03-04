@@ -8,18 +8,18 @@ const Header = () => {
   const router = useRouter();
   return (
     <>
-    <main className='px-10 flex  h-24 items-center'>
+      <main className='px-10 flex  h-24 items-center fixed z-50 mb-24 overflow-hidden w-full'>
         <figure
           className='relative size-32 '>
-          <Image 
-            alt="logo" 
-            src={logo} 
+          <Image
+            alt="logo"
+            src={logo}
             fill
-            onClick={ () => router.push('/')} 
-            className='object-contain cursor-pointer'/>
+            onClick={() => router.push('/')}
+            className='object-contain cursor-pointer' />
         </figure>
-    </main>
-        <hr className='w-full'/>
+      </main>
+      <hr className='w-full' />
     </>
   )
 }

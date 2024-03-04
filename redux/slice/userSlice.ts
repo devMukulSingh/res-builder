@@ -13,7 +13,7 @@ export interface IinitialState {
   personalInfo: IpersonalInfo | null
   experience: Iexperience | null
   technicalSkills: ItechnicalSkills | null
-  education: Ieducation | null
+  education: Ieducation[] | null
   contact: Icontact | null
   achievements: Iachievements | null
   languages: Ilanguages | null

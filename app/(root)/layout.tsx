@@ -5,7 +5,9 @@ export default function HomeLayout({ children }: { children: React.ReactNode }) 
     return (
         <>
             <Header />
-            {children}
+            <div className="mt-24 ">
+                {children}
+            </div>
         </>
     )
 }

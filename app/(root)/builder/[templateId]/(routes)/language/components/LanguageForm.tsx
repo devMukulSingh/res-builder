@@ -39,7 +39,7 @@ const LanguageForm = () => {
             }
         })
         dispatch(setLanguages(parsedLanguage));
-        
+
     }
 
     const handleChange = () => {
@@ -64,7 +64,7 @@ const LanguageForm = () => {
     const handleAddMore = () => {
         fieldArray.append({ language: '', strength: '' });
         if (buttonRef.current) {
-            buttonRef.current.style.display = 'none'
+            // buttonRef.current.style.display = 'none'
         }
     }
 
@@ -74,9 +74,9 @@ const LanguageForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5 ">
                         {
-                            controlledFields.map((field, index) => {
+                            controlledFields.map((item, index) => {
                                 return (
-                                    <div className="flex gap-2 " key={index}>
+                                    <div className="flex gap-2 " key={item.id}>
                                         <FormField
                                             name={`languageInfo.${index}.language`}
                                             control={form.control}
@@ -162,8 +162,8 @@ const LanguageForm = () => {
                         </Button>
                         <Button
                             type="submit"
-                            className="w-2/3 self-center mt-20">
-                            Submit
+                            className="w-full py-6 self-center mt-20">
+                            Next
                         </Button>
                     </div>
                 </form>

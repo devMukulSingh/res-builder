@@ -180,7 +180,7 @@ const PersonalForm = () => {
 
                         <Button
                             type="submit"
-                            className="w-full mt-5">
+                            className="w-full py-6 mt-5">
                             Next
                         </Button>
                     </div>
