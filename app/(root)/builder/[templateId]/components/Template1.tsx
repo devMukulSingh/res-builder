@@ -18,7 +18,6 @@ const Template1 = () => {
     const achievements = useAppSelector(state => state.persistedReducer.userSlice.achievements);
     const languages = useAppSelector(state => state.persistedReducer.userSlice.languages);
 
-    console.log(contact);
 
     if (!isMounted) return null;
 

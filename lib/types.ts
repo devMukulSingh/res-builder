@@ -40,7 +40,9 @@ export interface Icontact{
     portfolio:string,
 }
 export interface Iachievements{
-    certifications:string[]
+    achievements:{
+        value:string
+    }[]
 }
 
 export interface Ilanguages{
