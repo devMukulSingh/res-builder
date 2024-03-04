@@ -4,10 +4,15 @@ import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { setExperience } from "@/redux/slice/userSlice";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { useEffect, useState } from "react";
 
 const ExperienceForm = () => {
 
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect( () => {
+        setIsMounted(true);
+    },[])
     const dispatch = useAppDispatch();
 
     const form = useForm({});
@@ -18,7 +23,10 @@ const ExperienceForm = () => {
     const handleChange = () => {
         dispatch(setExperience(form.getValues()));        
     }
+    const experience = useAppSelector( state => state.persistedReducer.userSlice.experience);
 
+    if(!isMounted) return null;
+    
     return (
         <main className="p-5">
             <Form {...form} >
@@ -92,7 +100,9 @@ const ExperienceForm = () => {
                                     </FormItem>
                                 )}
                             />
-                            <FormField
+                            {
+                                !experience?.checkbox &&
+                                <FormField
                                 name="endDate"
                                 control={form.control}
                                 render={({ field }) => (
@@ -107,7 +117,8 @@ const ExperienceForm = () => {
                                         <FormMessage />
                                     </FormItem>
                                 )}
-                            />
+                                />
+                            }
                         </div>
                         <FormField
                             name="checkbox"

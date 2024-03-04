@@ -28,7 +28,7 @@ const AchievementsForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Certification #1</FormLabel>
+                                    <FormLabel>Achievement #1</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="py-8 bg-white" {...field}
@@ -43,7 +43,7 @@ const AchievementsForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Certification #2</FormLabel>
+                                    <FormLabel>Achievement #2</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="py-8 bg-white" {...field}
@@ -59,7 +59,7 @@ const AchievementsForm = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
-                                    <FormLabel>Certification #3</FormLabel>
+                                    <FormLabel>Achievement #3</FormLabel>
                                     <FormControl>
                                         <Input
                                             placeholder="eg Certificate of Engineering"
@@ -74,7 +74,7 @@ const AchievementsForm = () => {
                             className="flex mr-auto items-center gap-2 bg-transparent"
                         >
                             <PlusCircle />
-                            Add Certificate/License
+                            Add Achievement/License
                         </Button>
                         <Button
                             type="submit"
