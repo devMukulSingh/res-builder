@@ -66,7 +66,7 @@ const PersonalForm = () => {
         <main className=" text-neutral-500">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-5 w-4/5">
+                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-5 lg:w-4/5 w-full ml-auto ">
                         <FormField
                             name="fullName"
                             control={form.control}
@@ -119,13 +119,13 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <div className="flex gap-5">
+                        <div className="flex gap-5 ">
                             <FormField
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Country Code</FormLabel>
+                                    <FormItem className="whitespace-nowrap " >
+                                        <FormLabel >Country Code</FormLabel>
                                         <FormControl>
                                             <Input className="bg-white" {...field} />
                                         </FormControl>
