@@ -76,7 +76,7 @@ const LanguageForm = () => {
                         {
                             controlledFields.map((field, index) => {
                                 return (
-                                    <div className="flex gap-2 ">
+                                    <div className="flex gap-2 " key={index}>
                                         <FormField
                                             name={`languageInfo.${index}.language`}
                                             control={form.control}
