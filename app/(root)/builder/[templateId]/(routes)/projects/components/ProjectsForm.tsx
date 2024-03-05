@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
@@ -16,11 +16,16 @@ const ProjectsForm = () => {
     const form = useForm();
     const router = useRouter();
     const { templateId } = useParams();
-    
+    const progress = useAppSelector(state => state.rootSlice.progress);
+
+
     const onSubmit = (data: FieldValues) => {
         dispatch(setContact(data));
         router.push(`/builder/${templateId}/achievements`);
-        dispatch(setProgress());
+        if (progress <= 70) {
+            dispatch(setProgress())
+        }
+
     }
     const handleChange = () => {
         dispatch(setContact(form.getValues()));
@@ -80,7 +85,7 @@ const ProjectsForm = () => {
                                 </FormItem>
                             )}
                         />
-                        
+
                         <Button
                             variant='ghost'
                             className="gap-2 self-start bg-transparent text-neutral-700"

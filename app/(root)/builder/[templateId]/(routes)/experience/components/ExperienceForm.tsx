@@ -17,6 +17,8 @@ const ExperienceForm = () => {
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
     const { templateId } = useParams();
+    const progress = useAppSelector( state => state.rootSlice.progress);
+
 
     useEffect(() => {
         setIsMounted(true);
@@ -68,7 +70,11 @@ const ExperienceForm = () => {
         })
         dispatch(setExperience(parsedExperience));
         router.push(`/builder/${templateId}/technical`);
-        dispatch(setProgress());
+    
+        if(progress <= 22){
+            dispatch(setProgress())
+        }
+
     }
     const handleChange = () => {
         const experience = form.getValues().experience;

@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
@@ -14,11 +14,15 @@ const SocialForm = () => {
     const form = useForm();
     const { templateId } = useParams();
     const router = useRouter();    
+    const progress = useAppSelector( state => state.rootSlice.progress);
+
 
     const onSubmit = (data: FieldValues) => {
         dispatch(setContact(data));
         router.push(`/builder/${templateId}/projects`);
-        dispatch(setProgress());
+        if(progress <= 58){
+            dispatch(setProgress())
+        }
     }
 
     const handleChange = () => {

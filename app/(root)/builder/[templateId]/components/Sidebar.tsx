@@ -7,10 +7,14 @@ import { BiCertification } from 'react-icons/bi'
 import { FaDiagramProject, FaUserPen } from 'react-icons/fa6'
 import { GiSkills } from 'react-icons/gi'
 import { usePathname } from "next/navigation";
+import { resetProgressBar } from "@/redux/slice/rootSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
+import { Button } from "@/components/ui/button";
 
 const Sidebar = () => {
 
     const pathName = usePathname();
+    const dispatch = useAppDispatch();
 
     const sidebarOptions = [
         {
@@ -63,7 +67,9 @@ const Sidebar = () => {
 
     ]
 
-
+    const handleResetForm = () => {
+        dispatch(resetProgressBar())
+    }
     return (
         <main className='w-[20rem] h-[calc(100vh-6.5rem)] bg-white py-3 fixed'>
             <MdOutlineSort
@@ -80,6 +86,12 @@ const Sidebar = () => {
                 }
             </ul>
             <Progressbar />
+            <Button
+                className="mx-10"
+                onClick={handleResetForm}
+                variant="destructive">
+                Reset
+            </Button>
         </main>
     )
 }

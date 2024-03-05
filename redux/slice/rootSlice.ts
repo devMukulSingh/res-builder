@@ -17,11 +17,14 @@ const rootSlice = createSlice({
             const singleProgress = Math.floor(100/8);
             state.progress = state.progress + singleProgress;
         },
+        resetProgressBar : (state) => {
+            state.progress = 10;
+        }
     }
 });
 
 
 export default rootSlice.reducer;
 
-export const { setProgress } = rootSlice.actions;
+export const { setProgress,resetProgressBar } = rootSlice.actions;
 

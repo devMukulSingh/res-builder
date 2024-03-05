@@ -5,14 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { languages, strengths } from "@/lib/constants";
 import { PlusCircle } from "lucide-react";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRef } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
+import { setProgress } from "@/redux/slice/rootSlice";
+import { useRouter } from "next/navigation";
 
 const LanguageForm = () => {
 
     const dispatch = useAppDispatch();
+    const router = useRouter();
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const progress = useAppSelector(state => state.rootSlice.progress);
+
     const form = useForm({
         defaultValues: {
             languageInfo: [
@@ -39,6 +44,7 @@ const LanguageForm = () => {
             }
         })
         dispatch(setLanguages(parsedLanguage));
+        router.push('/download')
 
     }
 
@@ -163,7 +169,7 @@ const LanguageForm = () => {
                         <Button
                             type="submit"
                             className="w-full py-6 self-center mt-20">
-                            Next
+                            Submit
                         </Button>
                     </div>
                 </form>

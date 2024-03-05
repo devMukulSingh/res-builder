@@ -19,6 +19,8 @@ const EducationForm = () => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const router = useRouter();
     const { templateId } = useParams();
+    const progress = useAppSelector( state => state.rootSlice.progress);
+
     
     const education = useAppSelector(state => state.userSlice.education);
 
@@ -66,7 +68,10 @@ const EducationForm = () => {
         })
         dispatch(setEducation(parsedEducation));
         router.push(`/builder/${templateId}/social`);
-        dispatch(setProgress());
+        if(progress <= 46){
+            dispatch(setProgress())
+        }
+
     
     }
     const handleChange = () => {
@@ -137,7 +142,7 @@ const EducationForm = () => {
                     <div className="flex flex-col gap-10">
 
                         {
-                            education && education.map((item, index) => {
+                            education && education.map((item:Ieducation, index) => {
                                 return (
                                     <>
                                         <Collapsible

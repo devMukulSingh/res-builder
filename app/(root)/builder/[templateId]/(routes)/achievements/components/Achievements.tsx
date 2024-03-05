@@ -5,7 +5,7 @@ import { FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { setAchievements } from "@/redux/slice/userSlice";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useFieldArray } from "react-hook-form";
 import { useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -17,6 +17,8 @@ const AchievementsForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
+    const progress = useAppSelector(state => state.rootSlice.progress);
+
 
     const form = useForm({
         defaultValues: {
@@ -45,7 +47,10 @@ const AchievementsForm = () => {
         const parsedAchievements = data?.achievements.map((item: { value: string, id: string }) => item.value)
         dispatch(setAchievements(parsedAchievements));
         router.push(`/builder/${templateId}/language`);
-        dispatch(setProgress());
+        if (progress <= 82) {
+            dispatch(setProgress())
+        }
+
     }
 
     const handleChange = () => {

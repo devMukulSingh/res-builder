@@ -3,7 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
@@ -14,11 +14,16 @@ const TechnicalForm = () => {
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
+    const progress = useAppSelector( state => state.rootSlice.progress);
+
 
     const onSubmit = (data: FieldValues) => {
         dispatch(setExperience(data));
         router.push(`/builder/${templateId}/education`);
-        dispatch(setProgress());
+        
+        if(progress <= 34){
+            dispatch(setProgress())
+        }
     }
     const handleChange = () => {
         dispatch(setExperience(form.getValues()));

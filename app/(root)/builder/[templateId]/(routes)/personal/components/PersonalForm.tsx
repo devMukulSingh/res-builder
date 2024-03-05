@@ -62,6 +62,7 @@ const PersonalForm = () => {
 
     type formSchema = z.infer<typeof schema>
     const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
+    const progress = useAppSelector( state => state.rootSlice.progress);
 
     const form = useForm<formSchema>({
         resolver: zodResolver(schema),
@@ -83,7 +84,10 @@ const PersonalForm = () => {
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
         router.push(`/builder/${templateId}/experience`);
-        dispatch(setProgress())
+        if(progress <= 10){
+            dispatch(setProgress())
+        }
+
     }
     const handleChange = () => {
         dispatch(setPersonalInfo(form.getValues()));
