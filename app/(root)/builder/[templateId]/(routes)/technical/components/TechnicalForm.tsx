@@ -7,21 +7,32 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
+import Skill from "./Skill";
+import { useState } from "react";
 
 const TechnicalForm = () => {
 
     const form = useForm();
+    const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
-    const progress = useAppSelector( state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.rootSlice.progress);
 
+    const skills = [
+        'Typescript',
+        'Reactjs',
+        'Nextjs',
+        'MongoDB',
+        'MySQL',
+        'ExpressJs'
+    ]
 
     const onSubmit = (data: FieldValues) => {
         dispatch(setExperience(data));
         router.push(`/builder/${templateId}/education`);
-        
-        if(progress <= 34){
+
+        if (progress <= 34) {
             dispatch(setProgress())
         }
     }
@@ -30,128 +41,27 @@ const TechnicalForm = () => {
     }
 
     return (
-        <main className="p-5">
-            <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
+        <main className="p-5 space-y-5">
+            <section>
+                <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
+
+                <div className="grid grid-cols-2 gap-5">
+                    {
+                        skills.map((skill) => (
+                            <Skill
+                            setSelectedSkills={setSelectedSkills}
+                            selectedSkills={selectedSkills} 
+                                skill={skill} 
+                                key={skill} 
+                            />
+                        ))
+                    }
+                </div>
+            </section>
+
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
-
-                        <div className="flex gap-5">
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="flex gap-5">
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="flex gap-5">
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="flex gap-5">
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                name="company"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem >
-                                        <FormLabel>Company</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} placeholder="Rangam" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                        </div>
                         <FormField
                             name="customSkill"
                             control={form.control}
@@ -168,7 +78,7 @@ const TechnicalForm = () => {
                         />
                         <Button
                             type="submit"
-                            className="w-full mt-20 py-6">
+                            className="w-full mt-10 py-6">
                             Next
                         </Button>
                     </div>
