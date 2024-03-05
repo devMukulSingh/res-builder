@@ -176,7 +176,7 @@ const PersonalForm = () => {
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="bg-white">
-                                                    <SelectValue placeholder="Proficient" />
+                                                    <SelectValue placeholder="+91 (IND)" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
@@ -260,7 +260,7 @@ const PersonalForm = () => {
                                     </FormItem>
                                 )}
                             />
-                            
+
                             {/* birthplace */}
                             <FormField
                                 name="birthPlace"

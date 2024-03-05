@@ -137,7 +137,7 @@ const PersonalForm = () => {
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="bg-white">
-                                                    <SelectValue placeholder="Proficient" />
+                                                    <SelectValue placeholder="+91 (IND)" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
@@ -156,7 +156,7 @@ const PersonalForm = () => {
                                         <FormMessage />
                                     </FormItem>
                                 )} />
-                                
+
                             <FormField
                                 name="mobile"
                                 control={form.control}
