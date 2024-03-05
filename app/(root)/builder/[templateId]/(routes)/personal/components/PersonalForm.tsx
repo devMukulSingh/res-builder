@@ -9,6 +9,8 @@ import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { IcountryCode, countryCodes } from "@/lib/constants";
 
 const PersonalForm = () => {
 
@@ -62,7 +64,7 @@ const PersonalForm = () => {
 
     type formSchema = z.infer<typeof schema>
     const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
-    const progress = useAppSelector( state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.rootSlice.progress);
 
     const form = useForm<formSchema>({
         resolver: zodResolver(schema),
@@ -84,7 +86,7 @@ const PersonalForm = () => {
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
         router.push(`/builder/${templateId}/experience`);
-        if(progress <= 10){
+        if (progress <= 10) {
             dispatch(setProgress())
         }
 
@@ -151,16 +153,35 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <div className="flex gap-5">
+                        <div className="flex gap-5 w-full">
                             <FormField
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem >
+                                    <FormItem className="w-1/2" >
                                         <FormLabel>Country Code</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} />
-                                        </FormControl>
+                                        <Select
+                                            value={field.value}
+                                            onValueChange={field.onChange}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger className="bg-white">
+                                                    <SelectValue placeholder="Proficient" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {
+                                                    countryCodes.map((code:IcountryCode) => (
+                                                        <SelectItem
+                                                            key={code.mobileCode}
+                                                            value={code.mobileCode}
+                                                        >
+                                                            {code.mobileCode} ({code.name})
+                                                        </SelectItem>
+                                                    ))
+                                                }
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -169,7 +190,7 @@ const PersonalForm = () => {
                                 name="mobile"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem >
+                                    <FormItem className="w-1/2" >
                                         <FormLabel>Mobile</FormLabel>
                                         <FormControl>
                                             <Input className="bg-white" {...field} />
