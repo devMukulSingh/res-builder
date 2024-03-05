@@ -96,7 +96,7 @@ const AchievementsForm = () => {
                         <Button
                             type="submit"
                             className="w-full mt-20 py-6">
-                            Submit
+                            Next
                         </Button>
 
                     </div>

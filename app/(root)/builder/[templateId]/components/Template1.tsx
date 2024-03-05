@@ -104,11 +104,11 @@ const Template1 = () => {
                                 </h1>
                             </div>
                             <h1 className='font-bold'>
-                                {education?.schoolName}
+                                {/* {education?.schoolName} */}
                             </h1>
                             <div className='flex justify-between'>
                                 <h1>
-                                    {education?.degree}
+                                    {/* {education?.degree} */}
                                 </h1>
                                 {/* <h1>{education?.endDate}</h1> */}
                             </div>
