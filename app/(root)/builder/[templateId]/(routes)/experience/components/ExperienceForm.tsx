@@ -9,10 +9,14 @@ import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Iexperience } from "@/lib/types";
+import { useParams, useRouter } from "next/navigation";
+import { setProgress } from "@/redux/slice/rootSlice";
 
 const ExperienceForm = () => {
 
     const [isMounted, setIsMounted] = useState(false);
+    const router = useRouter();
+    const { templateId } = useParams();
 
     useEffect(() => {
         setIsMounted(true);
@@ -30,7 +34,7 @@ const ExperienceForm = () => {
                     startDate: '',
                     endDate: '',
                     checkbox: false,
-                    bio:''
+                    bio: ''
                 }
             ]
         }
@@ -63,6 +67,8 @@ const ExperienceForm = () => {
             }
         })
         dispatch(setExperience(parsedExperience));
+        router.push(`/builder/${templateId}/technical`);
+        dispatch(setProgress());
     }
     const handleChange = () => {
         const experience = form.getValues().experience;
@@ -79,7 +85,7 @@ const ExperienceForm = () => {
         })
         dispatch(setExperience(parsedExperience));
     }
-    const experience = useAppSelector(state => state.persistedReducer.userSlice.experience);
+    const experience = useAppSelector(state => state.userSlice.experience);
 
     const handleAddMore = () => {
         // handleCollapsible(fieldArray.fields.length)
@@ -91,7 +97,7 @@ const ExperienceForm = () => {
             startDate: '',
             endDate: '',
             checkbox: false,
-            bio:''
+            bio: ''
         });
 
     }

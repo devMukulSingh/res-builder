@@ -38,8 +38,8 @@ const Sidebar = () => {
         },
         {
             icon: Contact,
-            title: 'Contact Information',
-            isActive: pathName.endsWith('/contact')
+            title: 'Social Links',
+            isActive: pathName.endsWith('/social')
 
         },
         {

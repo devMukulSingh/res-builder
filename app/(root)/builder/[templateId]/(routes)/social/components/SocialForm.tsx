@@ -5,15 +5,22 @@ import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
+import { useParams, useRouter } from "next/navigation";
+import { setProgress } from "@/redux/slice/rootSlice";
 
-const EducationForm = () => {
+const SocialForm = () => {
 
     const dispatch = useAppDispatch();
     const form = useForm();
+    const { templateId } = useParams();
+    const router = useRouter();    
 
     const onSubmit = (data: FieldValues) => {
         dispatch(setContact(data));
+        router.push(`/builder/${templateId}/projects`);
+        dispatch(setProgress());
     }
+
     const handleChange = () => {
         dispatch(setContact(form.getValues()));     
     }
@@ -99,4 +106,4 @@ const EducationForm = () => {
     )
 }
 
-export default EducationForm
+export default SocialForm

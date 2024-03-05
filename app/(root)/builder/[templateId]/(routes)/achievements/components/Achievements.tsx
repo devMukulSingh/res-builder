@@ -8,11 +8,15 @@ import { setAchievements } from "@/redux/slice/userSlice";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { useFieldArray } from "react-hook-form";
 import { useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { setProgress } from "@/redux/slice/rootSlice";
 
 const AchievementsForm = () => {
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const dispatch = useAppDispatch();
+    const router = useRouter();
+    const { templateId } = useParams();
 
     const form = useForm({
         defaultValues: {
@@ -40,6 +44,8 @@ const AchievementsForm = () => {
     const onSubmit = (data: FieldValues) => {
         const parsedAchievements = data?.achievements.map((item: { value: string, id: string }) => item.value)
         dispatch(setAchievements(parsedAchievements));
+        router.push(`/builder/${templateId}/language`);
+        dispatch(setProgress());
     }
 
     const handleChange = () => {

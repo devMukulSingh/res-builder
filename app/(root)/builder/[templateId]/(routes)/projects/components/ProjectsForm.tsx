@@ -7,14 +7,20 @@ import { useAppDispatch } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
+import { setProgress } from "@/redux/slice/rootSlice";
+import { useParams, useRouter } from "next/navigation";
 
 const ProjectsForm = () => {
 
     const dispatch = useAppDispatch();
     const form = useForm();
-
+    const router = useRouter();
+    const { templateId } = useParams();
+    
     const onSubmit = (data: FieldValues) => {
         dispatch(setContact(data));
+        router.push(`/builder/${templateId}/achievements`);
+        dispatch(setProgress());
     }
     const handleChange = () => {
         dispatch(setContact(form.getValues()));

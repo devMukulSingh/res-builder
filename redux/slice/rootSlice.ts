@@ -13,8 +13,9 @@ const rootSlice = createSlice({
     name:'rootSlice',
     initialState,
     reducers:{
-        setProgress : (state,action ) => {
-            state.progress = action.payload;
+        setProgress : (state ) => {
+            const singleProgress = Math.floor(100/8);
+            state.progress = state.progress + singleProgress;
         },
     }
 });

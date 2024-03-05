@@ -11,13 +11,13 @@ const Resume = () => {
     useEffect(() => {
         setIsMounted(true);
     }, [])
-    const personalInfo = useAppSelector(state => state.persistedReducer.userSlice.personalInfo);
-    const experience = useAppSelector(state => state.persistedReducer.userSlice.experience);
-    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
-    const technical = useAppSelector(state => state.persistedReducer.userSlice.technicalSkills);
-    const contact = useAppSelector(state => state.persistedReducer.userSlice.contact);
-    const achievements = useAppSelector(state => state.persistedReducer.userSlice.achievements);
-    const languages = useAppSelector(state => state.persistedReducer.userSlice.languages);
+    const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
+    const experience = useAppSelector(state => state.userSlice.experience);
+    const education = useAppSelector(state => state.userSlice.education);
+    const technical = useAppSelector(state => state.userSlice.technicalSkills);
+    const contact = useAppSelector(state => state.userSlice.contact);
+    const achievements = useAppSelector(state => state.userSlice.achievements);
+    const languages = useAppSelector(state => state.userSlice.languages);
 
 
     if (!isMounted) return null;

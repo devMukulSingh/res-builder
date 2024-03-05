@@ -6,13 +6,15 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
 import { setPersonalInfo } from "@/redux/slice/userSlice";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
 
 const PersonalForm = () => {
 
     const router = useRouter();
     const dispatch = useAppDispatch();
+
+
     const schema = z.object({
         fullName: z.string().min(3, {
             message: 'Name should be minimum 3 characters'

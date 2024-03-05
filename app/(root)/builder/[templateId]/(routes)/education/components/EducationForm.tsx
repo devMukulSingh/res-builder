@@ -8,6 +8,8 @@ import { setEducation } from "@/redux/slice/userSlice";
 import { useEffect, useRef, useState } from "react";
 import { Ieducation } from "@/lib/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useParams, useRouter } from "next/navigation";
+import { setProgress } from "@/redux/slice/rootSlice";
 
 const EducationForm = () => {
 
@@ -15,8 +17,10 @@ const EducationForm = () => {
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const router = useRouter();
+    const { templateId } = useParams();
     
-    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
+    const education = useAppSelector(state => state.userSlice.education);
 
     const form = useForm({
         defaultValues:  {
@@ -61,6 +65,9 @@ const EducationForm = () => {
             }
         })
         dispatch(setEducation(parsedEducation));
+        router.push(`/builder/${templateId}/social`);
+        dispatch(setProgress());
+    
     }
     const handleChange = () => {
         // const education = controlledFields.education;

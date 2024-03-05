@@ -7,10 +7,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
 import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { useParams, useRouter } from "next/navigation";
+import { setProgress } from "@/redux/slice/rootSlice";
 
 const PersonalForm = () => {
 
     const dispatch = useAppDispatch();
+    const { templateId } = useParams();
+    const router = useRouter();
+
     const schema = z.object({
         fullName: z.string().min(3, {
             message: 'Name should be minimum 3 characters'
@@ -56,7 +61,7 @@ const PersonalForm = () => {
     })
 
     type formSchema = z.infer<typeof schema>
-    const personalInfo = useAppSelector(state => state.persistedReducer.userSlice.personalInfo);
+    const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
 
     const form = useForm<formSchema>({
         resolver: zodResolver(schema),
@@ -77,14 +82,17 @@ const PersonalForm = () => {
 
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
+        router.push(`/builder/${templateId}/experience`);
+        dispatch(setProgress())
     }
     const handleChange = () => {
-        dispatch(setPersonalInfo(form.getValues()));        
+        dispatch(setPersonalInfo(form.getValues()));
     }
+
     return (
         <main className="p-5">
             <Form {...form} >
-                <form onChange={ handleChange } 
+                <form onChange={handleChange}
                     onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-5">
                         <FormField
