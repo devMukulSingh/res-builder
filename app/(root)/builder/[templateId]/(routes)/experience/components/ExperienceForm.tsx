@@ -176,12 +176,12 @@ const ExperienceForm = () => {
                                                 )}
                                             />
                                             {
-                                                !experience?.checkbox &&
+                                                experience && !experience?.[index]?.checkbox &&
                                                 <FormField
                                                     name={`experience.${index}.endDate`}
                                                     control={form.control}
                                                     render={({ field }) => (
-                                                        <FormItem >
+                                                        <FormItem>
                                                             <FormLabel>End Date</FormLabel>
                                                             <FormControl>
                                                                 <Input

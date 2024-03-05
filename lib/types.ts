@@ -31,8 +31,9 @@ export interface Ieducation{
     schoolLocation:string,
     degree:string,
     fieldOfStudy:string,
-    graduationMonth:Date,
-    endDate:Date
+    graduationMonth:string,
+    endDate:string,
+    id:string
 }
 export interface Icontact{
     linkedIn:string,

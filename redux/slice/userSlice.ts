@@ -11,7 +11,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export interface IinitialState {
   personalInfo: IpersonalInfo | null
-  experience: Iexperience | null
+  experience: Iexperience[] | null
   technicalSkills: ItechnicalSkills | null
   education: Ieducation[] | null
   contact: Icontact | null

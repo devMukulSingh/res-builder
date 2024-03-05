@@ -70,10 +70,10 @@ const Resume = () => {
                         </h1>
                         <div className='flex justify-between'>
                             <h1 className='font-bold'>
-                                {experience?.role} | {experience?.address}`  
+                                {/* {experience?.role} | {experience?.address}`   */}
                             </h1>
                             <h1>
-                                {`${experience?.startDate}-${experience?.endDate}` } 
+                                {/* {`${experience?.startDate}-${experience?.endDate}` }  */}
                             </h1>
 
                         </div>

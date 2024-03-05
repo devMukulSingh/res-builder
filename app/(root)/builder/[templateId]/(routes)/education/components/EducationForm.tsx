@@ -5,27 +5,31 @@ import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setEducation } from "@/redux/slice/userSlice";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Ieducation } from "@/lib/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const EducationForm = () => {
 
-    const [current, setCurrent] = useState(1);
-    const [isOpen, setIsOpen] = useState(true);
-    const collRef = useRef<typeof HTMLDivElement>(null);
+    const [current, setCurrent] = useState<string | false>("");
+    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const buttonRef = useRef<HTMLButtonElement>(null);
+    
+    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
+
     const form = useForm({
-        defaultValues: {
-            education: [
+        defaultValues:  {
+            education: education || [
                 {
                     schoolName: '',
                     schoolLocation: '',
                     degree: '',
                     fieldOfStudy: '',
-                    graduationMonth: '',
-                    endDate: ''
+                    graduationMonth: 0,
+                    endDate: 0,
+                    id: Math.floor(Math.random() * 100).toString()
+
                 },
             ]
         }
@@ -59,43 +63,65 @@ const EducationForm = () => {
         dispatch(setEducation(parsedEducation));
     }
     const handleChange = () => {
-        const education = form.getValues().education;
-        const parsedEducation = education.map(item => {
-            return {
-                schoolName: item.schoolName,
-                schoolLocation: item.schoolLocation,
-                degree: item.degree,
-                fieldOfStudy: item.fieldOfStudy,
-                graduationMonth: item.graduationMonth,
-                endDate: item.endDate
-            }
-        })
-        dispatch(setEducation(parsedEducation));
+        // const education = controlledFields.education;
+        // const parsedEducation = controlledFields.map((item) => {
+        //     return {
+        //         schoolName: item.schoolName,
+        //         schoolLocation: item.schoolLocation,
+        //         degree: item.degree,
+        //         fieldOfStudy: item.fieldOfStudy,
+        //         graduationMonth: item.graduationMonth,
+        //         endDate: item.endDate,
+        //         id: item.id
+        //     }
+        // })
+        console.log(controlledFields);
+        
+        dispatch(setEducation(controlledFields));
+        console.log("fieldArray", fieldArray.fields);
+        console.log("controlledField", controlledFields);
+
     }
     const handleAddMore = () => {
-        // setIsOpen(false);
-        handleCollapsible(fieldArray.fields.length)
-        fieldArray.append({
+        const emptyField = {
             schoolName: '',
             schoolLocation: '',
             degree: '',
             fieldOfStudy: '',
-            graduationMonth: '',
-            endDate: ''
-        });
+            graduationMonth:0,
+            endDate: 0,
+            id: Math.floor(Math.random() * 100).toString()
+        }
+        fieldArray.append(emptyField)
 
     }
 
-    const handleCollapsible = (index: number) => {
-        setCurrent(index)
-        if (current == index) {
-            //@ts-ignore
-            setIsOpen();
+    const handleCollapsible = (id: string, isCurrentExpanded: boolean) => {
+        console.log(id,isCurrentExpanded);
+        
+        if (isCurrentExpanded) {
+            setCurrent(false)
+        }
+        else {
+            setCurrent(id);
         }
     }
-    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
+    useEffect(() => {
+        setIsMounted(true);
+        // setCurrent(controlledFields[0]?.id);
+    }, [])
+    useEffect(() => {
+        if (education && education.length < controlledFields.length) {
+            console.log("controlledFields", controlledFields);
+            dispatch(setEducation(controlledFields));
+            console.log(education);
+        }
+        // const currentFieldIndex = controlledFields.length - 1;
+        // setCurrent(controlledFields[currentFieldIndex].id)
+    }, [controlledFields.length]);
 
-
+    if (!isMounted) return null;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <main className="p-5">
 
@@ -104,17 +130,18 @@ const EducationForm = () => {
                     <div className="flex flex-col gap-10">
 
                         {
-                            controlledFields.map((item, index) => {
+                            education && education.map((item, index) => {
                                 return (
                                     <>
                                         <Collapsible
-                                            open={isOpen}
-                                            onOpenChange={() => handleCollapsible(index + 1)}
+                                            onOpenChange={() => handleCollapsible(item.id, item.id === current)}
                                             className="w-[350px] space-y-2"
+                                            open={true}
                                         >
                                             <CollapsibleTrigger asChild>
                                                 <Button className="bg-blue-400 hover:bg-blue-300 w-full">
-                                                    {education?.[current + 1]?.schoolName || 'Delhi University'}
+                                                    Delhi University
+                                                    {/* {education?.[current + 1]?.schoolName || 'Delhi University'} */}
                                                 </Button>
                                             </CollapsibleTrigger>
                                             <CollapsibleContent>

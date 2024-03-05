@@ -72,7 +72,7 @@ const Sidebar = () => {
              size-8
              cursor-pointer
               "/>
-            <ul className="space-y-2">
+            <ul >
                 {
                     sidebarOptions.map((option) => (
                         <SidebarOption option={option} key={option.title} />
