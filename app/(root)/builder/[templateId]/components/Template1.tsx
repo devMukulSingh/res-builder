@@ -10,13 +10,13 @@ const Template1 = () => {
     useEffect(() => {
         setIsMounted(true);
     }, [])
-    const personalInfo = useAppSelector(state => state.persistedReducer.userSlice.personalInfo);
-    const experience = useAppSelector(state => state.persistedReducer.userSlice.experience);
-    const education = useAppSelector(state => state.persistedReducer.userSlice.education);
-    const technical = useAppSelector(state => state.persistedReducer.userSlice.technicalSkills);
-    const contact = useAppSelector(state => state.persistedReducer.userSlice.contact);
-    const achievements = useAppSelector(state => state.persistedReducer.userSlice.achievements);
-    const languages = useAppSelector(state => state.persistedReducer.userSlice.languages);
+    const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
+    const experience = useAppSelector(state => state.userSlice.experience);
+    const education = useAppSelector(state => state.userSlice.education);
+    const technical = useAppSelector(state => state.userSlice.technicalSkills);
+    const contact = useAppSelector(state => state.userSlice.contact);
+    const achievements = useAppSelector(state => state.userSlice.achievements);
+    const languages = useAppSelector(state => state.userSlice.languages);
 
 
     if (!isMounted) return null;
@@ -78,11 +78,11 @@ const Template1 = () => {
                                 </h1>
                             </div>
                             <h1 className='font-bold'>
-                                {experience?.companyName}
+                                {/* {experience?.companyName} */}
                             </h1>
                             <div className='flex justify-between'>
-                                <h1>{experience?.role}</h1>
-                                <h1>{`${experience?.startDate}-${experience?.endDate}`}</h1>
+                                {/* <h1>{experience?.role}</h1> */}
+                                {/* <h1>{`${experience?.startDate}-${experience?.endDate}`}</h1> */}
                             </div>
                             <ul className='list-disc pl-8'>
                                 <li className='whitespace-normal'>

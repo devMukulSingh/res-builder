@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { countryCodes } from "@/lib/constants";
 
 const PersonalForm = () => {
 
@@ -69,6 +71,7 @@ const PersonalForm = () => {
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="py-8 px-10 bg-red-100 flex flex-col gap-5 lg:w-4/5 w-full ml-auto ">
+
                         <FormField
                             name="fullName"
                             control={form.control}
@@ -126,15 +129,34 @@ const PersonalForm = () => {
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem className="whitespace-nowrap " >
-                                        <FormLabel >Country Code</FormLabel>
-                                        <FormControl>
-                                            <Input className="bg-white" {...field} />
-                                        </FormControl>
+                                    <FormItem className="w-1/2" >
+                                        <FormLabel>Country Code</FormLabel>
+                                        <Select
+                                            value={field.value}
+                                            onValueChange={field.onChange}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger className="bg-white">
+                                                    <SelectValue placeholder="Proficient" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {
+                                                    countryCodes.map((code) => (
+                                                        <SelectItem
+                                                            key={code.mobileCode}
+                                                            value={code.mobileCode}
+                                                        >
+                                                            {code.mobileCode} ({code.name})
+                                                        </SelectItem>
+                                                    ))
+                                                }
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
-                                )}
-                            />
+                                )} />
+                                
                             <FormField
                                 name="mobile"
                                 control={form.control}

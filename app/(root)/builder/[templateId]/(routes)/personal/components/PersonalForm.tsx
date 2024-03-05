@@ -101,6 +101,8 @@ const PersonalForm = () => {
                 <form onChange={handleChange}
                     onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-5">
+
+                        {/* Name */}
                         <FormField
                             name="fullName"
                             control={form.control}
@@ -114,6 +116,8 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
+
+                        {/* email */}
                         <FormField
                             name="email"
                             control={form.control}
@@ -127,6 +131,8 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
+
+                        {/* profession */}
                         <FormField
                             name="profession"
                             control={form.control}
@@ -140,6 +146,8 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
+
+                        {/* address */}
                         <FormField
                             name="address"
                             control={form.control}
@@ -153,7 +161,9 @@ const PersonalForm = () => {
                                 </FormItem>
                             )}
                         />
+
                         <div className="flex gap-5 w-full">
+                            {/* countryCode */}
                             <FormField
                                 name="countryCode"
                                 control={form.control}
@@ -186,6 +196,7 @@ const PersonalForm = () => {
                                     </FormItem>
                                 )}
                             />
+                            {/* mobile no */}
                             <FormField
                                 name="mobile"
                                 control={form.control}
@@ -202,6 +213,7 @@ const PersonalForm = () => {
                         </div>
 
                         <div className="flex gap-5">
+                            {/* city */}
                             <FormField
                                 name="city"
                                 control={form.control}
@@ -215,6 +227,8 @@ const PersonalForm = () => {
                                     </FormItem>
                                 )}
                             />
+
+                            {/* state */}
                             <FormField
                                 name="state"
                                 control={form.control}
@@ -231,6 +245,8 @@ const PersonalForm = () => {
                         </div>
 
                         <div className="flex gap-5 w-full">
+
+                            {/* dob */}
                             <FormField
                                 name="dob"
                                 control={form.control}
@@ -244,6 +260,8 @@ const PersonalForm = () => {
                                     </FormItem>
                                 )}
                             />
+                            
+                            {/* birthplace */}
                             <FormField
                                 name="birthPlace"
                                 control={form.control}
