@@ -248,15 +248,16 @@ const ExperienceForm = () => {
                                 )
                             })
                         }
-
+                        
                         <Button
                             onClick={handleAddMore}
-                            type="submit"
+                            type="button"
                             variant="ghost"
                             className="gap-2 self-start bg-transparent mt-5">
                             <PlusCircle />
                             Add More
                         </Button>
+
                         <Button
                             type="submit"
                             className="w-full py-6 mt-5">

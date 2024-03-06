@@ -35,7 +35,7 @@ const EducationForm = () => {
                     graduationMonth: 0,
                     endDate: 0,
                     id: Math.floor(Math.random() * 100).toString(),
-                    percentage:0
+                    percentage: 0
 
                 },
             ]
@@ -65,7 +65,7 @@ const EducationForm = () => {
                 fieldOfStudy: item.fieldOfStudy,
                 graduationMonth: item.graduationMonth,
                 endDate: item.endDate,
-                percentage:item.percentage
+                percentage: item.percentage
             }
         })
         dispatch(setEducation(parsedEducation));
@@ -104,7 +104,7 @@ const EducationForm = () => {
             fieldOfStudy: '',
             graduationMonth: 0,
             endDate: 0,
-            percentage:0,
+            percentage: 0,
             id: Math.floor(Math.random() * 100).toString()
         }
         fieldArray.append(emptyField)
@@ -282,8 +282,7 @@ const EducationForm = () => {
 
                         <div className="flex gap-5">
                             <Button
-                                type="submit"
-                                ref={buttonRef}
+                                type="button"
                                 onClick={handleAddMore}
                                 className="w-full">
                                 Add More

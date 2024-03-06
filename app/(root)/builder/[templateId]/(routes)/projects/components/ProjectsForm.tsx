@@ -88,6 +88,7 @@ const ProjectsForm = () => {
 
                         <Button
                             variant='ghost'
+                            type="button"                           
                             className="gap-2 self-start bg-transparent text-neutral-700"
                         >
                             <PlusCircle />

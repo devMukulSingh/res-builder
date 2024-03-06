@@ -158,7 +158,7 @@ const LanguageForm = () => {
 
 
                         <Button
-                            ref={buttonRef}
+                            type="button"
                             onClick={handleAddMore}
                             variant="ghost"
                             className="self-start flex items-center gap-2 bg-transparent"

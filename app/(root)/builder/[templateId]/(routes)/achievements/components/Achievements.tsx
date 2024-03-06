@@ -96,7 +96,7 @@ const AchievementsForm = () => {
                         }
 
                         <Button
-                            ref={buttonRef}
+                            type="button"
                             variant="ghost"
                             onClick={handleAddMore}
                             className="flex mr-auto items-center gap-2 bg-transparent"
