@@ -21,9 +21,8 @@ const EducationForm = () => {
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.rootSlice.progress);
-
-
     const education = useAppSelector(state => state.userSlice.education);
+
 
     const form = useForm({
         defaultValues: {
@@ -121,7 +120,7 @@ const EducationForm = () => {
     }
 
     const handleDelete = (index: number) => {
-        if(controlledFields.length > 0){
+        if (controlledFields.length > 0) {
             fieldArray.remove(index);
         }
     }
@@ -131,16 +130,20 @@ const EducationForm = () => {
     }, [])
 
     useEffect(() => {
+        // console.log(controlledFields);
+
         if (!education || education.length < controlledFields.length) {
             dispatch(setEducation(controlledFields));
             const expandedFieldIndex = controlledFields.length - 1;
             setExpanded(controlledFields[expandedFieldIndex].id)
         }
-        else if( education && education.length > controlledFields.length){
-            if(controlledFields.length > 0){
+        else if (education && education.length > controlledFields.length) {
+            console.log("else",controlledFields);
+            
+            if (controlledFields.length > 0) {
                 dispatch(setEducation(controlledFields));
             }
-            else{
+            else {
                 toast.error('Profile should have at least one education field')
             }
         }
@@ -157,7 +160,7 @@ const EducationForm = () => {
                     <div className="flex flex-col gap-10">
 
                         {
-                            (!education ? controlledFields : education)?.map((item: Ieducation, index:number) => {
+                            (!education ? controlledFields : education)?.map((item: Ieducation, index: number) => {
                                 return (
                                     <>
                                         <Collapsible

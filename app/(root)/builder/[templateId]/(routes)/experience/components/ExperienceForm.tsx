@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useEffect, useState } from "react";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Trash } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Iexperience } from "@/lib/types";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
 import { Textarea } from "@/components/ui/textarea";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import toast from "react-hot-toast";
 
 const ExperienceForm = () => {
 
@@ -19,15 +21,15 @@ const ExperienceForm = () => {
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.rootSlice.progress);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
+    const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();
+    const experience = useAppSelector(state => state.userSlice.experience);
+
+
+
     const form = useForm({
         defaultValues: {
-            experience: [
+            experience: experience || [
                 {
                     companyName: '',
                     employer: '',
@@ -37,11 +39,13 @@ const ExperienceForm = () => {
                     endDate: '',
                     checkbox: false,
                     bio: '',
-                    description: ''
+                    description: '',
+                    id: Math.floor(Math.random() * 100).toString(),
                 }
             ]
         }
     });
+
     const fieldArray = useFieldArray({
         name: 'experience',
         control: form.control
@@ -88,15 +92,15 @@ const ExperienceForm = () => {
                 address: item.address,
                 startDate: item.startDate,
                 endDate: item.endDate,
-                checkbox: item.checkbox
+                checkbox: item.checkbox,
+                id: item.id,
+                description: item.description
             }
         })
         dispatch(setExperience(parsedExperience));
     }
-    const experience = useAppSelector(state => state.userSlice.experience);
 
     const handleAddMore = () => {
-        // handleCollapsible(fieldArray.fields.length)
         fieldArray.append({
             companyName: '',
             employer: '',
@@ -107,10 +111,47 @@ const ExperienceForm = () => {
             checkbox: false,
             bio: '',
             description: '',
+            id: Math.floor(Math.random() * 100).toString(),
         });
 
     }
+    const handleCollapsible = (id: string, isExpanded: boolean) => {
 
+        if (isExpanded) {
+            setExpanded(false)
+        }
+        else {
+            setExpanded(id);
+        }
+    }
+    const handleDelete = (index: number) => {
+        if (controlledFields.length > 0) {
+            fieldArray.remove(index);
+        }
+    }
+
+    useEffect(() => {
+        setIsMounted(true);
+        setExpanded(controlledFields[0]?.id);
+    }, [])
+
+    useEffect(() => {
+
+        if (!experience || experience.length < controlledFields.length) {
+            dispatch(setExperience(controlledFields));
+            const expandedFieldIndex = controlledFields.length - 1;
+            setExpanded(controlledFields[expandedFieldIndex].id)
+        }
+        else if (experience && experience.length > controlledFields.length) {
+            if (controlledFields.length > 0) {
+                dispatch(setExperience(controlledFields));
+            }
+            else {
+                toast.error('Profile should have at least one experience field')
+            }
+        }
+
+    }, [controlledFields.length]);
     if (!isMounted) return null;
 
     return (
@@ -119,136 +160,159 @@ const ExperienceForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange} >
                     <div className="flex flex-col gap-5">
                         {
-                            controlledFields.map((item, index) => {
+                            (!experience ? controlledFields : experience)?.map((item, index) => {
                                 return (
-                                    <div className="flex flex-col gap-5 border p-5" key={item.id}>
-                                        <FormField
-                                            name={`experience.${index}.companyName`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Company</FormLabel>
-                                                    <FormControl>
-                                                        <Input className="bg-white" {...field} placeholder="Rangam" />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`experience.${index}.employer`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Employer</FormLabel>
-                                                    <FormControl>
-                                                        <Input className="bg-white" {...field} placeholder="rangam.com" />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`experience.${index}.role`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Role</FormLabel>
-                                                    <FormControl>
-                                                        <Input
-                                                            placeholder="Jr. Frontend Developer"
-                                                            className="bg-white" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`experience.${index}.address`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Address</FormLabel>
-                                                    <FormControl>
-                                                        <Input className="bg-white" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`experience.${index}.description`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Description</FormLabel>
-                                                    <FormControl>
-                                                        <Textarea
-                                                            placeholder="Led frontend development projects, collaborating closely with design and backend teams to deliver high-quality products.
-                                                            Implemented responsive design principles to ensure optimal user experience across various devices.
-                                                            Developed and maintained scalable web applications using modern technologies such as React.js and Vue.js."
-                                                            className="bg-white py-8 h-52 " {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <div className="flex gap-5">
-                                            <FormField
-                                                name={`experience.${index}.startDate`}
-                                                control={form.control}
-                                                render={({ field }) => (
-                                                    <FormItem >
-                                                        <FormLabel>Start Date</FormLabel>
-                                                        <FormControl>
-                                                            <Input className="bg-white" {...field} type="date" />
-                                                        </FormControl>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                            {
-                                                experience && !experience?.[index]?.checkbox &&
+                                    <Collapsible
+                                        key={index}
+                                        onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
+                                        className="w-[350px] space-y-2 transition"
+                                        open={item.id === expanded}
+                                    >
+                                        <div className="flex transition hover:bg-blue-300 items-center bg-blue-400 px-5">
+                                            <CollapsibleTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    className="w-full hover:bg-blue-300 text-neutral-100">
+                                                    Rangam
+                                                </Button>
+                                            </CollapsibleTrigger>
+                                            <Trash
+                                                className="ml-auto cursor-pointer text-neutral-200"
+                                                onClick={() => handleDelete(index)} />
+                                        </div>
+
+                                        <CollapsibleContent>
+                                            <div className="flex flex-col gap-5 border p-5" key={item.id}>
                                                 <FormField
-                                                    name={`experience.${index}.endDate`}
+                                                    name={`experience.${index}.companyName`}
                                                     control={form.control}
                                                     render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel>End Date</FormLabel>
+                                                        <FormItem >
+                                                            <FormLabel>Company</FormLabel>
+                                                            <FormControl>
+                                                                <Input className="bg-white" {...field} placeholder="Rangam" />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                                <FormField
+                                                    name={`experience.${index}.employer`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Employer</FormLabel>
+                                                            <FormControl>
+                                                                <Input className="bg-white" {...field} placeholder="rangam.com" />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                                <FormField
+                                                    name={`experience.${index}.role`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Role</FormLabel>
                                                             <FormControl>
                                                                 <Input
-                                                                    placeholder="MM YY"
-                                                                    type="date"
+                                                                    placeholder="Jr. Frontend Developer"
                                                                     className="bg-white" {...field} />
                                                             </FormControl>
                                                             <FormMessage />
                                                         </FormItem>
                                                     )}
                                                 />
-                                            }
-                                        </div>
-                                        <FormField
-                                            name={`experience.${index}.checkbox`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem className="flex items-center gap-4">
-                                                    <FormControl>
-                                                        <Checkbox
-                                                            className="size-6"
-                                                            checked={field.value}
-                                                            onCheckedChange={field.onChange}
+                                                <FormField
+                                                    name={`experience.${index}.address`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Address</FormLabel>
+                                                            <FormControl>
+                                                                <Input className="bg-white" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                                <FormField
+                                                    name={`experience.${index}.description`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Description</FormLabel>
+                                                            <FormControl>
+                                                                <Textarea
+                                                                    placeholder="Led frontend development projects, collaborating closely with design and backend teams to deliver high-quality products.
+                                                            Implemented responsive design principles to ensure optimal user experience across various devices.
+                                                            Developed and maintained scalable web applications using modern technologies such as React.js and Vue.js."
+                                                                    className="bg-white py-8 h-52 " {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                                <div className="flex gap-5">
+                                                    <FormField
+                                                        name={`experience.${index}.startDate`}
+                                                        control={form.control}
+                                                        render={({ field }) => (
+                                                            <FormItem >
+                                                                <FormLabel>Start Date</FormLabel>
+                                                                <FormControl>
+                                                                    <Input className="bg-white" {...field} type="date" />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    {
+                                                        experience && !experience?.[index]?.checkbox &&
+                                                        <FormField
+                                                            name={`experience.${index}.endDate`}
+                                                            control={form.control}
+                                                            render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel>End Date</FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            placeholder="MM YY"
+                                                                            type="date"
+                                                                            className="bg-white" {...field} />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                            )}
                                                         />
-                                                    </FormControl>
-                                                    <FormLabel>Currently working here</FormLabel>
-                                                </FormItem>
-                                            )}
+                                                    }
+                                                </div>
+                                                <FormField
+                                                    name={`experience.${index}.checkbox`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem className="flex items-center gap-4">
+                                                            <FormControl>
+                                                                <Checkbox
+                                                                    className="size-6"
+                                                                    checked={field.value}
+                                                                    onCheckedChange={field.onChange}
+                                                                />
+                                                            </FormControl>
+                                                            <FormLabel>Currently working here</FormLabel>
+                                                        </FormItem>
+                                                    )}
 
-                                        />
-                                    </div>
+                                                />
+                                            </div>
+                                        </CollapsibleContent>
+
+                                    </Collapsible>
                                 )
                             })
                         }
-                        
+
                         <Button
                             onClick={handleAddMore}
                             type="button"
