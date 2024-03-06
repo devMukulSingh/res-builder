@@ -20,7 +20,7 @@ const Tiptap:React.FC<TiptapProps> = ({
             },
         },
         onUpdate({editor}){
-            onchange(editor.getHTML())
+            onChange(editor.getHTML())
             console.log(editor.getHTML());
             
         }
