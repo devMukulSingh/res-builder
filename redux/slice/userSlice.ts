@@ -5,6 +5,7 @@ import {
   Iexperience,
   Ilanguages,
   IpersonalInfo,
+  Iprojects,
   ItechnicalSkills
 } from '@/lib/types'
 import { createSlice } from '@reduxjs/toolkit'
@@ -16,7 +17,8 @@ export interface IinitialState {
   education: Ieducation[] | null
   contact: Icontact | null
   achievements: Iachievements | null
-  languages: Ilanguages | null
+  languages: Ilanguages | null,
+  projects: Iprojects[] | null
 }
 
 const initialState: IinitialState = {
@@ -26,7 +28,8 @@ const initialState: IinitialState = {
   education: null,
   contact: null,
   achievements: null,
-  languages: null
+  languages: null,
+  projects:null
 }
 
 export const userSlice = createSlice({
@@ -53,6 +56,9 @@ export const userSlice = createSlice({
     },
     setLanguages: (state, action) => {
       state.languages = action.payload
+    },
+    setProjects: (state, action) => {
+      state.projects = action.payload
     }
   }
 })
@@ -66,5 +72,6 @@ export const {
   setEducation,
   setContact,
   setAchievements,
-  setLanguages
+  setLanguages,
+  setProjects
 } = userSlice.actions

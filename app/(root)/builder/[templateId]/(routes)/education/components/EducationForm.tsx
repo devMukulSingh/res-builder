@@ -16,7 +16,6 @@ const EducationForm = () => {
     const [current, setCurrent] = useState<string | false>("");
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
-    const buttonRef = useRef<HTMLButtonElement>(null);
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.rootSlice.progress);

@@ -55,3 +55,10 @@ export interface Ilanguages{
         strength:string,
     }[]
 }
+
+export interface Iprojects{
+    projectName:string,
+    projectUrl:string,
+    description:string,
+    id:string
+}
