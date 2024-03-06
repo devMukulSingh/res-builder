@@ -29,7 +29,7 @@ const Skill: React.FC<SkillProps> = ({
     return (
         <div
             onClick={handleSelect}
-            className={`p-5 bg-white rounded-md cursor-pointer ${currentSelected && 'border border-4 border-red-500 scale-90'} `}>
+            className={`p-5 bg-white rounded-md cursor-pointer ${currentSelected && 'border-4 border-red-400 transition scale-90'} `}>
             <h1>{skill}</h1>
         </div>
     )

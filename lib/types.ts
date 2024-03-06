@@ -20,7 +20,8 @@ export interface Iexperience{
     address:string,
     startDate:Date,
     endDate:Date,
-    checkbox:boolean
+    checkbox:boolean,
+    description:string
 }
 export interface ItechnicalSkills{
     aiGenSkills:string[],

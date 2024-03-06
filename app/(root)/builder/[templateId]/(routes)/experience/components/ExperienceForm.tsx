@@ -11,14 +11,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Iexperience } from "@/lib/types";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
+import { Textarea } from "@/components/ui/textarea";
 
 const ExperienceForm = () => {
 
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector( state => state.rootSlice.progress);
-
+    const progress = useAppSelector(state => state.rootSlice.progress);
 
     useEffect(() => {
         setIsMounted(true);
@@ -36,7 +36,8 @@ const ExperienceForm = () => {
                     startDate: '',
                     endDate: '',
                     checkbox: false,
-                    bio: ''
+                    bio: '',
+                    description: ''
                 }
             ]
         }
@@ -65,13 +66,14 @@ const ExperienceForm = () => {
                 address: item.address,
                 startDate: item.startDate,
                 endDate: item.endDate,
-                checkbox: item.checkbox
+                checkbox: item.checkbox,
+                description: item.description
             }
         })
         dispatch(setExperience(parsedExperience));
         router.push(`/builder/${templateId}/technical`);
-    
-        if(progress <= 22){
+
+        if (progress <= 22) {
             dispatch(setProgress())
         }
 
@@ -103,7 +105,8 @@ const ExperienceForm = () => {
             startDate: '',
             endDate: '',
             checkbox: false,
-            bio: ''
+            bio: '',
+            description: '',
         });
 
     }
@@ -168,6 +171,23 @@ const ExperienceForm = () => {
                                                     <FormLabel>Address</FormLabel>
                                                     <FormControl>
                                                         <Input className="bg-white" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            name={`experience.${index}.description`}
+                                            control={form.control}
+                                            render={({ field }) => (
+                                                <FormItem >
+                                                    <FormLabel>Description</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea
+                                                            placeholder="Led frontend development projects, collaborating closely with design and backend teams to deliver high-quality products.
+                                                            Implemented responsive design principles to ensure optimal user experience across various devices.
+                                                            Developed and maintained scalable web applications using modern technologies such as React.js and Vue.js."
+                                                            className="bg-white py-8 h-52 " {...field} />
                                                     </FormControl>
                                                     <FormMessage />
                                                 </FormItem>
