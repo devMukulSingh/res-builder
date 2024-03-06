@@ -19,13 +19,13 @@ const EducationForm = () => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector( state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.rootSlice.progress);
 
-    
+
     const education = useAppSelector(state => state.userSlice.education);
 
     const form = useForm({
-        defaultValues:  {
+        defaultValues: {
             education: education || [
                 {
                     schoolName: '',
@@ -34,7 +34,8 @@ const EducationForm = () => {
                     fieldOfStudy: '',
                     graduationMonth: 0,
                     endDate: 0,
-                    id: Math.floor(Math.random() * 100).toString()
+                    id: Math.floor(Math.random() * 100).toString(),
+                    percentage:0
 
                 },
             ]
@@ -63,16 +64,17 @@ const EducationForm = () => {
                 degree: item.degree,
                 fieldOfStudy: item.fieldOfStudy,
                 graduationMonth: item.graduationMonth,
-                endDate: item.endDate
+                endDate: item.endDate,
+                percentage:item.percentage
             }
         })
         dispatch(setEducation(parsedEducation));
         router.push(`/builder/${templateId}/social`);
-        if(progress <= 46){
+        if (progress <= 46) {
             dispatch(setProgress())
         }
 
-    
+
     }
     const handleChange = () => {
         // const education = controlledFields.education;
@@ -88,7 +90,7 @@ const EducationForm = () => {
         //     }
         // })
         console.log(controlledFields);
-        
+
         dispatch(setEducation(controlledFields));
         console.log("fieldArray", fieldArray.fields);
         console.log("controlledField", controlledFields);
@@ -100,8 +102,9 @@ const EducationForm = () => {
             schoolLocation: '',
             degree: '',
             fieldOfStudy: '',
-            graduationMonth:0,
+            graduationMonth: 0,
             endDate: 0,
+            percentage:0,
             id: Math.floor(Math.random() * 100).toString()
         }
         fieldArray.append(emptyField)
@@ -109,8 +112,8 @@ const EducationForm = () => {
     }
 
     const handleCollapsible = (id: string, isCurrentExpanded: boolean) => {
-        console.log(id,isCurrentExpanded);
-        
+        console.log(id, isCurrentExpanded);
+
         if (isCurrentExpanded) {
             setCurrent(false)
         }
@@ -142,7 +145,7 @@ const EducationForm = () => {
                     <div className="flex flex-col gap-10">
 
                         {
-                            education && education.map((item:Ieducation, index) => {
+                            education && education.map((item: Ieducation, index) => {
                                 return (
                                     <>
                                         <Collapsible
@@ -213,6 +216,22 @@ const EducationForm = () => {
                                                                     <Input
                                                                         className="bg-white" {...field}
                                                                         placeholder=""
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        name={`education.${index}.percentage`}
+                                                        control={form.control}
+                                                        render={({ field }) => (
+                                                            <FormItem >
+                                                                <FormLabel>GPA/Percentage</FormLabel>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="bg-white" {...field}
+                                                                        placeholder="88%"
                                                                     />
                                                                 </FormControl>
                                                                 <FormMessage />
