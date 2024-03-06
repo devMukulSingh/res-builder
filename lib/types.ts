@@ -18,11 +18,12 @@ export interface Iexperience{
     employer:string,
     role:string,
     address:string,
-    startDate:Date,
-    endDate:Date,
+    startDate:string,
+    endDate:string,
     checkbox:boolean,
     description:string,
-    id:string
+    id:string,
+    bio : string
 }
 export interface ItechnicalSkills{
     aiGenSkills:string[],

@@ -136,12 +136,13 @@ const ExperienceForm = () => {
     }, [])
 
     useEffect(() => {
-
+        //handling add more functionality
         if (!experience || experience.length < controlledFields.length) {
             dispatch(setExperience(controlledFields));
             const expandedFieldIndex = controlledFields.length - 1;
             setExpanded(controlledFields[expandedFieldIndex].id)
         }
+        //handling delete collapsible
         else if (experience && experience.length > controlledFields.length) {
             if (controlledFields.length > 0) {
                 dispatch(setExperience(controlledFields));

@@ -130,13 +130,14 @@ const EducationForm = () => {
     }, [])
 
     useEffect(() => {
-        // console.log(controlledFields);
 
+        //handling add more functionality
         if (!education || education.length < controlledFields.length) {
             dispatch(setEducation(controlledFields));
             const expandedFieldIndex = controlledFields.length - 1;
             setExpanded(controlledFields[expandedFieldIndex].id)
         }
+        //handling delete collapsible
         else if (education && education.length > controlledFields.length) {
             console.log("else",controlledFields);
             
