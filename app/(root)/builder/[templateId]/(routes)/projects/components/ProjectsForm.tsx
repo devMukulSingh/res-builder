@@ -37,7 +37,7 @@ const ProjectsForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
                         <FormField
-                            name="linkedinLink"
+                            name="projectLink"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
@@ -52,7 +52,7 @@ const ProjectsForm = () => {
                             )}
                         />
                         <FormField
-                            name="twitterLink"
+                            name="projectUrl"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
@@ -68,7 +68,7 @@ const ProjectsForm = () => {
                             )}
                         />
                         <FormField
-                            name="githubLink"
+                            name="description"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem >
