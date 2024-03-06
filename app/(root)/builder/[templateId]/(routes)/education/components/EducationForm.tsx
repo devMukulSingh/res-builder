@@ -10,10 +10,12 @@ import { Ieducation } from "@/lib/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
+import { Trash } from "lucide-react";
+import toast from "react-hot-toast";
 
 const EducationForm = () => {
 
-    const [current, setCurrent] = useState<string | false>("");
+    const [expanded, setExpanded] = useState<string | false>("");
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -31,8 +33,8 @@ const EducationForm = () => {
                     schoolLocation: '',
                     degree: '',
                     fieldOfStudy: '',
-                    graduationMonth: 0,
-                    endDate: 0,
+                    graduationMonth: '',
+                    endDate: '',
                     id: Math.floor(Math.random() * 100).toString(),
                     percentage: 0
 
@@ -67,7 +69,7 @@ const EducationForm = () => {
                 percentage: item.percentage
             }
         })
-        dispatch(setEducation(parsedEducation));
+        // dispatch(setEducation(parsedEducation));
         router.push(`/builder/${templateId}/social`);
         if (progress <= 46) {
             dispatch(setProgress())
@@ -88,11 +90,10 @@ const EducationForm = () => {
         //         id: item.id
         //     }
         // })
-        console.log(controlledFields);
 
         dispatch(setEducation(controlledFields));
-        console.log("fieldArray", fieldArray.fields);
-        console.log("controlledField", controlledFields);
+        console.log(controlledFields);
+
 
     }
     const handleAddMore = () => {
@@ -101,37 +102,49 @@ const EducationForm = () => {
             schoolLocation: '',
             degree: '',
             fieldOfStudy: '',
-            graduationMonth: 0,
-            endDate: 0,
+            graduationMonth: '',
+            endDate: '',
             percentage: 0,
             id: Math.floor(Math.random() * 100).toString()
         }
         fieldArray.append(emptyField)
-
     }
 
-    const handleCollapsible = (id: string, isCurrentExpanded: boolean) => {
-        console.log(id, isCurrentExpanded);
+    const handleCollapsible = (id: string, isExpanded: boolean) => {
 
-        if (isCurrentExpanded) {
-            setCurrent(false)
+        if (isExpanded) {
+            setExpanded(false)
         }
         else {
-            setCurrent(id);
+            setExpanded(id);
+        }
+    }
+
+    const handleDelete = (index: number) => {
+        if(controlledFields.length > 0){
+            fieldArray.remove(index);
         }
     }
     useEffect(() => {
         setIsMounted(true);
-        // setCurrent(controlledFields[0]?.id);
+        setExpanded(controlledFields[0]?.id);
     }, [])
+
     useEffect(() => {
-        if (education && education.length < controlledFields.length) {
-            console.log("controlledFields", controlledFields);
+        if (!education || education.length < controlledFields.length) {
             dispatch(setEducation(controlledFields));
-            console.log(education);
+            const expandedFieldIndex = controlledFields.length - 1;
+            setExpanded(controlledFields[expandedFieldIndex].id)
         }
-        // const currentFieldIndex = controlledFields.length - 1;
-        // setCurrent(controlledFields[currentFieldIndex].id)
+        else if( education && education.length > controlledFields.length){
+            if(controlledFields.length > 0){
+                dispatch(setEducation(controlledFields));
+            }
+            else{
+                toast.error('Profile should have at least one education field')
+            }
+        }
+
     }, [controlledFields.length]);
 
     if (!isMounted) return null;
@@ -144,22 +157,31 @@ const EducationForm = () => {
                     <div className="flex flex-col gap-10">
 
                         {
-                            education && education.map((item: Ieducation, index) => {
+                            (!education ? controlledFields : education)?.map((item: Ieducation, index:number) => {
                                 return (
                                     <>
                                         <Collapsible
-                                            onOpenChange={() => handleCollapsible(item.id, item.id === current)}
-                                            className="w-[350px] space-y-2"
-                                            open={true}
+                                            onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
+                                            className="w-[350px] space-y-2 transition"
+                                            open={item.id === expanded}
                                         >
-                                            <CollapsibleTrigger asChild>
-                                                <Button className="bg-blue-400 hover:bg-blue-300 w-full">
-                                                    Delhi University
-                                                    {/* {education?.[current + 1]?.schoolName || 'Delhi University'} */}
-                                                </Button>
-                                            </CollapsibleTrigger>
+                                            <div className="flex transition hover:bg-blue-300 items-center bg-blue-400 px-5">
+                                                <CollapsibleTrigger asChild>
+                                                    <Button
+                                                        variant="ghost"
+                                                        className="w-full hover:bg-blue-300">
+                                                        Delhi University
+                                                        {/* {education?.[expanded + 1]?.schoolName || 'Delhi University'} */}
+                                                    </Button>
+                                                </CollapsibleTrigger>
+                                                <Trash
+                                                    className="ml-auto cursor-pointer text-neutral-200"
+                                                    onClick={() => handleDelete(index)} />
+                                            </div>
                                             <CollapsibleContent>
                                                 <div key={item.id} className="flex flex-col gap-5 border p-5">
+
+                                                    {/* schoolName */}
                                                     <FormField
                                                         name={`education.${index}.schoolName`}
                                                         control={form.control}
@@ -175,6 +197,7 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+                                                    {/* schoolLocation */}
                                                     <FormField
                                                         name={`education.${index}.schoolLocation`}
                                                         control={form.control}
@@ -190,6 +213,8 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+
+                                                    {/* degree */}
                                                     <FormField
                                                         name={`education.${index}.degree`}
                                                         control={form.control}
@@ -205,6 +230,8 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+
+                                                    {/* fieldOfStudy */}
                                                     <FormField
                                                         name={`education.${index}.fieldOfStudy`}
                                                         control={form.control}
@@ -221,6 +248,8 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+
+                                                    {/* GPA percentage */}
                                                     <FormField
                                                         name={`education.${index}.percentage`}
                                                         control={form.control}
@@ -238,6 +267,8 @@ const EducationForm = () => {
                                                         )}
                                                     />
 
+                                                    {/* GraduationMonth */}
+
                                                     <FormField
                                                         name={`education.${index}.graduationMonth`}
                                                         control={form.control}
@@ -253,6 +284,8 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+
+                                                    {/* endDate */}
                                                     <FormField
                                                         name={`education.${index}.endDate`}
                                                         control={form.control}
@@ -261,7 +294,6 @@ const EducationForm = () => {
                                                                 <FormLabel>End Date</FormLabel>
                                                                 <FormControl>
                                                                     <Input
-                                                                        placeholder="MM YY"
                                                                         type="date"
                                                                         className="bg-white" {...field} />
                                                                 </FormControl>
@@ -269,6 +301,7 @@ const EducationForm = () => {
                                                             </FormItem>
                                                         )}
                                                     />
+
                                                 </div>
                                             </CollapsibleContent>
                                         </Collapsible>
@@ -277,7 +310,6 @@ const EducationForm = () => {
                                 )
                             })
                         }
-
 
                         <div className="flex gap-5">
                             <Button

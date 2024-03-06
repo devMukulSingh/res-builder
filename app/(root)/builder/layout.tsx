@@ -13,7 +13,7 @@ export default function TemplateLayout({ children }: {
                 <div className="w-[30rem]  ">
                     {children}
                 </div>
-                <div className=" ">
+                <div >
                     <Resume />
                 </div>
             </div>
