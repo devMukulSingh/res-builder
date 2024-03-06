@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription, } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import * as z from "zod";
@@ -9,14 +9,32 @@ import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/rootSlice";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { IcountryCode, countryCodes } from "@/lib/constants";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+} from "@/components/ui/command"
 
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+
+import { cn } from "@/lib/utils";
+import { BiSort } from "react-icons/bi";
+import { Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 const PersonalForm = () => {
 
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
+    const [isMounted, setIsMounted] = useState(false);
 
     const schema = z.object({
         fullName: z.string().min(3, {
@@ -94,6 +112,11 @@ const PersonalForm = () => {
     const handleChange = () => {
         dispatch(setPersonalInfo(form.getValues()));
     }
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) return null;
 
     return (
         <main className="p-5">
@@ -170,28 +193,56 @@ const PersonalForm = () => {
                                 render={({ field }) => (
                                     <FormItem className="w-1/2" >
                                         <FormLabel>Country Code</FormLabel>
-                                        <Select
-                                            value={field.value}
-                                            onValueChange={field.onChange}
-                                        >
-                                            <FormControl>
-                                                <SelectTrigger className="bg-white">
-                                                    <SelectValue placeholder="+91 (IND)" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {
-                                                    countryCodes.map((code:IcountryCode) => (
-                                                        <SelectItem
-                                                            key={code.mobileCode}
-                                                            value={code.mobileCode}
-                                                        >
-                                                            {code.mobileCode} ({code.name})
-                                                        </SelectItem>
-                                                    ))
-                                                }
-                                            </SelectContent>
-                                        </Select>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "w-[200px] justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {field.value
+                                                            ? countryCodes.find(
+                                                                (countryCode) => countryCode.mobileCode === field.value
+                                                            )?.mobileCode
+                                                            : "Select country code"}
+                                                        <BiSort className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+
+                                            <PopoverContent className="w-[] p-0">
+                                                <Command>
+                                                    <CommandInput placeholder="Search country code..." className="h-9" />
+                                                    <CommandEmpty>No country code found.</CommandEmpty>
+                                                    <CommandGroup >
+                                                        <ScrollArea className="h-72 rounded-md border">
+                                                            {countryCodes.map((code) => (
+                                                                <CommandItem
+                                                                    key={code.name}
+                                                                    value={code.name}
+                                                                    onSelect={() => {
+                                                                        form.setValue('countryCode', code.mobileCode)
+                                                                    }}
+                                                                >
+                                                                    {code.mobileCode} ({code.name})
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            code.mobileCode === field.value ? "opacity-100" : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
                                         <FormMessage />
                                     </FormItem>
                                 )}

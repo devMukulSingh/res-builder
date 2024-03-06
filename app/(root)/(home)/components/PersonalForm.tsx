@@ -10,9 +10,28 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { countryCodes } from "@/lib/constants";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+} from "@/components/ui/command"
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import { BiSort } from "react-icons/bi";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
+import { useState } from "react";
 
 const PersonalForm = () => {
 
+    const [open, setOpen] = useState(false);
     const router = useRouter();
     const dispatch = useAppDispatch();
 
@@ -129,33 +148,66 @@ const PersonalForm = () => {
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem className="w-1/2" >
+                                    <FormItem >
                                         <FormLabel>Country Code</FormLabel>
-                                        <Select
-                                            value={field.value}
-                                            onValueChange={field.onChange}
-                                        >
-                                            <FormControl>
-                                                <SelectTrigger className="bg-white">
-                                                    <SelectValue placeholder="+91 (IND)" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {
-                                                    countryCodes.map((code) => (
-                                                        <SelectItem
-                                                            key={code.mobileCode}
-                                                            value={code.mobileCode}
-                                                        >
-                                                            {code.mobileCode} ({code.name})
-                                                        </SelectItem>
-                                                    ))
-                                                }
-                                            </SelectContent>
-                                        </Select>
+                                        <Popover open={open} onOpenChange={setOpen}>
+                                            <PopoverTrigger asChild >
+                                                <FormControl>
+
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn(
+                                                            "w-[200px] bg-white justify-between",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {
+                                                            field.value
+                                                                ? countryCodes.find(
+                                                                    (countryCode) => countryCode.mobileCode === field.value
+                                                                )?.mobileCode
+
+                                                                : 
+                                                                
+                                                                "+91  (IND)"}
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+
+                                            <PopoverContent className="w-[] p-0">
+                                                <Command>
+                                                    <CommandInput placeholder="Search country code..." className="h-9" />
+                                                    <CommandEmpty>No country code found.</CommandEmpty>
+                                                    <CommandGroup >
+                                                        <ScrollArea className="h-72 rounded-md border">
+                                                            {countryCodes.map((code) => (
+                                                                <CommandItem
+                                                                    key={code.name}
+                                                                    value={code.name}
+                                                                    onSelect={() => {
+                                                                        form.setValue('countryCode', code.mobileCode);
+                                                                        setOpen(false);
+                                                                    }}
+                                                                >
+                                                                    {code.mobileCode} ({code.name})
+                                                                    <Check
+                                                                        className={cn(
+                                                                            "ml-auto h-4 w-4",
+                                                                            code.mobileCode === field.value ? "opacity-100" : "opacity-0"
+                                                                        )}
+                                                                    />
+                                                                </CommandItem>
+                                                            ))}
+                                                        </ScrollArea>
+                                                    </CommandGroup>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
                                         <FormMessage />
                                     </FormItem>
-                                )} />
+                                )}
+                            />
 
                             <FormField
                                 name="mobile"

@@ -43,6 +43,7 @@ export const countryCodes:IcountryCode[] = [
     utc: 'UTC+01:00',
     mobileCode: '+355',
   },
+  
   {
     name: 'Algeria',
     code: 'DZ',
