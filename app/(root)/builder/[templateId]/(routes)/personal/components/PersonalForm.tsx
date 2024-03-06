@@ -31,6 +31,7 @@ import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 const PersonalForm = () => {
 
+    const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
@@ -193,15 +194,15 @@ const PersonalForm = () => {
                                 render={({ field }) => (
                                     <FormItem className="w-1/2" >
                                         <FormLabel>Country Code</FormLabel>
-                                        <Popover>
+                                        <Popover open={open} onOpenChange={setOpen}>
                                             <PopoverTrigger asChild>
                                                 <FormControl>
 
                                                     <Button
-                                                        variant="outline"
+                                                        variant="ghost"
                                                         role="combobox"
                                                         className={cn(
-                                                            "w-[200px] justify-between",
+                                                            "w-[200px] bg-white justify-between",
                                                             !field.value && "text-muted-foreground"
                                                         )}
                                                     >
@@ -210,7 +211,6 @@ const PersonalForm = () => {
                                                                 (countryCode) => countryCode.mobileCode === field.value
                                                             )?.mobileCode
                                                             : "Select country code"}
-                                                        <BiSort className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
@@ -226,7 +226,8 @@ const PersonalForm = () => {
                                                                     key={code.name}
                                                                     value={code.name}
                                                                     onSelect={() => {
-                                                                        form.setValue('countryCode', code.mobileCode)
+                                                                        form.setValue('countryCode', code.mobileCode);
+                                                                        setOpen(false);
                                                                     }}
                                                                 >
                                                                     {code.mobileCode} ({code.name})
