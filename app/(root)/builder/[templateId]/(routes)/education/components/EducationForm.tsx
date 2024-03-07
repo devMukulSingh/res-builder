@@ -23,7 +23,7 @@ const EducationForm = () => {
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const education = useAppSelector(state => state.persistedReducer.education);
 
-    
+
     const form = useForm({
         defaultValues: {
             education: education || [
@@ -77,22 +77,20 @@ const EducationForm = () => {
 
     }
     const handleChange = () => {
-        // const education = controlledFields.education;
-        // const parsedEducation = controlledFields.map((item) => {
-        //     return {
-        //         schoolName: item.schoolName,
-        //         schoolLocation: item.schoolLocation,
-        //         degree: item.degree,
-        //         fieldOfStudy: item.fieldOfStudy,
-        //         graduationMonth: item.graduationMonth,
-        //         endDate: item.endDate,
-        //         id: item.id
-        //     }
-        // })
+        const education = form.getValues().education;
+        const parsedEducation = education.map((item) => {
+            return {
+                schoolName: item.schoolName,
+                schoolLocation: item.schoolLocation,
+                degree: item.degree,
+                fieldOfStudy: item.fieldOfStudy,
+                graduationMonth: item.graduationMonth,
+                endDate: item.endDate,
+                id: item.id
+            }
+        })
 
-        dispatch(setEducation(controlledFields));
-        console.log(controlledFields);
-
+        dispatch(setEducation(parsedEducation));
 
     }
     const handleAddMore = () => {
@@ -139,8 +137,8 @@ const EducationForm = () => {
         }
         //handling delete collapsible
         else if (education && education.length > controlledFields.length) {
-            console.log("else",controlledFields);
-            
+            console.log("else", controlledFields);
+
             if (controlledFields.length > 0) {
                 dispatch(setEducation(controlledFields));
             }
@@ -169,12 +167,12 @@ const EducationForm = () => {
                                             className="w-[350px] space-y-2 transition"
                                             open={item.id === expanded}
                                         >
-                                            <div className="flex transition hover:bg-blue-300 items-center bg-blue-400 px-5">
+                                            <div className="flex transition text-neutral-100 hover:bg-red-300 items-center bg-red-400 px-5">
                                                 <CollapsibleTrigger asChild>
                                                     <Button
                                                         variant="ghost"
-                                                        className="w-full hover:bg-blue-300">
-                                                        Delhi University
+                                                        className="w-full hover:bg-red-300">
+                                                        {education?.[index]?.schoolName}
                                                         {/* {education?.[expanded + 1]?.schoolName || 'Delhi University'} */}
                                                     </Button>
                                                 </CollapsibleTrigger>

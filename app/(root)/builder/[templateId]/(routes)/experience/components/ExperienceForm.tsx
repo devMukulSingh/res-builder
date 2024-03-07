@@ -25,7 +25,7 @@ const ExperienceForm = () => {
     const dispatch = useAppDispatch();
     const experience = useAppSelector(state => state.persistedReducer.experience);
     console.log(experience);
-    
+
 
     const form = useForm({
         defaultValues: {
@@ -169,12 +169,12 @@ const ExperienceForm = () => {
                                         className="w-[350px] space-y-2 transition"
                                         open={item.id === expanded}
                                     >
-                                        <div className="flex transition hover:bg-blue-300 items-center bg-blue-400 px-5">
+                                        <div className="flex transition hover:bg-red-300 items-center bg-red-400 px-5">
                                             <CollapsibleTrigger asChild>
                                                 <Button
                                                     variant="ghost"
-                                                    className="w-full hover:bg-blue-300 text-neutral-100">
-                                                    Rangam
+                                                    className="w-full hover:bg-red-300 text-neutral-100">
+                                                        { experience?.[index].companyName}
                                                 </Button>
                                             </CollapsibleTrigger>
                                             <Trash
