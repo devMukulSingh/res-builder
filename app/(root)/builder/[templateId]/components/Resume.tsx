@@ -83,8 +83,8 @@ const Resume = () => {
                             Work Experience
                         </h1>
                         {
-                            experience?.map((item) => (
-                                <div className='flex flex-col gap-5 '>
+                            experience?.map((item,index) => (
+                                <div className='flex flex-col gap-5' key={index}>
 
                                     <div>
                                         <h1 className='font-bold'>
@@ -138,8 +138,8 @@ const Resume = () => {
                             Projects
                         </h1>
                         {
-                            projects?.map((project) => (
-                                <ProjectSection project={project} />
+                            projects?.map((project,index) => (
+                                <ProjectSection project={project} key={index}  />
                             ))
                         }
 
@@ -152,8 +152,8 @@ const Resume = () => {
                         </h1>
                         <ul className='list-disc pl-5'>
                             {
-                                achievements?.map((achievement) => (
-                                    <AchievementSection achievement={achievement} />
+                                achievements?.map((achievement,index) => (
+                                    <AchievementSection achievement={achievement} key={index}/>
                                 ))
                             }
                         </ul>
@@ -166,8 +166,8 @@ const Resume = () => {
                         </h1>
                         <ul className='list-disc pl-5'>
                         {
-                            languages?.map( (language) => (
-                                <LanguageSection language={language}/>
+                            languages?.map( (language,index) => (
+                                <LanguageSection language={language} key={index}/>
                                 ))
                             }
                             </ul>
