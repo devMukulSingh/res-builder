@@ -1,11 +1,11 @@
 import { Ieducation } from '@/lib/types'
 import React from 'react'
 
-interface EducationSectionProps{
-    educationInfo:Ieducation
+interface EducationSectionProps {
+    educationInfo: Ieducation
 }
 
-const EducationSection:React.FC<EducationSectionProps> = ({
+const EducationSection: React.FC<EducationSectionProps> = ({
     educationInfo
 }) => {
     return (
@@ -15,7 +15,8 @@ const EducationSection:React.FC<EducationSectionProps> = ({
             </h1>
             <div className='flex justify-between'>
                 <h1>
-                    {educationInfo?.degree} in {educationInfo.fieldOfStudy} - {educationInfo.percentage} CGPA
+                    {educationInfo?.degree}  {`${educationInfo?.fieldOfStudy ? ` in ${educationInfo.fieldOfStudy}` : ''}`}
+                    {/* {educationInfo.percentage} CGPA */}
                 </h1>
                 <h1>{educationInfo?.endDate}</h1>
             </div>

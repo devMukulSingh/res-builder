@@ -88,7 +88,7 @@ const Resume = () => {
 
                                     <div>
                                         <h1 className='font-bold'>
-                                            {item.role} | {item.address}
+                                            {item.role || ''}  {` ${item.address ? `| ${item.address}`: ''} `}  
                                         </h1>
                                         <h1>
                                             {/* {format(item.startDate, "MMM dd")}-{format(item.endDate, "MMM dd")} */}
