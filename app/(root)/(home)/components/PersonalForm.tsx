@@ -89,7 +89,7 @@ const PersonalForm = () => {
         <main className=" text-neutral-500">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-5 lg:w-4/5 w-full ml-auto ">
+                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-3 lg:w-4/5 w-full ml-auto ">
 
                         <FormField
                             name="fullName"
@@ -98,7 +98,7 @@ const PersonalForm = () => {
                                 <FormItem >
                                     <FormLabel>Full Name</FormLabel>
                                     <FormControl>
-                                        <Input className="bg-white" {...field} />
+                                        <Input className="bg-white" {...field} placeholder="Deepak Prakash" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -111,7 +111,10 @@ const PersonalForm = () => {
                                 <FormItem >
                                     <FormLabel>Email Address</FormLabel>
                                     <FormControl>
-                                        <Input className="bg-white" {...field} />
+                                        <Input
+                                            className="bg-white" {...field}
+                                            placeholder="deepak@gmail.com"
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -124,7 +127,10 @@ const PersonalForm = () => {
                                 <FormItem >
                                     <FormLabel>Profession</FormLabel>
                                     <FormControl>
-                                        <Input className="bg-white" {...field} />
+                                        <Input
+                                            className="bg-white" {...field}
+                                            placeholder="Frontend Developer"
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -137,18 +143,21 @@ const PersonalForm = () => {
                                 <FormItem >
                                     <FormLabel>Address</FormLabel>
                                     <FormControl>
-                                        <Input className="bg-white" {...field} />
+                                        <Input
+                                            className="bg-white" {...field}
+                                            placeholder="Wagholi"
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <div className="flex gap-5 ">
+                        <div className="flex gap-5 w-full">
                             <FormField
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem >
+                                    <FormItem className="w-1/2">
                                         <FormLabel>Country Code</FormLabel>
                                         <Popover open={open} onOpenChange={setOpen}>
                                             <PopoverTrigger asChild >
@@ -158,7 +167,7 @@ const PersonalForm = () => {
                                                         variant="outline"
                                                         role="combobox"
                                                         className={cn(
-                                                            "w-[200px] bg-white justify-between",
+                                                            "w-full bg-white justify-between",
                                                             !field.value && "text-muted-foreground"
                                                         )}
                                                     >
@@ -168,14 +177,14 @@ const PersonalForm = () => {
                                                                     (countryCode) => countryCode.mobileCode === field.value
                                                                 )?.mobileCode
 
-                                                                : 
-                                                                
+                                                                :
+
                                                                 "+91  (IND)"}
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
 
-                                            <PopoverContent className="w-[] p-0">
+                                            <PopoverContent className=" p-0">
                                                 <Command>
                                                     <CommandInput placeholder="Search country code..." className="h-9" />
                                                     <CommandEmpty>No country code found.</CommandEmpty>
@@ -213,10 +222,13 @@ const PersonalForm = () => {
                                 name="mobile"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem >
+                                    <FormItem className="w-1/2" >
                                         <FormLabel>Mobile</FormLabel>
                                         <FormControl>
-                                            <Input className="bg-white" {...field} />
+                                            <Input
+                                                className="bg-white" {...field}
+                                                placeholder="9808808098"
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -232,7 +244,10 @@ const PersonalForm = () => {
                                     <FormItem >
                                         <FormLabel>City</FormLabel>
                                         <FormControl>
-                                            <Input className="bg-white" {...field} />
+                                            <Input
+                                                className="bg-white" {...field}
+                                                placeholder="Pune"
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -245,7 +260,9 @@ const PersonalForm = () => {
                                     <FormItem >
                                         <FormLabel>State</FormLabel>
                                         <FormControl>
-                                            <Input className="bg-white" {...field} />
+                                            <Input
+                                                placeholder="Maharastra"
+                                                className="bg-white" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -256,7 +273,7 @@ const PersonalForm = () => {
 
                         <Button
                             type="submit"
-                            className="w-full py-6 mt-5">
+                            className="w-full py-3 mt-4">
                             Next
                         </Button>
                     </div>

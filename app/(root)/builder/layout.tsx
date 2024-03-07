@@ -2,7 +2,6 @@
 import { useAppSelector } from "@/redux/hooks/hooks"
 import Resume from "./[templateId]/components/Resume"
 import Sidebar from "./[templateId]/components/Sidebar"
-import Template1 from "./[templateId]/components/Template1"
 
 
 export default function TemplateLayout({ children }: {
