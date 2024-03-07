@@ -1,4 +1,5 @@
 'use client'
+import { useAppSelector } from "@/redux/hooks/hooks";
 import { LucideIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { IconType } from "react-icons/lib";
@@ -8,11 +9,13 @@ interface SidebarOptionProps {
         title: string,
         icon: IconType | LucideIcon,
         isActive: boolean
-    }
+    },
+    sidebar:boolean
 }
 
 const SidebarOption: React.FC<SidebarOptionProps> = ({
-    option
+    option,
+    sidebar
 }) => {
     const { templateId } = useParams();
 
@@ -32,11 +35,10 @@ const SidebarOption: React.FC<SidebarOptionProps> = ({
                         hover:bg-red-100 
                         px-10 py-4 items-center 
                         cursor-pointer
-                        text-lg
                         whitespace-nowrap
                         `}>
             <option.icon className="text-xl" />
-            {option.title}
+            { sidebar && option.title}
         </li>
 
     )
