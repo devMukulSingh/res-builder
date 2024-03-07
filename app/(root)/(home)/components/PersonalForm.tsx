@@ -154,6 +154,7 @@ const PersonalForm = () => {
                         />
                         <div className="flex gap-5 w-full">
                             <FormField
+                                defaultValue="+91"
                                 name="countryCode"
                                 control={form.control}
                                 render={({ field }) => (
@@ -172,14 +173,10 @@ const PersonalForm = () => {
                                                         )}
                                                     >
                                                         {
-                                                            field.value
-                                                                ? countryCodes.find(
-                                                                    (countryCode) => countryCode.mobileCode === field.value
-                                                                )?.mobileCode
-
-                                                                :
-
-                                                                "+91  (IND)"}
+                                                            countryCodes.find(
+                                                                (countryCode) => countryCode.mobileCode === field.value
+                                                            )?.mobileCode
+                                                        }
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>

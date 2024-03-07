@@ -86,7 +86,8 @@ const EducationForm = () => {
                 fieldOfStudy: item.fieldOfStudy,
                 graduationMonth: item.graduationMonth,
                 endDate: item.endDate,
-                id: item.id
+                id: item.id,
+                percentage:item.percentage
             }
         })
 
@@ -172,7 +173,7 @@ const EducationForm = () => {
                                                     <Button
                                                         variant="ghost"
                                                         className="w-full hover:bg-red-300">
-                                                        {education?.[index]?.schoolName}
+                                                        {education?.[index]?.schoolName || 'University'}
                                                         {/* {education?.[expanded + 1]?.schoolName || 'Delhi University'} */}
                                                     </Button>
                                                 </CollapsibleTrigger>

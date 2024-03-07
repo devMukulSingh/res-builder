@@ -13,6 +13,7 @@ const Skill: React.FC<SkillProps> = ({
 }) => {
 
     const [currentSelected, setCurrentSelected] = useState(false);
+    
 
     const handleSelect = () => {
         setCurrentSelected(prev => !prev);

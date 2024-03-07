@@ -7,22 +7,23 @@ import { PlusCircle } from "lucide-react";
 import { setAchievements } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useFieldArray } from "react-hook-form";
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 
 const AchievementsForm = () => {
 
-    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
+    const achievements = useAppSelector(state => state.persistedReducer.achievements);
 
 
     const form = useForm({
         defaultValues: {
-            achievements: [
+            achievements: achievements|| [
                 { value: '' },
                 { value: '' },
                 { value: '' }
@@ -55,14 +56,21 @@ const AchievementsForm = () => {
 
     const handleChange = () => {
         const achievements = form.getValues().achievements;
-        const parsedAchievements = achievements.map(item => item.value);
+        const parsedAchievements = achievements.map(  achievement => (
+            {
+                value:achievement.value
+            }
+        ));
         dispatch(setAchievements(parsedAchievements));
     }
 
     const handleAddMore = () => {
         fieldArray.append({ value: '' });
-
     }
+    useEffect( ( ) => {
+        setIsMounted(true);
+    },[]);  
+    if(!isMounted ) return null;
     return (
         <main className="p-5">
             <Form {...form}>

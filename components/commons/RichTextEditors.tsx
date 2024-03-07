@@ -23,7 +23,6 @@ const RichTextEditors:React.FC<RichTextEditorProps> = ({
                             control={form.control}
                             render={ ({field}) => (
                                 <FormItem>
-                                    <FormLabel>Description</FormLabel>
                                 
                                 <FormControl>
                                     <Tiptap

@@ -3,24 +3,27 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { languages, strengths } from "@/lib/constants";
+import { languagesData, strengths } from "@/lib/constants";
 import { PlusCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
 import { setProgress } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
 
 const LanguageForm = () => {
 
+    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const buttonRef = useRef<HTMLButtonElement>(null);
     const progress = useAppSelector(state => state.persistedReducer.progress);
+    const languages = useAppSelector(state => state.persistedReducer.languages);
+
 
     const form = useForm({
         defaultValues: {
-            languageInfo: [
+            languageInfo: languages || [
                 { language: '', strength: '' },
                 { language: '', strength: '' },
                 { language: '', strength: '' }
@@ -74,6 +77,10 @@ const LanguageForm = () => {
         }
     }
 
+    useEffect( () => {
+        setIsMounted(true);
+    },[]);
+    if(!isMounted) return null;
     return (
         <main className="p-5">
             <Form {...form} >
@@ -101,7 +108,7 @@ const LanguageForm = () => {
                                                         </FormControl>
                                                         <SelectContent>
                                                             {
-                                                                languages.map((language) => (
+                                                                languagesData?.map((language) => (
                                                                     <SelectItem
                                                                         key={language}
                                                                         value={language}

@@ -174,7 +174,7 @@ const ExperienceForm = () => {
                                                 <Button
                                                     variant="ghost"
                                                     className="w-full hover:bg-red-300 text-neutral-100">
-                                                        { experience?.[index].companyName}
+                                                    {experience?.[index].companyName || 'Company'} 
                                                 </Button>
                                             </CollapsibleTrigger>
                                             <Trash

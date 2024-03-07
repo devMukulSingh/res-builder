@@ -1775,7 +1775,7 @@ export const countryCodes:IcountryCode[] = [
   },
 ];
 
-export const languages = [
+export const languagesData = [
 
 "Afrikanns",
 "Albanian",

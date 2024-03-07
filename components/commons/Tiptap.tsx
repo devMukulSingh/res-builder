@@ -45,7 +45,7 @@ const Tiptap: React.FC<TiptapProps> = ({
             }),
             StarterKit.configure()
         ],
-        content: description,
+        content: 'Creative Frontend Developer with expertise in HTML, CSS, and JavaScript. Proven ability to transform design concepts into responsive web applications. Passionate about delivering visually appealing and user-centric experiences.',
         editorProps: {
             attributes: {
                 class: "rounded-md border min-h-[150px] border-input bg-white"

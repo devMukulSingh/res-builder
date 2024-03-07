@@ -1,4 +1,5 @@
 import {
+
   Iachievements,
   Icontact,
   Ieducation,
@@ -16,8 +17,8 @@ export interface IinitialState {
   technicalSkills: ItechnicalSkills | null
   education: Ieducation[] | null
   contact: Icontact | null
-  achievements: Iachievements | null
-  languages: Ilanguages | null,
+  achievements: Iachievements[] | null
+  languages: Ilanguages[] | null,
   projects: Iprojects[] | null,
   progress: number
   sidebar: boolean

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { FieldValue, FieldValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-import { setExperience } from "@/redux/slice/userSlice";
+import { setExperience, setTechnicalSkills } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
@@ -18,6 +18,8 @@ const TechnicalForm = () => {
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
+    const technical = useAppSelector(state => state.persistedReducer.technicalSkills)
+
 
     const skills = [
         'Typescript',
@@ -29,15 +31,17 @@ const TechnicalForm = () => {
     ]
 
     const onSubmit = (data: FieldValues) => {
-        dispatch(setExperience(data));
+        dispatch(setTechnicalSkills(data));
         router.push(`/builder/${templateId}/education`);
 
         if (progress <= 34) {
             dispatch(setProgress())
         }
     }
+    console.log(technical);
     const handleChange = () => {
-        dispatch(setExperience(form.getValues()));
+        dispatch(setTechnicalSkills(form.getValues()));
+
     }
 
     return (
@@ -45,14 +49,14 @@ const TechnicalForm = () => {
             <section>
                 <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
 
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-2 gap-5" >
                     {
                         skills.map((skill) => (
                             <Skill
-                            setSelectedSkills={setSelectedSkills}
-                            selectedSkills={selectedSkills} 
-                                skill={skill} 
-                                key={skill} 
+                                setSelectedSkills={setSelectedSkills}
+                                selectedSkills={selectedSkills}
+                                skill={skill}
+                                key={skill}
                             />
                         ))
                     }
