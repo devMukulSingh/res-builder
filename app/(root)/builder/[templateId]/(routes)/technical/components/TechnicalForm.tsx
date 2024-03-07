@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ const TechnicalForm = () => {
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
     const skills = [
         'Typescript',

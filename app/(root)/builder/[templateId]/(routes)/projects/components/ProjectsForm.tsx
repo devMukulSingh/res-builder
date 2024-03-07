@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact, setProjects } from "@/redux/slice/userSlice";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 
 const ProjectsForm = () => {
@@ -15,7 +15,7 @@ const ProjectsForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
     const form = useForm({
         defaultValues: {
             projects: [

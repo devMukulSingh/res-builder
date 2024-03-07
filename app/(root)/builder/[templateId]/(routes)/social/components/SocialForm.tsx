@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 
 const SocialForm = () => {
 
@@ -14,7 +14,7 @@ const SocialForm = () => {
     const form = useForm();
     const { templateId } = useParams();
     const router = useRouter();    
-    const progress = useAppSelector( state => state.rootSlice.progress);
+    const progress = useAppSelector( state => state.persistedReducer.progress);
 
 
     const onSubmit = (data: FieldValues) => {

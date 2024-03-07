@@ -10,13 +10,13 @@ const Template1 = () => {
     useEffect(() => {
         setIsMounted(true);
     }, [])
-    const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
-    const experience = useAppSelector(state => state.userSlice.experience);
-    const education = useAppSelector(state => state.userSlice.education);
-    const technical = useAppSelector(state => state.userSlice.technicalSkills);
-    const contact = useAppSelector(state => state.userSlice.contact);
-    const achievements = useAppSelector(state => state.userSlice.achievements);
-    const languages = useAppSelector(state => state.userSlice.languages);
+    const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
+    const experience = useAppSelector(state => state.persistedReducer.experience);
+    const education = useAppSelector(state => state.persistedReducer.education);
+    const technical = useAppSelector(state => state.persistedReducer.technicalSkills);
+    const contact = useAppSelector(state => state.persistedReducer.contact);
+    const achievements = useAppSelector(state => state.persistedReducer.achievements);
+    const languages = useAppSelector(state => state.persistedReducer.languages);
 
 
     if (!isMounted) return null;

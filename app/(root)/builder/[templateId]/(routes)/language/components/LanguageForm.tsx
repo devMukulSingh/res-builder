@@ -8,7 +8,7 @@ import { PlusCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRef } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
 
 const LanguageForm = () => {
@@ -16,7 +16,7 @@ const LanguageForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
     const form = useForm({
         defaultValues: {

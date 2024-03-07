@@ -10,7 +10,7 @@ import { PlusCircle, Trash } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Iexperience } from "@/lib/types";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import toast from "react-hot-toast";
@@ -20,12 +20,12 @@ const ExperienceForm = () => {
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
     const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();
-    const experience = useAppSelector(state => state.userSlice.experience);
-
-
+    const experience = useAppSelector(state => state.persistedReducer.experience);
+    console.log(experience);
+    
 
     const form = useForm({
         defaultValues: {

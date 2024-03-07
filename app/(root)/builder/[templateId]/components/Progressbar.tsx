@@ -11,7 +11,7 @@ const Progressbar = () => {
         setIsMounted(true);
     },[]);
 
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
     if(!isMounted) return null;
     

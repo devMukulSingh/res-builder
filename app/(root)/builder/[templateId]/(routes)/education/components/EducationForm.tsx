@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { Ieducation } from "@/lib/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -20,10 +20,10 @@ const EducationForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector(state => state.rootSlice.progress);
-    const education = useAppSelector(state => state.userSlice.education);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
+    const education = useAppSelector(state => state.persistedReducer.education);
 
-
+    
     const form = useForm({
         defaultValues: {
             education: education || [

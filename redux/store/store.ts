@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import rootSlice from '../slice/rootSlice'
 import userSlice from '../slice/userSlice'
+import commonSlice from '../slice/commonSlice'
 import storage from 'redux-persist/lib/storage'
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist'
-import { combineReducers } from '@reduxjs/toolkit'
+
 
 const persistConfig = {
   key: 'root',
@@ -11,15 +11,14 @@ const persistConfig = {
   storage
 }
 
-const reducer = combineReducers({
-  userSlice,
-  rootSlice
-})
 
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, userSlice);
 
 export const store = configureStore({
-  reducer:  persistedReducer,
+  reducer: {
+    persistedReducer,
+    commonSlice
+  },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
     serializableCheck: {

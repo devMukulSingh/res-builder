@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 import { IcountryCode, countryCodes } from "@/lib/constants";
 import {
     Command,
@@ -82,8 +82,8 @@ const PersonalForm = () => {
     })
 
     type formSchema = z.infer<typeof schema>
-    const personalInfo = useAppSelector(state => state.userSlice.personalInfo);
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
     const form = useForm<formSchema>({
         resolver: zodResolver(schema),

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useFieldArray } from "react-hook-form";
 import { useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { setProgress } from "@/redux/slice/rootSlice";
+import { setProgress } from "@/redux/slice/userSlice";
 
 const AchievementsForm = () => {
 
@@ -17,7 +17,7 @@ const AchievementsForm = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
-    const progress = useAppSelector(state => state.rootSlice.progress);
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
 
     const form = useForm({

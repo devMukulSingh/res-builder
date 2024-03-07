@@ -18,7 +18,9 @@ export interface IinitialState {
   contact: Icontact | null
   achievements: Iachievements | null
   languages: Ilanguages | null,
-  projects: Iprojects[] | null
+  projects: Iprojects[] | null,
+  progress: number
+  sidebar: boolean
 }
 
 const initialState: IinitialState = {
@@ -29,7 +31,9 @@ const initialState: IinitialState = {
   contact: null,
   achievements: null,
   languages: null,
-  projects:null
+  projects:null,
+  progress: 10,
+  sidebar: true
 }
 
 export const userSlice = createSlice({
@@ -59,7 +63,16 @@ export const userSlice = createSlice({
     },
     setProjects: (state, action) => {
       state.projects = action.payload
-    }
+    },
+
+    setProgress: state => {
+      const singleProgress = Math.floor(100 / 8)
+      state.progress = state.progress + singleProgress
+    },
+    resetProgressBar: state => {
+      state.progress = 10
+    },
+
   }
 })
 
@@ -73,5 +86,7 @@ export const {
   setContact,
   setAchievements,
   setLanguages,
-  setProjects
+  setProjects,
+  setProgress,
+  resetProgressBar
 } = userSlice.actions

@@ -7,17 +7,20 @@ import { BiCertification } from 'react-icons/bi'
 import { FaDiagramProject, FaUserPen } from 'react-icons/fa6'
 import { GiSkills } from 'react-icons/gi'
 import { usePathname } from "next/navigation";
-import { resetProgressBar, toggleSidebar } from "@/redux/slice/rootSlice";
+import { resetProgressBar } from "@/redux/slice/userSlice";
+import { toggleSidebar } from "@/redux/slice/commonSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { log } from "console";
 
 const Sidebar = () => {
 
     const [isMounted, setIsMounted] = useState(false);
     const pathName = usePathname();
     const dispatch = useAppDispatch();
-    const sidebar = useAppSelector(state => state.rootSlice.sidebar);
+    const sidebar = useAppSelector(state => state.commonSlice.sidebar);
+    console.log(sidebar);
 
 
     const sidebarOptions = [
@@ -79,16 +82,15 @@ const Sidebar = () => {
     }, []);
     if (!isMounted) return null;
     return (
-        <main className={`flex flex-col w-[20rem] h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition ${!sidebar && ' w-[7rem]'}  `}>
+        <main className={`flex flex-col h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
             <MdOutlineSort
                 onClick={() => dispatch(toggleSidebar())}
-                className={
-                    `ml-auto
-                mr-5
+                className={`
                 size-8
                 cursor-pointer
-                ${!sidebar && 'self-center mr-0 ml-0 mb-5'}
-                `} />
+                ${sidebar ? 'ml-auto mr-5' : ' mr-0 ml-0 mb-5 self-center'}
+                `}
+            />
             <ul >
                 {
                     sidebarOptions.map((option) => (
