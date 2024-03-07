@@ -1,47 +1,39 @@
-import { useForm } from 'react-hook-form'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import Tiptap from './Tiptap'
+import JoditEditor from 'jodit-react';
+import { Jodit } from '@/node_modules/jodit/esm/index.js';
+import { useMemo, useRef, useState } from 'react';
+import { Textarea } from '../ui/textarea';
 
-interface RichTextEditorProps{
-    label:string
+interface RichTextEditorProps {
+	placeholder: string
 }
 
-const RichTextEditor:React.FC<RichTextEditorProps> = ({
-    label
-}) => {
-    const form = useForm({
-        mode: 'onChange',
-        // defaultValues:''
-    })
-    return (
-        <main>
-            <Form {...form}>
-                <form>
-                    <div>
+const RichTextEditor: React.FC<RichTextEditorProps> = ({ placeholder }) => {
+	const [content, setContent] = useState<string>('');
+	const editor = useRef<Jodit | null>(null);
 
-                        <FormField
-                            name='description'
-                            control={form.control}
-                            render={ ({field}) => (
-                                <FormItem>
-                                    <FormLabel>Description</FormLabel>
-                                
-                                <FormControl>
-                                    <Tiptap
-                                        onChange={field.onChange} 
-                                        description={field.name} />
-                                </FormControl>
-                                </FormItem>
-                            )}
-                        >
+	editor.current = Jodit.make('#editor', {
+		buttons: ['bold']
+	})
 
-                        </FormField>
+	// const config = useMemo(
+	// 	{
+	// 		placeholder: placeholder || 'Start typings...'
+	// 	},
+	// 	[placeholder]
+	// );
 
-                    </div>
-                </form>
-            </Form>
-        </main>
-    )
-}
+	return (
+		<>
+			<textarea id="editor" />
+			<JoditEditor
+				ref={editor}
+				value={content}
+				// config={config}
+				onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+				onChange={newContent => { }}
+			/>
+		</>
+	);
+};
 
 export default RichTextEditor

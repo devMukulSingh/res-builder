@@ -1,6 +1,9 @@
-import { Heading2 } from 'lucide-react'
+import { Heading2, Redo, Undo } from 'lucide-react'
 import {
     Bold,
+    Italic,
+    List,
+    ListOrdered,
     Strikethrough,
 
 } from "lucide-react"
@@ -14,43 +17,77 @@ interface ToolbarProps {
 const Toolbar: React.FC<ToolbarProps> = ({
     editor
 }) => {
-    if(!editor) return null;
+    if (!editor) return null;
     return (
         <main className='border border-input bg-transparent'>
             <Toggle
                 size="sm"
-                pressed={editor.isActive("heading")}
+                pressed={editor.isActive("bold")}
                 onPressedChange={() =>
-                    editor.chain().focus().toggleHeading({
-                        level: 2
-                    }).run()
+                    editor.chain().focus().toggleBold().run()
                 }
             >
-                <Heading2 className='h-4 w-4' />
+                <Bold className='h-4 w-4' />
 
             </Toggle>
             <Toggle
                 size="sm"
-                pressed={editor.isActive("heading")}
+                pressed={editor.isActive("italic")}
                 onPressedChange={() =>
-                    editor.chain().focus().toggleHeading({
-                        level: 2
-                    }).run()
+                    editor.chain().focus().toggleItalic().run()
                 }
             >
-                <Heading2 className='h-4 w-4' />
+                <Italic className='h-4 w-4' />
 
             </Toggle>
             <Toggle
                 size="sm"
-                pressed={editor.isActive("heading")}
+                pressed={editor.isActive("strike")}
                 onPressedChange={() =>
-                    editor.chain().focus().toggleHeading({
-                        level: 2
-                    }).run()
+                    editor.chain().focus().toggleStrike().run()
                 }
             >
-                <Heading2 className='h-4 w-4' />
+                <Strikethrough className='h-4 w-4' />
+
+            </Toggle>
+            <Toggle
+                size="sm"
+                pressed={editor.isActive("bulletList")}
+                onPressedChange={() =>
+                    editor.chain().focus().toggleBulletList().run()
+                }
+            >
+                <List className='h-4 w-4' />
+
+            </Toggle>
+            <Toggle
+                size="sm"
+                pressed={editor.isActive("orderedList")}
+                onPressedChange={() =>
+                    editor.chain().focus().toggleOrderedList().run()
+                }
+            >
+                <ListOrdered className='h-4 w-4' />
+
+            </Toggle>
+            <Toggle
+                size="sm"
+                pressed={editor.isActive("undo")}
+                onPressedChange={() =>
+                    editor.chain().focus().undo().run()
+                }
+            >
+                <Undo className='h-4 w-4' />
+
+            </Toggle>
+            <Toggle
+                size="sm"
+                pressed={editor.isActive("redo")}
+                onPressedChange={() =>
+                    editor.chain().focus().redo().run()
+                }
+            >
+                <Redo className='h-4 w-4' />
 
             </Toggle>
         </main>

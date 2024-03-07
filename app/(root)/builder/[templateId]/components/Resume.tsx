@@ -1,4 +1,8 @@
 'use client'
+import RichTextEditor from '@/components/commons/RichTextEditor'
+import RichTextEditors from '@/components/commons/RichTextEditors'
+import Tiptap from '@/components/commons/Tiptap'
+import { Textarea } from '@/components/ui/textarea'
 import { useAppSelector } from '@/redux/hooks/hooks'
 import { Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
@@ -55,13 +59,11 @@ const Resume = () => {
 
                     </div>
 
+                    {/* BIO */}
                     <div className='space-y-2'>
                         <h1 className='text-xl font-semibold'>
-                            Bio
                         </h1>
-                        <h1>
-                            {personalInfo?.bio}
-                        </h1>
+                        <RichTextEditors label ="bio"/>
                     </div>
                     {/* work Experience */}
                     <section className='space-y-1'>
