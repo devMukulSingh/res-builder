@@ -12,7 +12,7 @@ import { toggleSidebar } from "@/redux/slice/commonSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { log } from "console";
+
 
 const Sidebar = () => {
 
@@ -20,7 +20,6 @@ const Sidebar = () => {
     const pathName = usePathname();
     const dispatch = useAppDispatch();
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-    console.log(sidebar);
 
 
     const sidebarOptions = [

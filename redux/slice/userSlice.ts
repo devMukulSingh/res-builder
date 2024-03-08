@@ -1,5 +1,4 @@
 import {
-
   Iachievements,
   Icontact,
   Ieducation,
@@ -14,25 +13,31 @@ import { createSlice } from '@reduxjs/toolkit'
 export interface IinitialState {
   personalInfo: IpersonalInfo | null
   experience: Iexperience[] | null
-  technicalSkills: ItechnicalSkills | null
+  technicalSkills: ItechnicalSkills | {
+    aiGenSkills : string[],
+    customSkill:string
+  }
   education: Ieducation[] | null
   contact: Icontact | null
   achievements: Iachievements[] | null
-  languages: Ilanguages[] | null,
-  projects: Iprojects[] | null,
-  progress: number,
-  sidebar: boolean,
+  languages: Ilanguages[] | null
+  projects: Iprojects[] | null
+  progress: number
+  sidebar: boolean
 }
 
 const initialState: IinitialState = {
   personalInfo: null,
   experience: null,
-  technicalSkills: null,
+  technicalSkills: {
+    aiGenSkills:[],
+    customSkill:''
+  },
   education: null,
   contact: null,
   achievements: null,
   languages: null,
-  projects:null,
+  projects: null,
   progress: 10,
   sidebar: true
 }
@@ -48,11 +53,11 @@ export const userSlice = createSlice({
       state.experience = action.payload
     },
     setTechnicalSkills: (state, action) => {
-      if(state.technicalSkills && action.payload.aiGenSkills){
+      if(action.payload.aiGenSkills){
         state.technicalSkills.aiGenSkills = action.payload.aiGenSkills;
       }
-      if(state.technicalSkills&& action.payload.customSkill){
-        state.technicalSkills.customSkill = action.payload.customSkill;
+      else{
+        state.technicalSkills.customSkill = action.payload.customSkill
       }
 
     },
@@ -78,8 +83,7 @@ export const userSlice = createSlice({
     },
     resetProgressBar: state => {
       state.progress = 10
-    },
-
+    }
   }
 })
 

@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 interface SkillProps {
     skill: string,
-    selectedSkills: string[],
-    setSelectedSkills: (skill: string[]) => void;
+
 }
 
 const Skill: React.FC<SkillProps> = ({
@@ -14,9 +13,7 @@ const Skill: React.FC<SkillProps> = ({
 
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
-
     const skillsFromState: string[] = useAppSelector(state => state.persistedReducer.technicalSkills?.aiGenSkills) || [];
-
 
     const handleSelect = () => {
 
@@ -24,21 +21,20 @@ const Skill: React.FC<SkillProps> = ({
         if (alreadySelected) {
             const filtered = skillsFromState.filter(item => item !== skill);
             dispatch(setTechnicalSkills({ aiGenSkills: filtered }));
-            ;
         }
         else {
             dispatch(setTechnicalSkills({ aiGenSkills: [...skillsFromState, skill] }));
-
         }
     };
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
     if (!isMounted) return null;
+
     return (
         <>
-
             <div
                 onClick={handleSelect}
                 className={

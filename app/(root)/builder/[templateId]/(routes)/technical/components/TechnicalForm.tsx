@@ -13,13 +13,12 @@ import { useState } from "react";
 const TechnicalForm = () => {
 
     const form = useForm();
-    const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const technical = useAppSelector(state => state.persistedReducer.technicalSkills)
-    
+
 
     const skills = [
         'Typescript',
@@ -38,10 +37,10 @@ const TechnicalForm = () => {
             dispatch(setProgress())
         }
     }
-    console.log(technical);
     const handleChange = () => {
-        dispatch(setTechnicalSkills(form.getValues()));
-
+        console.log("formva",form.getValues());
+        
+        dispatch(setTechnicalSkills( form.getValues()) )
     }
 
     return (
@@ -53,8 +52,6 @@ const TechnicalForm = () => {
                     {
                         skills.map((skill) => (
                             <Skill
-                                setSelectedSkills={setSelectedSkills}
-                                selectedSkills={selectedSkills}
                                 skill={skill}
                                 key={skill}
                             />
@@ -67,6 +64,7 @@ const TechnicalForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
                         <FormField
+                            defaultValue={technical.customSkill}
                             name="customSkill"
                             control={form.control}
                             render={({ field }) => (
