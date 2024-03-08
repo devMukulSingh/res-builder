@@ -19,10 +19,8 @@ const Template: React.FC<TemplateProps> = ({
 }) => {
 
     const router = useRouter();
-    const [isSelected, setIsSelected] = useState(false);
     const handleTemplateSelect = () => {
             setTemplateId(image.id);
-            setIsSelected(prev => !prev);
     }
 
     return (
@@ -43,7 +41,7 @@ const Template: React.FC<TemplateProps> = ({
                 transition
                 object-
                 cursor-pointer
-                ${isSelected ? ' border-4 border-red-400 scale-110' : ''}
+                ${templateId===image.id ? ' border-4 border-red-400 scale-110' : ''}
                 
             `}
             />
