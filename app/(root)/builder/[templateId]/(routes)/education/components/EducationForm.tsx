@@ -87,7 +87,7 @@ const EducationForm = () => {
                 graduationMonth: item.graduationMonth,
                 endDate: item.endDate,
                 id: item.id,
-                percentage:item.percentage
+                percentage: item.percentage
             }
         })
 
@@ -181,131 +181,130 @@ const EducationForm = () => {
                                                     className="ml-auto cursor-pointer text-neutral-200"
                                                     onClick={() => handleDelete(index)} />
                                             </div>
-                                            <CollapsibleContent>
-                                                <div key={item.id} className="flex flex-col gap-5 border p-5">
+                                            <CollapsibleContent key={item.id} className="flex flex-col gap-5 border p-5">
 
-                                                    {/* schoolName */}
-                                                    <FormField
-                                                        name={`education.${index}.schoolName`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>School Name</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        className="bg-white" {...field}
-                                                                        placeholder="Delhi University" />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
-                                                    {/* schoolLocation */}
-                                                    <FormField
-                                                        name={`education.${index}.schoolLocation`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>School Location</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        className="bg-white" {...field}
-                                                                        placeholder="New Delhi" />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
 
-                                                    {/* degree */}
-                                                    <FormField
-                                                        name={`education.${index}.degree`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>Degree/Program</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        placeholder="B.Sc in Computer Science"
-                                                                        className="bg-white" {...field} />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
+                                                {/* schoolName */}
+                                                <FormField
+                                                    name={`education.${index}.schoolName`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>School Name</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    className="bg-white" {...field}
+                                                                    placeholder="Delhi University" />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                                {/* schoolLocation */}
+                                                <FormField
+                                                    name={`education.${index}.schoolLocation`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>School Location</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    className="bg-white" {...field}
+                                                                    placeholder="New Delhi" />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
 
-                                                    {/* fieldOfStudy */}
-                                                    <FormField
-                                                        name={`education.${index}.fieldOfStudy`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>Field of Study</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        className="bg-white" {...field}
-                                                                        placeholder=""
-                                                                    />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
+                                                {/* degree */}
+                                                <FormField
+                                                    name={`education.${index}.degree`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Degree/Program</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    placeholder="B.Sc in Computer Science"
+                                                                    className="bg-white" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
 
-                                                    {/* GPA percentage */}
-                                                    <FormField
-                                                        name={`education.${index}.percentage`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>GPA/Percentage</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        className="bg-white" {...field}
-                                                                        placeholder="88%"
-                                                                    />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
+                                                {/* fieldOfStudy */}
+                                                <FormField
+                                                    name={`education.${index}.fieldOfStudy`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Field of Study</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    className="bg-white" {...field}
+                                                                    placeholder=""
+                                                                />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
 
-                                                    {/* GraduationMonth */}
+                                                {/* GPA percentage */}
+                                                <FormField
+                                                    name={`education.${index}.percentage`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>GPA/Percentage</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    className="bg-white" {...field}
+                                                                    placeholder="88%"
+                                                                />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
 
-                                                    <FormField
-                                                        name={`education.${index}.graduationMonth`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>Graduation Month</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        className="bg-white" {...field}
-                                                                        type="date" />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
+                                                {/* GraduationMonth */}
 
-                                                    {/* endDate */}
-                                                    <FormField
-                                                        name={`education.${index}.endDate`}
-                                                        control={form.control}
-                                                        render={({ field }) => (
-                                                            <FormItem >
-                                                                <FormLabel>End Date</FormLabel>
-                                                                <FormControl>
-                                                                    <Input
-                                                                        type="date"
-                                                                        className="bg-white" {...field} />
-                                                                </FormControl>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
+                                                <FormField
+                                                    name={`education.${index}.graduationMonth`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>Graduation Month</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    className="bg-white" {...field}
+                                                                    type="date" />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
 
-                                                </div>
+                                                {/* endDate */}
+                                                <FormField
+                                                    name={`education.${index}.endDate`}
+                                                    control={form.control}
+                                                    render={({ field }) => (
+                                                        <FormItem >
+                                                            <FormLabel>End Date</FormLabel>
+                                                            <FormControl>
+                                                                <Input
+                                                                    type="date"
+                                                                    className="bg-white" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+
                                             </CollapsibleContent>
                                         </Collapsible>
                                     </>

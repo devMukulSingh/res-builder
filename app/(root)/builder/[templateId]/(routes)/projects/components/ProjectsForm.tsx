@@ -6,20 +6,28 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact, setProjects } from "@/redux/slice/userSlice";
 import { Textarea } from "@/components/ui/textarea";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Trash } from "lucide-react";
 import { setProgress } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { CollapsibleContent } from "@radix-ui/react-collapsible";
 
 const ProjectsForm = () => {
 
+    const [expanded, setExpanded] = useState<string | false>("");
+    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
+    const projects = useAppSelector(state => state.persistedReducer.projects);
+
 
     const form = useForm({
         defaultValues: {
-            projects: [
+            projects: projects || [
                 {
                     projectName: '',
                     projectUrl: '',
@@ -57,7 +65,7 @@ const ProjectsForm = () => {
             return {
                 projectName: item.projectName,
                 projectUrl: item.projectUrl,
-                description:item.description,
+                description: item.description,
                 id: item.id,
             }
         })
@@ -73,68 +81,132 @@ const ProjectsForm = () => {
         }
         fieldArray.append(emptyField)
     }
+    const handleCollapsible = (id: string, isExpanded: boolean) => {
 
+        if (isExpanded) {
+            setExpanded(false)
+        }
+        else {
+            setExpanded(id);
+        }
+    }
+    const handleDelete = (index: number) => {
+        if (controlledFields.length > 0) {
+            fieldArray.remove(index);
+        }
+    }
+
+    useEffect(() => {
+        setIsMounted(true);
+        setExpanded(controlledFields[0]?.id);
+    }, [])
+
+    useEffect(() => {
+
+        //handling add more functionality
+        if (!projects || projects.length < controlledFields.length) {
+            dispatch(setProjects(controlledFields));
+            const expandedFieldIndex = controlledFields.length - 1;
+            setExpanded(controlledFields[expandedFieldIndex].id)
+        }
+        //handling delete collapsible
+        else if (projects && projects.length > controlledFields.length) {
+            console.log("else", controlledFields);
+
+            if (controlledFields.length > 0) {
+                dispatch(setProjects(controlledFields));
+            }
+            else {
+                toast.error('Profile should have at least one projects field')
+            }
+        }
+
+    }, [controlledFields.length]);
+
+    if (!isMounted) return null;
     return (
         <main className="p-5">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
                         {
-                            controlledFields.map((field, index) => {
+                            projects?.map((item, index) => {
                                 return (
-                                    <div className="flex flex-col gap-5" key={index}>
-                                        <FormField
-                                            name={`projects.${index}.projectName`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Name of Project</FormLabel>
-                                                    <FormControl>
-                                                        <Input
-                                                            className="py-8 bg-white" {...field}
-                                                            placeholder="eg Google Lance" />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`projects.${index}.projectUrl`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Project Url</FormLabel>
-                                                    <FormControl>
-                                                        <Input
-                                                            className="py-8 bg-white" {...field}
-                                                            placeholder="eg www.google.com"
-                                                        />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                        <FormField
-                                            name={`projects.${index}.description`}
-                                            control={form.control}
-                                            render={({ field }) => (
-                                                <FormItem >
-                                                    <FormLabel>Description</FormLabel>
-                                                    <FormControl>
-                                                        <Textarea
-                                                            placeholder="Google Lens has many uses, including:
+                                    <Collapsible
+                                        onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
+                                        className="w-[350px] space-y-2 transition"
+                                        open={item.id === expanded}
+                                    >
+                                        <div className="flex transition text-neutral-100 hover:bg-red-300 items-center bg-red-400 px-5">
+                                            <CollapsibleTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    className="w-full text-neutral-100 hover:bg-red-300">
+                                                    {projects?.[index]?.projectName || 'Project'}
+                                                </Button>
+                                            </CollapsibleTrigger>
+                                            <Trash
+                                                className="ml-auto cursor-pointer text-neutral-200"
+                                                onClick={() => handleDelete(index)} />
+                                        </div>
+
+                                        <CollapsibleContent key={item.id} className="flex flex-col gap-5 border p-5">
+                                            {/* ProjectName */}
+                                            <FormField
+                                                name={`projects.${index}.projectName`}
+                                                control={form.control}
+                                                render={({ field }) => (
+                                                    <FormItem >
+                                                        <FormLabel>Name of Project</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                className="py-8 bg-white" {...field}
+                                                                placeholder="eg Google Lance" />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+
+                                            {/* ProjectUrl */}
+                                            <FormField
+                                                name={`projects.${index}.projectUrl`}
+                                                control={form.control}
+                                                render={({ field }) => (
+                                                    <FormItem >
+                                                        <FormLabel>Project Url</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                className="py-8 bg-white" {...field}
+                                                                placeholder="eg www.google.com"
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            {/* ProjectDescription */}
+                                            <FormField
+                                                name={`projects.${index}.description`}
+                                                control={form.control}
+                                                render={({ field }) => (
+                                                    <FormItem >
+                                                        <FormLabel>Description</FormLabel>
+                                                        <FormControl>
+                                                            <Textarea
+                                                                placeholder="Google Lens has many uses, including:
                                                 Identifying objects: Google Lens can identify objects by reading barcodes, QR codes, labels, and text.
                                                 Translating text: Google Lens can translate text into your language by pointing it at a sign or piece of paper in a foreign language.
                                                 Exploring locales or menus."
-                                                            className="bg-white py-8 h-60 " {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
+                                                                className="bg-white py-8 h-60 " {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        </CollapsibleContent>
+                                    </Collapsible>
                                 )
-
 
 
 
@@ -161,7 +233,7 @@ const ProjectsForm = () => {
                     </div>
                 </form>
             </Form>
-        </main>
+        </main >
     )
 }
 
