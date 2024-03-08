@@ -28,7 +28,6 @@ const ExperienceForm = () => {
     const dispatch = useAppDispatch();
     const experience = useAppSelector(state => state.persistedReducer.experience);
     const { Quill } = ReactQuill;
-
     const modules = {
         toolbar: [
             ["bold", "italic", "underline", "strike"],

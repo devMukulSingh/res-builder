@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const ProjectsForm = () => {
 
@@ -23,6 +25,15 @@ const ProjectsForm = () => {
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const projects = useAppSelector(state => state.persistedReducer.projects);
+    const modules = {
+        toolbar: [
+            ["bold", "italic", "underline", "strike"],
+            [
+                { list: "ordered" },
+                { list: "bullet" },
+            ]
+        ]
+    }
 
 
     const form = useForm({
@@ -60,7 +71,10 @@ const ProjectsForm = () => {
     }
 
     const handleChange = () => {
+
         const projects = form.getValues().projects;
+        console.log(projects);
+        
         const parsedProjects = projects.map((item) => {
             return {
                 projectName: item.projectName,
@@ -194,12 +208,16 @@ const ProjectsForm = () => {
                                                     <FormItem >
                                                         <FormLabel>Description</FormLabel>
                                                         <FormControl>
-                                                            <Textarea
-                                                                placeholder="Google Lens has many uses, including:
-                                                Identifying objects: Google Lens can identify objects by reading barcodes, QR codes, labels, and text.
-                                                Translating text: Google Lens can translate text into your language by pointing it at a sign or piece of paper in a foreign language.
-                                                Exploring locales or menus."
-                                                                className="bg-white py-8 h-60 " {...field} />
+                                                        <ReactQuill
+                                                                value={field.value || ''}
+                                                                onChange={(content, delta, source, editor) => {
+                                                                    field.onChange(content);
+                                                                    handleChange();
+                                                                }}
+                                                                style={{ height: '8rem',marginBottom:'4rem' }}
+                                                                theme="snow"
+                                                                modules={modules}
+                                                            />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
