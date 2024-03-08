@@ -8,7 +8,7 @@ const Header = () => {
   const router = useRouter();
   return (
     <>
-      <main className=' sticky top-0 z-50 overflow-hidden w-full bg-[#F9F9F9]'>
+      <main className='fixed top-0 z-50 overflow-hidden w-full bg-[#F9F9F9]'>
         <div className='px-10 flex  h-24 items-center'>
           <figure
             className='relative size-32 '>

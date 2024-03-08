@@ -30,12 +30,14 @@ const Resume = () => {
     const achievements = useAppSelector(state => state.persistedReducer.achievements);
     const languages = useAppSelector(state => state.persistedReducer.languages);
     const projects = useAppSelector(state => state.persistedReducer.projects);
+    const sidebar = useAppSelector(state => state.commonSlice.sidebar);
+
 
     if (!isMounted) return null;
 
     return (
         <>
-            <main className='w-[calc(100vw-53rem)] pb-20  pr-10 max-w-[60rem] shrink-0 '>
+            <main className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-calc(100vw-37rem)' } pb-20  pr-10 max-w-[60rem] shrink-0 `}>
 
                 <div className='text-neutral-700 pb-10  min-w-[40rem]  flex flex-col gap-5 p-5  '>
 
@@ -80,12 +82,12 @@ const Resume = () => {
                             Work Experience
                         </h1>
                         {
-                            experience?.map((item,index) => (
+                            experience?.map((item, index) => (
                                 <div className='flex flex-col gap-5' key={index}>
 
                                     <div>
                                         <h1 className='font-bold'>
-                                            {item.role || ''}  {` ${item.address ? `| ${item.address}`: ''} `}  
+                                            {item.role || ''}  {` ${item.address ? `| ${item.address}` : ''} `}
                                         </h1>
                                         <h1>
                                             {/* {format(item.startDate, "MMM dd")}-{format(item.endDate, "MMM dd")} */}
@@ -135,8 +137,8 @@ const Resume = () => {
                             Projects
                         </h1>
                         {
-                            projects?.map((project,index) => (
-                                <ProjectSection project={project} key={index}  />
+                            projects?.map((project, index) => (
+                                <ProjectSection project={project} key={index} />
                             ))
                         }
 
@@ -149,8 +151,8 @@ const Resume = () => {
                         </h1>
                         <ul className='list-disc pl-5'>
                             {
-                                achievements?.map((achievement,index) => (
-                                    <AchievementSection achievement={achievement} key={index}/>
+                                achievements?.map((achievement, index) => (
+                                    <AchievementSection achievement={achievement} key={index} />
                                 ))
                             }
                         </ul>
@@ -162,12 +164,12 @@ const Resume = () => {
                             Languages
                         </h1>
                         <ul className='list-disc pl-5'>
-                        {
-                            languages?.map( (language,index) => (
-                                <LanguageSection language={language} key={index}/>
+                            {
+                                languages?.map((language, index) => (
+                                    <LanguageSection language={language} key={index} />
                                 ))
                             }
-                            </ul>
+                        </ul>
                     </section>
                 </div>
 
