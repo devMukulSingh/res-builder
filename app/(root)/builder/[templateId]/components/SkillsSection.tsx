@@ -11,23 +11,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
 }) => {
     return (
         <main className='grid grid-cols-4 gap-5'>
-            <div className='flex gap-4 items-center'>
-                <CheckCircle />
-                React
-            </div>
-            <div className='flex gap-4 items-center'>
-                <CheckCircle />
-                Next
-            </div>
-            <div className='flex gap-4 items-center'>
-                <CheckCircle />
-                Typescript
-            </div>
-            <div className='flex gap-4 items-center'>
-                <CheckCircle />
-                React
-            </div>
-            {/* {
+
+            {
                 skills?.aiGenSkills?.map( (skill) => {
                     return(
                         <div className='flex gap-4 items-center'>
@@ -36,7 +21,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                         </div>
                     )
                 })
-            } */}
+            }
         </main>
     )
 }

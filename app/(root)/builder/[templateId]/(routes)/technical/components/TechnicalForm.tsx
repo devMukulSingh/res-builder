@@ -19,7 +19,7 @@ const TechnicalForm = () => {
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const technical = useAppSelector(state => state.persistedReducer.technicalSkills)
-
+    
 
     const skills = [
         'Typescript',

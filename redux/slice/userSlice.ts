@@ -20,8 +20,8 @@ export interface IinitialState {
   achievements: Iachievements[] | null
   languages: Ilanguages[] | null,
   projects: Iprojects[] | null,
-  progress: number
-  sidebar: boolean
+  progress: number,
+  sidebar: boolean,
 }
 
 const initialState: IinitialState = {
@@ -48,7 +48,13 @@ export const userSlice = createSlice({
       state.experience = action.payload
     },
     setTechnicalSkills: (state, action) => {
-      state.technicalSkills = action.payload
+      if(state.technicalSkills && action.payload.aiGenSkills){
+        state.technicalSkills.aiGenSkills = action.payload.aiGenSkills;
+      }
+      if(state.technicalSkills&& action.payload.customSkill){
+        state.technicalSkills.customSkill = action.payload.customSkill;
+      }
+
     },
     setEducation: (state, action) => {
       state.education = action.payload

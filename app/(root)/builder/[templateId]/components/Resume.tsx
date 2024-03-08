@@ -31,9 +31,6 @@ const Resume = () => {
     const languages = useAppSelector(state => state.persistedReducer.languages);
     const projects = useAppSelector(state => state.persistedReducer.projects);
 
-    console.log(education);
-
-
     if (!isMounted) return null;
 
     return (
