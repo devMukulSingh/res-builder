@@ -165,7 +165,7 @@ const EducationForm = () => {
                                     <>
                                         <Collapsible
                                             onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
-                                            className="w-[350px] space-y-2 transition"
+                                            className="space-y-2 transition"
                                             open={item.id === expanded}
                                         >
                                             <div className="flex transition text-neutral-100 hover:bg-red-300 items-center bg-red-400 px-5">

@@ -1,7 +1,5 @@
 'use client'
-import RichTextEditor from '@/components/commons/RichTextEditor'
-import RichTextEditors from '@/components/commons/RichTextEditors'
-import Tiptap from '@/components/commons/Tiptap'
+
 import { Textarea } from '@/components/ui/textarea'
 import { useAppSelector } from '@/redux/hooks/hooks'
 import { format, formatDate } from 'date-fns'
@@ -32,7 +30,6 @@ const Resume = () => {
     const projects = useAppSelector(state => state.persistedReducer.projects);
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
 
-    console.log(achievements);
 
     if (!isMounted) return null;
 
