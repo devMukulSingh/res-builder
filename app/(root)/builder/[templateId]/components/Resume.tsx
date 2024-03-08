@@ -13,6 +13,7 @@ import EducationSection from './EducationSection'
 import ProjectSection from './ProjectSection'
 import AchievementSection from './AchievementSection'
 import LanguageSection from './LanguageSection'
+import ExperienceSection from './ExperienceSection'
 
 const Resume = () => {
 
@@ -81,29 +82,7 @@ const Resume = () => {
                         </h1>
                         {
                             experience?.map((item, index) => (
-                                <div className='flex flex-col gap-5' key={index}>
-
-                                    <div>
-                                        <h1 className='font-bold'>
-                                            {item.role || ''}  {` ${item.address ? `| ${item.address}` : ''} `}
-                                        </h1>
-                                        <h1>
-                                            {/* {format(item.startDate, "MMM dd")}-{format(item.endDate, "MMM dd")} */}
-                                        </h1>
-                                    </div>
-
-                                    <ul className='list-disc pl-8'>
-                                        {
-                                            <>
-                                                <li>
-                                                    I am Deepak Prakash
-                                                    a Frontend engineer, with the passion for creating stunning and user-friendly websites and applications. With 3years plus experience in the industry, I have honed skills in HTML, CSS, Javascript, as well as modern frontend frameworks such as ReactJs And VueJs.
-                                                </li>
-                                            </>
-                                        }
-                                    </ul>
-
-                                </div>
+                                <ExperienceSection experience={item} key={index}/>
                             ))
                         }
                     </section>

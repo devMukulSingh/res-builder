@@ -1,4 +1,5 @@
 import { Iprojects } from '@/lib/types'
+import * as DOMPurify from 'dompurify';
 
 interface ProjectSectionProps {
     project: Iprojects | null
@@ -7,6 +8,10 @@ interface ProjectSectionProps {
 const ProjectSection: React.FC<ProjectSectionProps> = ({
     project
 }) => {
+    if (!project) return null;
+
+    const sanitizedHtml = DOMPurify.sanitize(project.description);
+
     return (
         <main className='space-y-5'>
             <div className='flex gap-5 items-center'>
@@ -17,19 +22,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                     {project?.projectUrl}
                 </h1>
             </div>
+            <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
             <h1>
 
             </h1>
-            <ul className='list-disc pl-5'>
-                <li>Google Lens has many uses, including:
-                    Identifying objects: Google Lens can translate text into your language by pointing it at a sign or piece of paper in a foreign language.
-                    Exploring locales or menus:</li>
-                <li>
-                    Google Lens can identify objects by reading barcodes, QR codes, labels, and text.
-                    Translating text:
-                </li>
-
-            </ul>
+            {/* <ul className='list-disc pl-5'>
+                <li></li>
+            </ul> */}
         </main>
     )
 }
