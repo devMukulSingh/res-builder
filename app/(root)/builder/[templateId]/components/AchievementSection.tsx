@@ -1,16 +1,16 @@
 import { Iachievements } from "@/lib/types"
 
-
 interface AchievementsSectionProps{
-    achievement:Iachievements
+    achievement:string
 }
 
 const AchievementSection:React.FC<AchievementsSectionProps> = ({
     achievement
 }) => {
+    if(!achievement) return null;
   return (
         <li>
-            {achievement.value}
+            {achievement}
         </li>
   )
 }

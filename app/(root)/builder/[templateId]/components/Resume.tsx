@@ -32,12 +32,13 @@ const Resume = () => {
     const projects = useAppSelector(state => state.persistedReducer.projects);
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
 
+    console.log(achievements);
 
     if (!isMounted) return null;
 
     return (
         <>
-            <main className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-calc(100vw-37rem)' } pb-20  pr-10 max-w-[60rem] shrink-0 `}>
+            <main className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-calc(100vw-37rem)'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>
 
                 <div className='text-neutral-700 pb-10  min-w-[40rem]  flex flex-col gap-5 p-5  '>
 
@@ -118,6 +119,7 @@ const Resume = () => {
                         <SkillsSection skills={technical} />
 
                     </section>
+
                     {/* Education */}
                     <section className='space-y-5 p-5 bg-white'>
                         <h1 className=' text-xl font-semibold'>
@@ -152,7 +154,7 @@ const Resume = () => {
                         <ul className='list-disc pl-5'>
                             {
                                 achievements?.map((achievement, index) => (
-                                    <AchievementSection achievement={achievement} key={index} />
+                                    <AchievementSection achievement={achievement.value} key={index} />
                                 ))
                             }
                         </ul>

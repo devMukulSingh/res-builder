@@ -8,7 +8,7 @@ interface LanguageSectionProps {
 const LanguageSection: React.FC<LanguageSectionProps> = ({
     language
 }) => {
-    if(!language) return null;
+    if(!language?.language || !language.strength) return null;
     return (
         <li>
             {(`${language?.language} - ${language?.strength}`) || ''}
