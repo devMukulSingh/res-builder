@@ -133,6 +133,7 @@ const ProjectsForm = () => {
                             projects?.map((item, index) => {
                                 return (
                                     <Collapsible
+                                        key={index}
                                         onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
                                         className="w-[350px] space-y-2 transition"
                                         open={item.id === expanded}
