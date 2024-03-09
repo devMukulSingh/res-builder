@@ -32,7 +32,7 @@ const EducationForm = () => {
                     schoolLocation: '',
                     degree: '',
                     fieldOfStudy: '',
-                    graduationMonth: '',
+                    startDate: '',
                     endDate: '',
                     id: Math.floor(Math.random() * 100).toString(),
                     percentage: 0
@@ -63,7 +63,7 @@ const EducationForm = () => {
                 schoolLocation: item.schoolLocation,
                 degree: item.degree,
                 fieldOfStudy: item.fieldOfStudy,
-                graduationMonth: item.graduationMonth,
+                startDate: item.startDate,
                 endDate: item.endDate,
                 percentage: item.percentage
             }
@@ -84,7 +84,7 @@ const EducationForm = () => {
                 schoolLocation: item.schoolLocation,
                 degree: item.degree,
                 fieldOfStudy: item.fieldOfStudy,
-                graduationMonth: item.graduationMonth,
+                startDate: item.startDate,
                 endDate: item.endDate,
                 id: item.id,
                 percentage: item.percentage
@@ -100,7 +100,7 @@ const EducationForm = () => {
             schoolLocation: '',
             degree: '',
             fieldOfStudy: '',
-            graduationMonth: '',
+            startDate: '',
             endDate: '',
             percentage: 0,
             id: Math.floor(Math.random() * 100).toString()
@@ -270,18 +270,19 @@ const EducationForm = () => {
                                                     )}
                                                 />
 
-                                                {/* GraduationMonth */}
+                                                {/* startDate */}
 
                                                 <FormField
-                                                    name={`education.${index}.graduationMonth`}
+                                                    defaultValue="January,2024"
+                                                    name={`education.${index}.startDate`}
                                                     control={form.control}
                                                     render={({ field }) => (
                                                         <FormItem >
-                                                            <FormLabel>Graduation Month</FormLabel>
+                                                            <FormLabel>Start Date</FormLabel>
                                                             <FormControl>
                                                                 <Input
                                                                     className="bg-white" {...field}
-                                                                    type="date" />
+                                                                    type="month" />
                                                             </FormControl>
                                                             <FormMessage />
                                                         </FormItem>
@@ -290,6 +291,7 @@ const EducationForm = () => {
 
                                                 {/* endDate */}
                                                 <FormField
+                                                    defaultValue="January,2024"
                                                     name={`education.${index}.endDate`}
                                                     control={form.control}
                                                     render={({ field }) => (
@@ -297,7 +299,7 @@ const EducationForm = () => {
                                                             <FormLabel>End Date</FormLabel>
                                                             <FormControl>
                                                                 <Input
-                                                                    type="date"
+                                                                    type="month"
                                                                     className="bg-white" {...field} />
                                                             </FormControl>
                                                             <FormMessage />

@@ -7,7 +7,6 @@ export const HTMLRenderer = ({ htmlString }: { htmlString: string }) => {
 
     return parseHtmlStringToHtml(htmlString, {
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       transform: (reactNode: any, domNode: any) => {
         if (reactNode && reactNode.type === 'ol') {
           const dToReact: any = domToReact(domNode.children);
@@ -33,7 +32,7 @@ export const HTMLRenderer = ({ htmlString }: { htmlString: string }) => {
 
             return (
               <ol className='list-decimal pl-5'>
-                <li >
+                <li>
                   {dToReact.props.children}
                 </li>
               </ol>

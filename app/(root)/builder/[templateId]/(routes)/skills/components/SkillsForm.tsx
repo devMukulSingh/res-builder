@@ -10,7 +10,7 @@ import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
 import { useState } from "react";
 
-const TechnicalForm = () => {
+const SkillsForm = () => {
 
     const form = useForm();
     const dispatch = useAppDispatch();
@@ -90,4 +90,4 @@ const TechnicalForm = () => {
     )
 }
 
-export default TechnicalForm
+export default SkillsForm

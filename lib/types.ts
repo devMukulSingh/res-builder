@@ -32,10 +32,11 @@ export interface Ieducation {
   schoolLocation: string
   degree: string
   fieldOfStudy: string
-  graduationMonth: string
+  startDate: string
   endDate: string
   id: string
-  percentage: number
+  percentage: number,
+
 }
 export interface Icontact {
   linkedIn: string

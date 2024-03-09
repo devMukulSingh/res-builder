@@ -36,8 +36,8 @@ const Sidebar = () => {
         },
         {
             icon: GiSkills,
-            title: 'Technical Skills',
-            isActive: pathName.endsWith('/technical')
+            title: 'Skills',
+            isActive: pathName.endsWith('/skills')
 
         },
         {

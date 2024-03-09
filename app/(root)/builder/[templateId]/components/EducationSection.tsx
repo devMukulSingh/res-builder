@@ -1,4 +1,5 @@
 import { Ieducation } from '@/lib/types'
+import { format } from 'date-fns';
 import React from 'react'
 
 interface EducationSectionProps {
@@ -8,6 +9,8 @@ interface EducationSectionProps {
 const EducationSection: React.FC<EducationSectionProps> = ({
     educationInfo
 }) => {
+
+    console.log(educationInfo);
     return (
         <main>
             <h1 className=''>
@@ -16,9 +19,16 @@ const EducationSection: React.FC<EducationSectionProps> = ({
             <div className='flex justify-between'>
                 <h1>
                     {educationInfo?.degree}  {`${educationInfo?.fieldOfStudy ? ` in ${educationInfo.fieldOfStudy}` : ''}`}
-                    {/* {educationInfo.percentage} CGPA */}
+                    {
+                        ` 
+                            ${educationInfo.percentage ?
+                            ` - ${educationInfo.percentage} CGPA` : ``
+                        } 
+                        
+                        `
+                    }
                 </h1>
-                <h1>{educationInfo?.endDate}</h1>
+                <h1>{educationInfo?.startDate} -- {educationInfo?.endDate} </h1>
             </div>
 
         </main>
