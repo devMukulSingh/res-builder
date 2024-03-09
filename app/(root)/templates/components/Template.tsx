@@ -20,7 +20,7 @@ const Template: React.FC<TemplateProps> = ({
 
     const router = useRouter();
     const handleTemplateSelect = () => {
-            setTemplateId(image.id);
+        setTemplateId(image.id);
     }
 
     return (
@@ -28,7 +28,7 @@ const Template: React.FC<TemplateProps> = ({
             className={
                 `relative
                 w-[20rem]
-                h-[28rem]
+                h-[25rem]
 
                   `}>
             <Image
@@ -41,7 +41,7 @@ const Template: React.FC<TemplateProps> = ({
                 transition
                 object-
                 cursor-pointer
-                ${templateId===image.id ? ' border-4 border-red-400 scale-110' : ''}
+                ${templateId === image.id ? ' border-4 border-red-400 scale-110' : ''}
                 
             `}
             />

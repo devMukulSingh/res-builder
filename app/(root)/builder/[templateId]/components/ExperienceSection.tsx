@@ -1,6 +1,7 @@
 import { Iexperience } from '@/lib/types'
 import React from 'react'
 import * as DOMPurify from 'dompurify';
+import { HTMLRenderer } from '@/lib/HTMLRenderer';
 
 interface ExperienceSectionProps {
     experience: Iexperience
@@ -22,10 +23,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     {/* {format(item.startDate, "MMM dd")}-{format(item.endDate, "MMM dd")} */}
                 </h1>
             </div>
-
-            <div
+            <HTMLRenderer htmlString={experience.description}/>
+            {/* <div
                 dangerouslySetInnerHTML={{ __html: sanitizedHtml}}
-                />
+                /> */}
 
 
             {/* <ul className='list-disc pl-8'>

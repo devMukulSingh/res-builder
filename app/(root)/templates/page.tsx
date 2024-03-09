@@ -21,10 +21,10 @@ const TemplatesPage = () => {
         }
     }
     return (
-        <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-5'>
+        <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
             <BiArrowBack
                 onClick={() => router.push('/')}
-                className='text-2xl size-10 cursor-pointer' />
+                className='text-xl size-10 cursor-pointer' />
             <section className='flex items-center flex-col gap-10'>
                 <h1
                     className='text-xl slef-start sm:text-3xl font-bold whitespace-nowrap'>
