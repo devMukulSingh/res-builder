@@ -1,5 +1,4 @@
 import parseHtmlStringToHtml, { domToReact } from 'html-react-parser';
-import Link from 'next/link';
 import { useMemo } from 'react';
 
 export const HTMLRenderer = ({ htmlString }: { htmlString: string }) => {
@@ -7,21 +6,51 @@ export const HTMLRenderer = ({ htmlString }: { htmlString: string }) => {
   const parsedElement = useMemo(() => {
 
     return parseHtmlStringToHtml(htmlString, {
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      replace: (domNode: any) => {
-        console.log(domNode.parent);
-        
-        if (domNode.attribs && domNode.attribs.href && domNode.name === 'a') {
-          return <Link href={domNode.attribs.href}>{domToReact(domNode.children)}</Link>;
-        } 
-        // else if(domNode.parent && domNode.parent?.name === 'li'){
-        //     return <li>{domToReact(domNode.children)}</li>
-        // }
-        else if (domNode.name === 'script') {
-          return <></>;
+      transform: (reactNode: any, domNode: any) => {
+        if (reactNode && reactNode.type === 'ol') {
+          const dToReact: any = domToReact(domNode.children);
+
+          if (Array.isArray(dToReact)) {
+            return (
+              <ol className='list-decimal pl-5'>
+                {
+                  dToReact.map((item, index) => {
+                    if (!item.props.children) return null;
+                    return (
+                      <li key={index}>
+                        {item.props.children}
+                      </li>
+                    )
+                  }
+                  )
+                }
+              </ol>
+            )
+          }
+          else {
+
+            return (
+              <ol className='list-decimal pl-5'>
+                <li >
+                  {dToReact.props.children}
+                </li>
+              </ol>
+            )
+          }
+
+        }
+        else if (reactNode && reactNode.type) {
+          return (
+            <>
+              {reactNode && domToReact(domNode.children)}
+            </>
+          )
         }
       },
     });
   }, [htmlString]);
-  return <div className={` text-xs `}>{parsedElement}</div>;
+  return <div className='whitespace-normal'>{parsedElement}</div>;
 };
+

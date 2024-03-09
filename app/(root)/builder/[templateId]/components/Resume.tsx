@@ -76,13 +76,13 @@ const Resume = () => {
                     </header>
 
                     {/* work Experience */}
-                    <section className='space-y-4 bg-white p-5'>
+                    <section className='space-y-4 bg-white p-5 '>
                         <h1 className=' text-xl font-semibold'>
                             Work Experience
                         </h1>
                         {
                             experience?.map((item, index) => (
-                                <ExperienceSection experience={item} key={index}/>
+                                <ExperienceSection experience={item} key={index} />
                             ))
                         }
                     </section>
@@ -149,6 +149,7 @@ const Resume = () => {
                             }
                         </ul>
                     </section>
+
                 </div>
 
 

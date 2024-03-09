@@ -8,11 +8,11 @@ export default function TemplateLayout({ children }: {
     children: React.ReactNode
 }) {
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-    
+
     return (
         <main className="flex gap-5">
             <Sidebar />
-            <div className={`md:flex-row flex flex-col ${!sidebar ?  'ml-[7rem]' : 'ml-[20rem]' } `} >
+            <div className={`md:flex-row flex flex-col ${!sidebar ? 'ml-[7rem]' : 'ml-[20rem]'} `} >
                 <div className="w-[30rem]">
                     {children}
                 </div>

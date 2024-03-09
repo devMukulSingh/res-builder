@@ -19,7 +19,6 @@ import 'react-quill/dist/quill.snow.css';
 
 const ExperienceForm = () => {
 
-    const [value, setValue] = useState('');
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
     const { templateId } = useParams();

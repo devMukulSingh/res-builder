@@ -1,10 +1,14 @@
-import ExperienceForm from './components/ExperienceForm'
+'use client'
+import ExperienceForm from "./components/ExperienceForm"
 
 const Experience = () => {
   return (
-    <div>
-      <ExperienceForm/>
-    </div>
+    <>
+
+      <ExperienceForm />
+
+
+    </>
   )
 }
 

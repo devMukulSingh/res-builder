@@ -1,7 +1,10 @@
+'use client'
+import parseHtmlStringToHtml from "html-react-parser";
 import { Iexperience } from '@/lib/types'
 import React from 'react'
 import * as DOMPurify from 'dompurify';
 import { HTMLRenderer } from '@/lib/HTMLRenderer';
+import parse from "html-react-parser";
 
 interface ExperienceSectionProps {
     experience: Iexperience
@@ -10,11 +13,11 @@ interface ExperienceSectionProps {
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({
     experience
 }) => {
-    const sanitizedHtml = DOMPurify.sanitize(experience.description);
-    
-    return (
 
-        <main className='flex flex-col gap-5'>
+    // console.log(experience.description);
+
+    return (
+        <main className='flex flex-col gap-5 break-all'>
             <div>
                 <h1 className='font-bold'>
                     {experience.role || ''}  {` ${experience.address ? `| ${experience.address}` : ''} `}
@@ -23,21 +26,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     {/* {format(item.startDate, "MMM dd")}-{format(item.endDate, "MMM dd")} */}
                 </h1>
             </div>
-            <HTMLRenderer htmlString={experience.description}/>
-            {/* <div
-                dangerouslySetInnerHTML={{ __html: sanitizedHtml}}
-                /> */}
-
-
-            {/* <ul className='list-disc pl-8'>
-                {
-                    description
-                        <li>
-                            
-                        </li>
-    
-                }
-            </ul> */}
+            <HTMLRenderer htmlString={experience.description} />
 
         </main>
     )
