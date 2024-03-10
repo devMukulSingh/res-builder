@@ -9,6 +9,8 @@ interface SkillsSectionProps {
 const SkillsSection: React.FC<SkillsSectionProps> = ({
     skills
 }) => {
+
+    
     return (
         <main className='grid grid-cols-4 gap-5'>
 
@@ -23,11 +25,12 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                 })
             }
             {
-                skills?.customSkill &&
-                <div className='flex gap-4 items-center'>
-                    <CheckCircle />
-                    {skills?.customSkill}
-                </div>
+                skills?.customSkills?.map((skill, index) => (
+                    <div className='flex gap-4 items-center' key={index}>
+                        <CheckCircle />
+                        {skill?.skillName}
+                    </div>
+                ))
             }
         </main>
     )

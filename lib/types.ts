@@ -25,7 +25,9 @@ export interface Iexperience {
 }
 export interface ItechnicalSkills {
   aiGenSkills: string[]
-  customSkill: string
+  customSkills: {
+    skillName:string
+  }[]
 }
 export interface Ieducation {
   schoolName: string

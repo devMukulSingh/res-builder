@@ -24,7 +24,7 @@ const Resume = () => {
     const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
     const experience = useAppSelector(state => state.persistedReducer.experience);
     const education = useAppSelector(state => state.persistedReducer.education);
-    const technical = useAppSelector(state => state.persistedReducer.technicalSkills);
+    const skills = useAppSelector(state => state.persistedReducer.technicalSkills);
     const contact = useAppSelector(state => state.persistedReducer.contact);
     const achievements = useAppSelector(state => state.persistedReducer.achievements);
     const languages = useAppSelector(state => state.persistedReducer.languages);
@@ -92,7 +92,7 @@ const Resume = () => {
                         <h1 className=' text-xl font-semibold'>
                             Technical Skills
                         </h1>
-                        <SkillsSection skills={technical} />
+                        <SkillsSection skills={skills} />
 
                     </section>
 

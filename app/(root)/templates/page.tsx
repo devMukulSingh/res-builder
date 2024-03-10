@@ -6,6 +6,7 @@ import Template from './components/Template';
 import { templatesUrl } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 const TemplatesPage = () => {
 
@@ -13,12 +14,7 @@ const TemplatesPage = () => {
     const [templateId, setTemplateId] = useState("");
 
     const handleTemplateSelect = () => {
-        if (templateId) {
-            router.push(`/builder/${templateId}/personal`);
-        }
-        else {
-            toast.error('No template Selected');
-        }
+        router.push(`/builder/${templateId}/personal`);
     }
     return (
         <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
@@ -42,11 +38,12 @@ const TemplatesPage = () => {
                         ))
                     }
                 </div>
-                <Button
-                    onClick={handleTemplateSelect}
-                    className='w-60 rounded-sm'>
-                    Select
-                </Button>
+                    <Button
+                        disabled={templateId==='' ? true : false}
+                        onClick={handleTemplateSelect}
+                        className='w-60 rounded-sm'>
+                        Select
+                    </Button>
             </section>
         </main>
     )

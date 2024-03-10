@@ -28,6 +28,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Check, Loader, Loader2 } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const PersonalForm = () => {
 
@@ -83,8 +84,6 @@ const PersonalForm = () => {
 
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
-        router.push('/templates');
-
     }
     return (
         <main className=" text-neutral-500">
@@ -268,12 +267,13 @@ const PersonalForm = () => {
                             />
                         </div>
 
-
-                        <Button
-                            type="submit"
-                            className="w-full py-3 mt-4">
-                            Next
-                        </Button>
+                        <Link href={'/templates'}>
+                            <Button
+                                type="submit"
+                                className="w-full py-3 mt-4">
+                                Next
+                            </Button>
+                        </Link>
                     </div>
                 </form>
             </Form>

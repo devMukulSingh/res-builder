@@ -13,10 +13,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export interface IinitialState {
   personalInfo: IpersonalInfo | null
   experience: Iexperience[] | null
-  technicalSkills: ItechnicalSkills | {
-    aiGenSkills : string[],
-    customSkill:string
-  }
+  technicalSkills: ItechnicalSkills 
   education: Ieducation[] | null
   contact: Icontact | null
   achievements: Iachievements[] | null
@@ -31,7 +28,11 @@ const initialState: IinitialState = {
   experience: null,
   technicalSkills: {
     aiGenSkills:[],
-    customSkill:''
+    customSkills: [
+      {
+        skillName:''
+      }
+    ],
   },
   education: null,
   contact: null,
@@ -57,7 +58,7 @@ export const userSlice = createSlice({
         state.technicalSkills.aiGenSkills = action.payload.aiGenSkills;
       }
       else{
-        state.technicalSkills.customSkill = action.payload.customSkill
+        state.technicalSkills.customSkills = action.payload.customSkills
       }
 
     },

@@ -9,8 +9,6 @@ interface EducationSectionProps {
 const EducationSection: React.FC<EducationSectionProps> = ({
     educationInfo
 }) => {
-
-    console.log(educationInfo);
     return (
         <main>
             <h1 className=''>

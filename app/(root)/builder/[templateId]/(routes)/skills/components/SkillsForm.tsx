@@ -1,23 +1,24 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FieldValue, FieldValues, useForm } from "react-hook-form"
+import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setExperience, setTechnicalSkills } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { PlusCircle } from "lucide-react";
 
 const SkillsForm = () => {
 
-    const form = useForm();
+    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
-    const technical = useAppSelector(state => state.persistedReducer.technicalSkills)
+    const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills.customSkills)
 
 
     const skills = [
@@ -29,19 +30,53 @@ const SkillsForm = () => {
         'ExpressJs'
     ]
 
-    const onSubmit = (data: FieldValues) => {
-        dispatch(setTechnicalSkills(data));
-        router.push(`/builder/${templateId}/education`);
+    const form = useForm({
+        defaultValues: {
+            customSkills: customSkills || [
+                {
+                    skillName: ''
+                }
+            ]
+        }
+    });
+    const fieldArray = useFieldArray({
+        name: 'customSkills',
+        control: form.control
+    })
+    const watchFieldsArray = form.watch('customSkills');
 
+    const controlledFields = fieldArray.fields.map((field, index) => {
+        return {
+            ...field,
+            ...watchFieldsArray[index]
+        }
+    })
+
+    const onSubmit = (data: FieldValues) => {
+        router.push(`/builder/${templateId}/education`);
         if (progress <= 34) {
             dispatch(setProgress())
         }
     }
     const handleChange = () => {
-        console.log("formva",form.getValues());
-        
-        dispatch(setTechnicalSkills( form.getValues()) )
+        const customSkills = form.getValues().customSkills;
+        const parsedSkills = customSkills.map(item => {
+            return {
+                skillName:item.skillName
+            }
+        })
+        dispatch(setTechnicalSkills({
+            customSkills:parsedSkills
+        }));
     }
+    const handleAddMore = () => {
+        fieldArray.append({
+            skillName: ''
+        })
+    }
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     return (
         <main className="p-5 space-y-5">
@@ -63,21 +98,35 @@ const SkillsForm = () => {
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
-                        <FormField
-                            defaultValue={technical?.customSkill}
-                            name="customSkill"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormControl>
-                                        <Input
-                                            className="bg-white py-8" {...field}
-                                            placeholder="You didn't find? Enter your skill" />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        {
+                            controlledFields.map((item, index) => (
+                                <FormField
+                                    key={index}
+                                    name={`customSkills.${index}.skillName`}
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <FormItem >
+                                            <FormControl>
+                                                <Input
+                                                    className="bg-white py-8" {...field}
+                                                    placeholder="You didn't find? Enter your skill" />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            ))
+                        }
+
+                        <Button
+                            type="button"
+                            onClick={handleAddMore}
+                            variant="ghost"
+                            className="self-start flex items-center gap-2 bg-transparent"
+                        >
+                            <PlusCircle />
+                            Add more Skill
+                        </Button>
                         <Button
                             type="submit"
                             className="w-full mt-10 py-6">
