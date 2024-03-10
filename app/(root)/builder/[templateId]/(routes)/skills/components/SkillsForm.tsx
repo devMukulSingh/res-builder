@@ -18,7 +18,7 @@ const SkillsForm = () => {
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
-    const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills.customSkills)
+    const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills)
 
 
     const skills = [
