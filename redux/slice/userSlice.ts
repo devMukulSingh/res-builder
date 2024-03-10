@@ -86,13 +86,13 @@ export const userSlice = createSlice({
     },
     resetForm: state => {
       state.progress = 10;
-      state.achievements=null,
-      state.contact=null,
-      state.education=[],
-      state.experience=[],
-      state.languages=[],
-      state.personalInfo=null,
-      state.projects=null,
+      state.achievements = null,
+      state.contact = null,
+      state.education = null,
+      state.experience = null,
+      state.languages = null,
+      state.personalInfo = null,
+      state.projects = null,
       state.technicalSkills={
         aiGenSkills:[],
         customSkills:[
