@@ -62,11 +62,11 @@ const SkillsForm = () => {
         const customSkills = form.getValues().customSkills;
         const parsedSkills = customSkills.map(item => {
             return {
-                skillName:item.skillName
+                skillName: item.skillName
             }
         })
         dispatch(setTechnicalSkills({
-            customSkills:parsedSkills
+            customSkills: parsedSkills
         }));
     }
     const handleAddMore = () => {
@@ -77,7 +77,7 @@ const SkillsForm = () => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
-    if(!isMounted) return null;
+    if (!isMounted) return null;
     return (
         <main className="p-5 space-y-5">
             <section>
