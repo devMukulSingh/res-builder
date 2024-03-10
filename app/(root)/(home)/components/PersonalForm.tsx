@@ -26,7 +26,7 @@ import {
 import { BiSort } from "react-icons/bi";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, Loader, Loader2 } from "lucide-react";
 import { useState } from "react";
 
 const PersonalForm = () => {
@@ -84,6 +84,7 @@ const PersonalForm = () => {
     const onSubmit = (data: formSchema) => {
         dispatch(setPersonalInfo(data));
         router.push('/templates');
+
     }
     return (
         <main className=" text-neutral-500">
