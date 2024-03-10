@@ -14,6 +14,7 @@ import ProjectSection from './ProjectSection'
 import AchievementSection from './AchievementSection'
 import LanguageSection from './LanguageSection'
 import ExperienceSection from './ExperienceSection'
+import PersonalSection from './PersonalSection'
 
 const Resume = () => {
 
@@ -40,40 +41,8 @@ const Resume = () => {
 
                 <div className='text-neutral-700 pb-10  min-w-[40rem]  flex flex-col gap-5 p-5  '>
 
-                    <header className='bg-white px-8 pt-10 pb-5 flex flex-col gap-5'>
-                        {/* ABOUT */}
-                        <div className='space-y-2'>
-                            <h1 className='text-2xl font-semibold'>
-                                {personalInfo?.fullName}
-                            </h1>
-                            <h1>
-                                {personalInfo?.mobile} || {personalInfo?.email}
-                            </h1>
-                        </div>
-
-                        <div className='space-y-2'>
-
-                            <h1 className='text-xl font-semibold'>
-                                Address
-                            </h1>
-                            <h1>
-                                {personalInfo?.address}
-                            </h1>
-
-                        </div>
-
-                        {/* BIO */}
-                        <div className=''>
-                            <h1 className='text-xl font-semibold'>
-                                Bio
-                            </h1>
-                            <h1>
-                                Creative Frontend Developer with expertise in HTML, CSS, and JavaScript. Proven ability to transform design concepts into responsive web applications. Passionate about delivering visually appealing and user-centric experiences.
-                            </h1>
-                            {/* <RichTextEditors label="bio" /> */}
-                        </div>
-
-                    </header>
+                    {/* PersonalInfo */}
+                    <PersonalSection personalInfo={personalInfo} />
 
                     {/* work Experience */}
                     <section className='space-y-4 bg-white p-5 '>

@@ -26,7 +26,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
                         `
                     }
                 </h1>
-                <h1>{educationInfo?.startDate} -- {educationInfo?.endDate} </h1>
+                <h1>{educationInfo?.startDate}{`${educationInfo?.endDate ? ` -- ${educationInfo.endDate}` : '' }` } </h1>
             </div>
 
         </main>
