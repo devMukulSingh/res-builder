@@ -45,13 +45,10 @@ const AchievementsForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        const parsedAchievements = data?.achievements.map((item: { value: string, id: string }) => item.value)
-        dispatch(setAchievements(parsedAchievements));
         router.push(`/builder/${templateId}/language`);
         if (progress <= 82) {
             dispatch(setProgress())
         }
-
     }
 
     const handleChange = () => {

@@ -77,7 +77,7 @@ const SkillsForm = () => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
-
+    if(!isMounted) return null;
     return (
         <main className="p-5 space-y-5">
             <section>

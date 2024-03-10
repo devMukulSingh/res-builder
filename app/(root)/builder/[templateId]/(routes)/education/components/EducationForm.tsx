@@ -56,25 +56,10 @@ const EducationForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        const education = data.education;
-        const parsedEducation = education.map((item: Ieducation) => {
-            return {
-                schoolName: item.schoolName,
-                schoolLocation: item.schoolLocation,
-                degree: item.degree,
-                fieldOfStudy: item.fieldOfStudy,
-                startDate: item.startDate,
-                endDate: item.endDate,
-                percentage: item.percentage
-            }
-        })
-        // dispatch(setEducation(parsedEducation));
         router.push(`/builder/${templateId}/social`);
         if (progress <= 46) {
             dispatch(setProgress())
         }
-
-
     }
     const handleChange = () => {
         const education = form.getValues().education;

@@ -39,16 +39,7 @@ const LanguageForm = () => {
     const watchFieldsArray = form.watch('languageInfo');
 
     const onSubmit = (data: FieldValues) => {
-        const languageInfo = data.languageInfo;
-        const parsedLanguage = languageInfo.map((item: { language: string, strength: string }) => {
-            return {
-                language: item.language,
-                strength: item.strength
-            }
-        })
-        dispatch(setLanguages(parsedLanguage));
         router.push('/download')
-
     }
 
     const handleChange = () => {

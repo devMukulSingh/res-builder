@@ -63,7 +63,6 @@ const ProjectsForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        dispatch(setProjects(data));
         router.push(`/builder/${templateId}/achievements`);
         if (progress <= 70) {
             dispatch(setProgress())
@@ -71,10 +70,7 @@ const ProjectsForm = () => {
     }
 
     const handleChange = () => {
-
         const projects = form.getValues().projects;
-        console.log(projects);
-        
         const parsedProjects = projects.map((item) => {
             return {
                 projectName: item.projectName,

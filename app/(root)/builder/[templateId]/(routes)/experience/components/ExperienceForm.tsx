@@ -26,7 +26,6 @@ const ExperienceForm = () => {
     const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();
     const experience = useAppSelector(state => state.persistedReducer.experience);
-    const { Quill } = ReactQuill;
     const modules = {
         toolbar: [
             ["bold", "italic", "underline", "strike"],
@@ -72,26 +71,10 @@ const ExperienceForm = () => {
     })
 
     const onSubmit = (data: FieldValues) => {
-        const experience = data.experience;
-        const parsedExperience = experience.map((item: Iexperience) => {
-            return {
-                companyName: item.companyName,
-                employer: item.employer,
-                role: item.role,
-                address: item.address,
-                startDate: item.startDate,
-                endDate: item.endDate,
-                checkbox: item.checkbox,
-                description: item.description
-            }
-        })
-        dispatch(setExperience(parsedExperience));
         router.push(`/builder/${templateId}/technical`);
-
         if (progress <= 22) {
             dispatch(setProgress())
         }
-
     }
     const handleChange = () => {
         const experience = form.getValues().experience;

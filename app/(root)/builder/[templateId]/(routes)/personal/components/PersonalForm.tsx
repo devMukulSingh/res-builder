@@ -100,15 +100,12 @@ const PersonalForm = () => {
             state: ''
         }
     });
-    const { errors } = form.formState;
 
     const onSubmit = (data: formSchema) => {
-        dispatch(setPersonalInfo(data));
         router.push(`/builder/${templateId}/experience`);
         if (progress <= 10) {
             dispatch(setProgress())
         }
-
     }
     const handleChange = () => {
         dispatch(setPersonalInfo(form.getValues()));

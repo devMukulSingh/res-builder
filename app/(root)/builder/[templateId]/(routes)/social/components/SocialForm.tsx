@@ -18,7 +18,6 @@ const SocialForm = () => {
 
 
     const onSubmit = (data: FieldValues) => {
-        dispatch(setContact(data));
         router.push(`/builder/${templateId}/projects`);
         if(progress <= 58){
             dispatch(setProgress())
