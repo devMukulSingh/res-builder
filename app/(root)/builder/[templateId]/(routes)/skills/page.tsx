@@ -1,11 +1,11 @@
-import React from 'react'
 import SkillsForm from './components/SkillsForm'
 
-const SkillsPage = () => {
+const SkillsPage = async() => {
+
   return (
-    <div>
+    <>
       <SkillsForm/>
-    </div>
+    </>
   )
 }
 

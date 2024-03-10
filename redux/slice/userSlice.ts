@@ -20,7 +20,8 @@ export interface IinitialState {
   languages: Ilanguages[] | null
   projects: Iprojects[] | null
   progress: number
-  sidebar: boolean
+  sidebar: boolean,
+  skillsFromDb:string[]
 }
 
 const initialState: IinitialState = {
@@ -40,7 +41,8 @@ const initialState: IinitialState = {
   languages: null,
   projects: null,
   progress: 10,
-  sidebar: true
+  sidebar: true,
+  skillsFromDb:[]
 }
 
 export const userSlice = createSlice({
@@ -82,8 +84,26 @@ export const userSlice = createSlice({
       const singleProgress = Math.floor(100 / 8)
       state.progress = state.progress + singleProgress
     },
-    resetProgressBar: state => {
-      state.progress = 10
+    resetForm: state => {
+      state.progress = 10;
+      state.achievements=null,
+      state.contact=null,
+      state.education=[],
+      state.experience=[],
+      state.languages=[],
+      state.personalInfo=null,
+      state.projects=null,
+      state.technicalSkills={
+        aiGenSkills:[],
+        customSkills:[
+          {
+            skillName:''
+          }
+        ]
+      }
+    },
+    setDbSkills : (state,action) => {
+      state.skillsFromDb = action.payload;
     }
   }
 })
@@ -100,5 +120,6 @@ export const {
   setLanguages,
   setProjects,
   setProgress,
-  resetProgressBar
+  resetForm,
+  setDbSkills
 } = userSlice.actions

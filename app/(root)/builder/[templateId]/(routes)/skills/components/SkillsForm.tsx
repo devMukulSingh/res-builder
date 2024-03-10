@@ -11,24 +11,32 @@ import Skill from "./Skill";
 import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
 
-const SkillsForm = () => {
+interface SkillsFormProps{
+
+}
+
+const SkillsForm = ({
+    
+}) => {
 
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
-    const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills)
+    const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills);
+    const skillsFromDb = useAppSelector(state => state.persistedReducer.skillsFromDb);
 
 
-    const skills = [
-        'Typescript',
-        'Reactjs',
-        'Nextjs',
-        'MongoDB',
-        'MySQL',
-        'ExpressJs'
-    ]
+
+    // const skills = [
+    //     'Typescript',
+    //     'Reactjs',
+    //     'Nextjs',
+    //     'MongoDB',
+    //     'MySQL',
+    //     'ExpressJs'
+    // ]
 
     const form = useForm({
         defaultValues: {
@@ -85,7 +93,7 @@ const SkillsForm = () => {
 
                 <div className="grid grid-cols-2 gap-5" >
                     {
-                        skills.map((skill) => (
+                        skillsFromDb.map((skill) => (
                             <Skill
                                 skill={skill}
                                 key={skill}

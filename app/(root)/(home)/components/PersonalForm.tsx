@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
-import { setPersonalInfo } from "@/redux/slice/userSlice";
+import { resetForm, setDbSkills, setPersonalInfo, setTechnicalSkills } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -29,6 +29,8 @@ import { cn } from "@/lib/utils";
 import { Check, Loader, Loader2 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios"
+import { Skills } from "@prisma/client";
 
 const PersonalForm = () => {
 
@@ -82,8 +84,17 @@ const PersonalForm = () => {
         resolver: zodResolver(schema)
     });
 
-    const onSubmit = (data: formSchema) => {
+    const onSubmit = async(data: formSchema) => {
+        router.push(`/templates`);
+        dispatch(resetForm());
         dispatch(setPersonalInfo(data));
+        const { data:res } = await axios.get(`/api/skills`,{
+            params:{
+                profession:data.profession
+            }
+        });
+        const parsedSkills = res.skills.map( (skill:Skills) => skill.name);
+        dispatch(setDbSkills(parsedSkills));
     }
     return (
         <main className=" text-neutral-500">
@@ -266,14 +277,11 @@ const PersonalForm = () => {
                                 )}
                             />
                         </div>
-
-                        <Link href={'/templates'}>
                             <Button
                                 type="submit"
                                 className="w-full py-3 mt-4">
                                 Next
                             </Button>
-                        </Link>
                     </div>
                 </form>
             </Form>
