@@ -273,7 +273,7 @@ const EducationForm = () => {
                                                 {/* startDate */}
 
                                                 <FormField
-                                                    defaultValue="January,2024"
+                                                    defaultValue="2018-05"
                                                     name={`education.${index}.startDate`}
                                                     control={form.control}
                                                     render={({ field }) => (
@@ -291,7 +291,7 @@ const EducationForm = () => {
 
                                                 {/* endDate */}
                                                 <FormField
-                                                    defaultValue="January,2024"
+                                                    defaultValue="2018-05"
                                                     name={`education.${index}.endDate`}
                                                     control={form.control}
                                                     render={({ field }) => (

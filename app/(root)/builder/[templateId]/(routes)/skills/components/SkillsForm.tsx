@@ -64,7 +64,7 @@ const SkillsForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
                         <FormField
-                            defaultValue={technical.customSkill}
+                            defaultValue={technical?.customSkill}
                             name="customSkill"
                             control={form.control}
                             render={({ field }) => (
