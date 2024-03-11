@@ -12,7 +12,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { Stalemate } from 'next/font/google'
 
 export interface IinitialState {
-  personalInfo: IpersonalInfo | null
+  personalInfo: IpersonalInfo 
   experience: Iexperience[] | null
   technicalSkills: ItechnicalSkills 
   education: Ieducation[] | null
@@ -27,7 +27,18 @@ export interface IinitialState {
 }
 
 const initialState: IinitialState = {
-  personalInfo: null,
+    personalInfo: {
+    fullName: "",
+    email: "",
+    profession: "",
+    address: "",
+    countryCode: "",
+    mobile: "",
+    state: "",
+    dob: "",
+    birthPlace: "",
+    bio: "",
+  },
   experience: null,
   technicalSkills: {
     aiGenSkills:[],
@@ -95,7 +106,7 @@ export const userSlice = createSlice({
       state.education = null,
       state.experience = null,
       state.languages = null,
-      state.personalInfo = null,
+      state.personalInfo = initialState.personalInfo,
       state.projects = null,
       state.technicalSkills={
         aiGenSkills:[],
@@ -113,9 +124,8 @@ export const userSlice = createSlice({
       state.bioFromDb = action.payload;
     },
     setSelectedBio : (state,action ) => {
-      if(state.personalInfo){
         state.personalInfo.bio = action.payload;
-      }
+      
     }
   }
 })

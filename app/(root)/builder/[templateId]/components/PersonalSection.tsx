@@ -20,6 +20,8 @@ const PersonalSection: React.FC<PersonalSection> = ({
     const dispatch = useAppDispatch();
     const pathName = usePathname();
     const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
+    console.log(selectedBio);
+    
 
     return (
         <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
