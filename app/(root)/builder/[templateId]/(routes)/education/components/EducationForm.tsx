@@ -168,7 +168,15 @@ const EducationForm = () => {
                                             </div>
                                             <CollapsibleContent
                                                 key={item.id}
-                                                className={`flex flex-col gap-5 border p-5 transition-all  ${item.id === expanded ? 'animate-accordion-down' : 'animate-accordion-up'} `}
+                                                className={
+                                                    `flex
+                                                     flex-col
+                                                      gap-5
+                                                       border 
+                                                       p-5 
+                                                       transition-transform 
+                                                       data-[state=open]:animate-accordion-down 
+                                                       `}
                                             >
 
 

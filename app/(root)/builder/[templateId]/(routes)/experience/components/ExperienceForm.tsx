@@ -179,7 +179,15 @@ const ExperienceForm = () => {
                                         </div>
 
                                         <CollapsibleContent
-                                            className={`flex flex-col gap-5 border p-5 transition-all  ${item.id === expanded ? 'animate-accordion-down' : 'animate-accordion-up'} `}
+                                            className={
+                                                `flex
+                                                 flex-col
+                                                  gap-5
+                                                   border 
+                                                   p-5 
+                                                   transition-transform 
+                                                   data-[state=open]:animate-accordion-down 
+                                                   `}
                                             key={item.id}>
 
                                             {/* CompanyName */}
