@@ -161,7 +161,10 @@ const ProjectsForm = () => {
                                                 onClick={() => handleDelete(index)} />
                                         </div>
 
-                                        <CollapsibleContent key={item.id} className="flex flex-col gap-5 border p-5">
+                                        <CollapsibleContent
+                                            key={item.id}
+                                            className={`flex flex-col gap-5 border p-5 transition-all  ${item.id === expanded ? 'animate-accordion-down' : 'animate-accordion-up'} `}
+                                        >
                                             {/* ProjectName */}
                                             <FormField
                                                 name={`projects.${index}.projectName`}
@@ -204,13 +207,13 @@ const ProjectsForm = () => {
                                                     <FormItem >
                                                         <FormLabel>Description</FormLabel>
                                                         <FormControl>
-                                                        <ReactQuill
+                                                            <ReactQuill
                                                                 value={field.value || ''}
                                                                 onChange={(content, delta, source, editor) => {
                                                                     field.onChange(content);
                                                                     handleChange();
                                                                 }}
-                                                                style={{ height: '8rem',marginBottom:'4rem' }}
+                                                                style={{ height: '8rem', marginBottom: '4rem' }}
                                                                 theme="snow"
                                                                 modules={modules}
                                                             />

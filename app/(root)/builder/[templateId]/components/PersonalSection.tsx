@@ -20,7 +20,6 @@ const PersonalSection: React.FC<PersonalSection> = ({
     const dispatch = useAppDispatch();
     const pathName = usePathname();
     const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
-    console.log(selectedBio);
     
 
     return (

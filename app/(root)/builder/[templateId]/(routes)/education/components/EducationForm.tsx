@@ -166,7 +166,10 @@ const EducationForm = () => {
                                                     className="ml-auto cursor-pointer text-neutral-200"
                                                     onClick={() => handleDelete(index)} />
                                             </div>
-                                            <CollapsibleContent key={item.id} className="flex flex-col gap-5 border p-5">
+                                            <CollapsibleContent
+                                                key={item.id}
+                                                className={`flex flex-col gap-5 border p-5 transition-all  ${item.id === expanded ? 'animate-accordion-down' : 'animate-accordion-up'} `}
+                                            >
 
 
                                                 {/* schoolName */}

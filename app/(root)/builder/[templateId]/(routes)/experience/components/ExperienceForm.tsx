@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import toast from "react-hot-toast";
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 const ExperienceForm = () => {
@@ -161,10 +162,10 @@ const ExperienceForm = () => {
                                     <Collapsible
                                         key={index}
                                         onOpenChange={() => handleCollapsible(item.id, item.id === expanded)}
-                                        className="space-y-2 transition"
+                                        className={`space-y-2`}
                                         open={item.id === expanded}
                                     >
-                                        <div className="flex transition hover:bg-red-300 items-center bg-red-400 px-5">
+                                        <div className="flex hover:bg-red-300 items-center bg-red-400 px-5">
                                             <CollapsibleTrigger asChild>
                                                 <Button
                                                     variant="ghost"
@@ -178,7 +179,7 @@ const ExperienceForm = () => {
                                         </div>
 
                                         <CollapsibleContent
-                                            className="flex flex-col gap-5 border p-5 "
+                                            className={`flex flex-col gap-5 border p-5 transition-all  ${item.id === expanded ? 'animate-accordion-down' : 'animate-accordion-up'} `}
                                             key={item.id}>
 
                                             {/* CompanyName */}
@@ -259,7 +260,7 @@ const ExperienceForm = () => {
                                                                     field.onChange(content);
                                                                     handleChange();
                                                                 }}
-                                                                style={{ height: '8rem' }}
+                                                                style={{ height: '8rem', marginBottom: '3rem' }}
                                                                 theme="snow"
                                                                 modules={modules}
                                                             />
