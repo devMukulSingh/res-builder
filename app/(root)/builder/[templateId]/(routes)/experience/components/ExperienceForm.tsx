@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import toast from "react-hot-toast";
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 
 const ExperienceForm = () => {
 

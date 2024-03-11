@@ -1,7 +1,7 @@
 import parseHtmlStringToHtml, { domToReact } from 'html-react-parser';
 import { useMemo } from 'react';
 
-export const HTMLRenderer = ({ htmlString }: { htmlString: string }) => {
+export const HTMLRenderer = ({ htmlString }: { htmlString: string  }) => {
 
   const parsedElement = useMemo(() => {
 

@@ -1,17 +1,17 @@
 'use client'
 import { useAppSelector } from '@/redux/hooks/hooks'
 import React, { useEffect, useState } from 'react'
-import SkillsSection from './SkillsSection'
-import EducationSection from './EducationSection'
-import ProjectSection from './ProjectSection'
-import AchievementSection from './AchievementSection'
-import LanguageSection from './LanguageSection'
-import ExperienceSection from './ExperienceSection'
-import PersonalSection from './PersonalSection'
+import SkillsSection from '@/app/(root)/builder/[templateId]/components/SkillsSection'
+import EducationSection from '@/app/(root)/builder/[templateId]/components/EducationSection'
+import ProjectSection from '@/app/(root)/builder/[templateId]/components/ProjectSection'
+import AchievementSection from '@/app/(root)/builder/[templateId]/components/AchievementSection'
+import LanguageSection from '@/app/(root)/builder/[templateId]/components/LanguageSection'
+import ExperienceSection from '@/app/(root)/builder/[templateId]/components/ExperienceSection'
+import PersonalSection from '@/app/(root)/builder/[templateId]/components/PersonalSection'
+import SuggestedBio from '@/app/(root)/builder/[templateId]/components/SuggestedBio'
 import { usePathname } from 'next/navigation'
-import SuggestedBio from './SuggestedBio'
 
-const Resume = () => {
+const ResumeLayout = () => {
 
     const pathName = usePathname();
     const [isMounted, setIsMounted] = useState(false);
@@ -130,4 +130,4 @@ const Resume = () => {
     )
 }
 
-export default Resume
+export default ResumeLayout

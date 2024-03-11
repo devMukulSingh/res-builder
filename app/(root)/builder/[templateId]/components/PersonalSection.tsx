@@ -1,4 +1,14 @@
+'use client'
+import { HTMLRenderer } from "@/lib/HTMLRenderer";
 import { IpersonalInfo } from "@/lib/types"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { setSelectedBio } from "@/redux/slice/userSlice";
+import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
+    ssr: false
+})
 
 interface PersonalSection {
     personalInfo: IpersonalInfo | null
@@ -7,9 +17,13 @@ interface PersonalSection {
 const PersonalSection: React.FC<PersonalSection> = ({
     personalInfo
 }) => {
-    if(!personalInfo) return null;
+    const dispatch = useAppDispatch();
+    const pathName = usePathname();
+    const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
+    if (!personalInfo) return null;
+
     return (
-        <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5">
+        <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
             {/* ABOUT */}
             <div className='space-y-2'>
                 <h1 className='text-2xl font-semibold'>
@@ -25,21 +39,27 @@ const PersonalSection: React.FC<PersonalSection> = ({
                 <h1 className='text-xl font-semibold'>
                     Address
                 </h1>
-                <h1>
+                <h1 className="text-neutral-500">
                     {personalInfo?.address}
                 </h1>
 
             </div>
 
             {/* BIO */}
-            <div className=''>
+            <div className='space-y-2'>
                 <h1 className='text-xl font-semibold'>
                     Bio
                 </h1>
-                <h1>
-                    {/* Creative Frontend Developer with expertise in HTML, CSS, and JavaScript. Proven ability to transform design concepts into responsive web applications. Passionate about delivering visually appealing and user-centric experiences. */}
-                </h1>
-                {/* <RichTextEditors label="bio" /> */}
+                {
+                    pathName.endsWith('/personal') ?
+                        <RichTextEditor
+                            value={selectedBio}
+                            onChange={(content) => dispatch(setSelectedBio(content))}
+                        /> :
+                        <h1 className="text-neutral-500">
+                            <HTMLRenderer htmlString={selectedBio || ''} />
+                        </h1>
+                }
             </div>
 
         </main>

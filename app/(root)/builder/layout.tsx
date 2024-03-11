@@ -2,13 +2,14 @@
 import { useAppSelector } from "@/redux/hooks/hooks"
 import Resume from "./[templateId]/components/Resume"
 import Sidebar from "./[templateId]/components/Sidebar"
+import { usePathname } from "next/navigation"
 
 
 export default function TemplateLayout({ children }: {
     children: React.ReactNode
 }) {
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-
+    const pathName = usePathname();
     return (
         <main className="flex gap-5">
             <Sidebar />

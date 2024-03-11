@@ -9,6 +9,7 @@ import {
   ItechnicalSkills
 } from '@/lib/types'
 import { createSlice } from '@reduxjs/toolkit'
+import { Stalemate } from 'next/font/google'
 
 export interface IinitialState {
   personalInfo: IpersonalInfo | null
@@ -21,7 +22,8 @@ export interface IinitialState {
   projects: Iprojects[] | null
   progress: number
   sidebar: boolean,
-  skillsFromDb:string[]
+  skillsFromDb:string[],
+  bioFromDb : string[]
 }
 
 const initialState: IinitialState = {
@@ -42,7 +44,9 @@ const initialState: IinitialState = {
   projects: null,
   progress: 10,
   sidebar: true,
-  skillsFromDb:[]
+  skillsFromDb:[],
+  bioFromDb:[],
+  // selectedBio : ''
 }
 
 export const userSlice = createSlice({
@@ -104,6 +108,14 @@ export const userSlice = createSlice({
     },
     setDbSkills : (state,action) => {
       state.skillsFromDb = action.payload;
+    },
+    setDbBio : (state,action) => {
+      state.bioFromDb = action.payload;
+    },
+    setSelectedBio : (state,action ) => {
+      if(state.personalInfo){
+        state.personalInfo.bio = action.payload;
+      }
     }
   }
 })
@@ -121,5 +133,7 @@ export const {
   setProjects,
   setProgress,
   resetForm,
-  setDbSkills
+  setDbSkills,
+  setDbBio,
+  setSelectedBio
 } = userSlice.actions

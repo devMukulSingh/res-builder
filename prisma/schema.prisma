@@ -17,6 +17,7 @@ model Profession {
   id         Int      @id @default(autoincrement())
   name       String
   skills     Skills[] @relation("professionToSkills")
+  bio        Bio[]    @relation("professionToBio")
 }
 
 model Skills {
@@ -24,4 +25,11 @@ model Skills {
   name                    String
   professionId            Int
   profession              Profession  @relation("professionToSkills", fields: [professionId], references: [id])
+}
+
+model Bio{
+  id                Int                 @id@default(autoincrement())
+  point             String              @db.VarChar(500)
+  professionId      Int       
+  profession        Profession          @relation("professionToBio",fields: [professionId],references: [id])
 }
