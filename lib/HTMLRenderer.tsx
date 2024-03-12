@@ -1,7 +1,7 @@
 import parseHtmlStringToHtml, { domToReact } from 'html-react-parser';
 import { useMemo } from 'react';
 
-export const HTMLRenderer = ({ htmlString }: { htmlString: string  }) => {
+export const HTMLRenderer = ({ htmlString,className }: { htmlString: string,className?:string  }) => {
 
   const parsedElement = useMemo(() => {
 
@@ -18,7 +18,7 @@ export const HTMLRenderer = ({ htmlString }: { htmlString: string  }) => {
                   dToReact.map((item, index) => {
                     if (!item.props.children) return null;
                     return (
-                      <li key={index}>
+                      <li key={index} className='text-sm'>
                         {item.props.children}
                       </li>
                     )

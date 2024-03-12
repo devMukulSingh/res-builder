@@ -1,8 +1,11 @@
 import React from 'react'
+import Download from './components/Download'
 
 const DownloadPage = () => {
   return (
-    <div>DownloadPage</div>
+    <>
+      <Download/>
+    </>
   )
 }
 

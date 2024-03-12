@@ -8,15 +8,14 @@ import { PlusCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useEffect, useRef, useState } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const LanguageForm = () => {
 
+    const { templateId } = useParams();
     const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const progress = useAppSelector(state => state.persistedReducer.progress);
     const languages = useAppSelector(state => state.persistedReducer.languages);
 
 
@@ -37,8 +36,8 @@ const LanguageForm = () => {
 
     const watchFieldsArray = form.watch('languageInfo');
 
-    const onSubmit = (data: FieldValues) => {
-        router.push('/download')
+    const onSubmit = () => {
+        router.push(`/download/${templateId}`);
     }
 
     const handleChange = () => {
@@ -62,9 +61,7 @@ const LanguageForm = () => {
 
     const handleAddMore = () => {
         fieldArray.append({ language: '', strength: '' });
-        if (buttonRef.current) {
-            // buttonRef.current.style.display = 'none'
-        }
+
     }
 
     useEffect( () => {
