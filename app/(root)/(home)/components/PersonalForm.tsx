@@ -31,6 +31,7 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios"
 import { Bio, Skills } from "@prisma/client";
+import 'react-quill/dist/quill.snow.css';
 
 const PersonalForm = () => {
 
