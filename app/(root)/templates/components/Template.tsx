@@ -35,6 +35,8 @@ const Template: React.FC<TemplateProps> = ({
                 alt="template"
                 fill
                 src={image.url}
+                placeholder="blur"
+                blurDataURL="URL"
                 className={`
                 hover:scale-110
                 transition

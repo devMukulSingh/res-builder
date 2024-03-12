@@ -81,25 +81,25 @@ const PersonalForm = () => {
         resolver: zodResolver(schema)
     });
 
-    const onSubmit = async(data: formSchema) => {
+    const onSubmit = async (data: formSchema) => {
         router.push(`/templates`);
         dispatch(resetForm());
         dispatch(setPersonalInfo(data));
-        const { data:res } = await axios.get(`/api/skills`,{
-            params:{
-                profession:data.profession
+        const { data: res } = await axios.get(`/api/skills`, {
+            params: {
+                profession: data.profession
             }
         });
-        const parsedSkills = res.skills.map( (skill:Skills) => skill.name);
+        const parsedSkills = res.skills.map((skill: Skills) => skill.name);
         dispatch(setDbSkills(parsedSkills));
-        const  { data:response } = await axios.get(`/api/bio`,{
-            params:{
-                profession:data.profession
+        const { data: response } = await axios.get(`/api/bio`, {
+            params: {
+                profession: data.profession
             }
         });
-        const parsedBio = response.bio.map( (item:Bio) => item.point);
+        const parsedBio = response.bio.map((item: Bio) => item.point);
         dispatch(setDbBio(parsedBio));
-        
+
     }
     return (
         <main className=" text-neutral-500">
@@ -282,11 +282,11 @@ const PersonalForm = () => {
                                 )}
                             />
                         </div>
-                            <Button
-                                type="submit"
-                                className="w-full py-3 mt-4">
-                                Next
-                            </Button>
+                        <Button
+                            type="submit"
+                            className="w-full py-3 mt-4">
+                            Next
+                        </Button>
                     </div>
                 </form>
             </Form>

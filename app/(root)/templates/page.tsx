@@ -1,10 +1,11 @@
 'use client'
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-import Template from './components/Template';
-import { templatesUrl } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
+import { templatesUrl } from '@/lib/constants';
+const Template = dynamic( () => import('./components/Template'))
 
 
 const TemplatesPage = () => {
@@ -13,7 +14,8 @@ const TemplatesPage = () => {
     const [templateId, setTemplateId] = useState("");
 
     const handleTemplateSelect = () => {
-        router.push(`/builder/${templateId}/personal`);
+        window.location.href= `/builder/${templateId}/personal`;
+        // router.push(`/builder/${templateId}/personal`);
     }
     return (
         <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
