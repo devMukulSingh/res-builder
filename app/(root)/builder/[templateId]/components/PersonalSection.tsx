@@ -1,6 +1,5 @@
 'use client'
 import { HTMLRenderer } from "@/lib/HTMLRenderer";
-import { IpersonalInfo } from "@/lib/types"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setSelectedBio } from "@/redux/slice/userSlice";
 import { usePathname } from "next/navigation";
@@ -11,14 +10,15 @@ const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor
 })
 
 interface PersonalSection {
-    personalInfo: IpersonalInfo | null
+
 }
 
 const PersonalSection: React.FC<PersonalSection> = ({
-    personalInfo
+
 }) => {
     const dispatch = useAppDispatch();
     const pathName = usePathname();
+    const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
     const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
     
     return (

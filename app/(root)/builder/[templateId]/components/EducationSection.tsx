@@ -1,38 +1,51 @@
-import { Ieducation } from '@/lib/types'
+import { useAppSelector } from '@/redux/hooks/hooks'
 import { format } from 'date-fns'
 import React from 'react'
 
 interface EducationSectionProps {
-    educationInfo: Ieducation
+
 }
 
 const EducationSection: React.FC<EducationSectionProps> = ({
-    educationInfo
+
 }) => {
+    const education = useAppSelector(state => state.persistedReducer.education);
+
     return (
-        <main>
-            <h1 className=''>
-                {educationInfo?.schoolName}
+        <section className='space-y-5 p-5 bg-white'>
+            <h1 className=' text-xl font-semibold'>
+                Education
             </h1>
-            <div className='flex justify-between'>
-                <h1>
-                    {educationInfo?.degree}  {`${educationInfo?.fieldOfStudy ? ` in ${educationInfo.fieldOfStudy}` : ''}`}
-                    {
-                        ` 
+            {
+                education?.map((educationInfo, index) => (
+
+                    <div key={index}>
+                        <h1 className=''>
+                            {educationInfo?.schoolName}
+                        </h1>
+                        <div className='flex justify-between'>
+                            <h1>
+                                {educationInfo?.degree}  {`${educationInfo?.fieldOfStudy ? ` in ${educationInfo.fieldOfStudy}` : ''}`}
+                                {
+                                    ` 
                             ${educationInfo.percentage ?
-                            ` - ${educationInfo.percentage} CGPA` : ``
-                        } 
+                                        ` - ${educationInfo.percentage} CGPA` : ``
+                                    } 
                         
                         `
-                    }
-                </h1>
-                <h1>
-                    { `${educationInfo?.startDate ? format(educationInfo.startDate,"MMM yyyy") : '' } ` }
-                    {`${educationInfo?.endDate ? ` - ${format(educationInfo.endDate,"MMM yyyy")}` : '' }` } 
-                </h1>
-            </div>
+                                }
+                            </h1>
+                            <h1>
+                                {`${educationInfo?.startDate ? format(educationInfo.startDate, "MMM yyyy") : ''} `}
+                                {`${educationInfo?.endDate ? ` - ${format(educationInfo.endDate, "MMM yyyy")}` : ''}`}
+                            </h1>
+                        </div>
 
-        </main>
+                    </div>
+                ))
+
+            }
+        </section>
     )
 }
 

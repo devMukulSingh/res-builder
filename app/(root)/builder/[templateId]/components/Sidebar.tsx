@@ -81,7 +81,7 @@ const Sidebar = () => {
     }, []);
     if (!isMounted) return null;
     return (
-        <main className={`flex flex-col h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
+        <div className={`flex flex-col h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
             <MdOutlineSort
                 onClick={() => dispatch(toggleSidebar())}
                 className={`
@@ -104,7 +104,7 @@ const Sidebar = () => {
                 variant="destructive">
                 Reset
             </Button>
-        </main>
+        </div>
     )
 }
 

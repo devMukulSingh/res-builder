@@ -2,7 +2,6 @@
 import { useAppSelector } from "@/redux/hooks/hooks"
 const Resume = dynamic( () => import('./[templateId]/components/Resume'), {ssr:false})
 import Sidebar from "./[templateId]/components/Sidebar"
-import { usePathname } from "next/navigation"
 import dynamic from "next/dynamic"
 
 
@@ -10,7 +9,6 @@ export default function TemplateLayout({ children }: {
     children: React.ReactNode
 }) {
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-    const pathName = usePathname();
     return (
         <main className="flex gap-5">
             <Sidebar />

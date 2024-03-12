@@ -1,18 +1,23 @@
-import { ItechnicalSkills } from '@/lib/types'
+import { useAppSelector } from '@/redux/hooks/hooks'
 import { CheckCircle } from 'lucide-react'
 import React from 'react'
 
 interface SkillsSectionProps {
-    skills: ItechnicalSkills | null
+
 }
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({
-    skills
-}) => {
 
+}) => {
+    const skills = useAppSelector(state => state.persistedReducer.technicalSkills);
 
     return (
-        <main className='grid grid-cols-4 gap-5'>
+        <div className='space-y-5 bg-white p-5'>
+
+        <h1 className=' text-xl font-semibold'>
+        Technical Skills
+    </h1>
+        <div className='grid grid-cols-4 gap-5'>
 
             {
                 skills?.aiGenSkills?.map((skill, index) => {
@@ -35,9 +40,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                     )
                 }
                 )
-
+                
             }
-        </main>
+        </div>
+            </div>
     )
 }
 
