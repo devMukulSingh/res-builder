@@ -1,3 +1,4 @@
+import { HTMLRenderer } from '@/lib/HTMLRenderer';
 import { Iprojects } from '@/lib/types'
 import * as DOMPurify from 'dompurify';
 
@@ -22,7 +23,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
                     {project?.projectUrl}
                 </h1>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+            <HTMLRenderer htmlString={project.description} />
             <h1>
 
             </h1>
