@@ -1,4 +1,5 @@
 import { Ieducation } from '@/lib/types'
+import { format } from 'date-fns'
 import React from 'react'
 
 interface EducationSectionProps {
@@ -25,7 +26,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
                         `
                     }
                 </h1>
-                <h1>{educationInfo?.startDate}{`${educationInfo?.endDate ? ` -- ${educationInfo.endDate}` : '' }` } </h1>
+                <h1>{format(educationInfo?.startDate,"MMM yyyy")}{`${educationInfo?.endDate ? ` - ${format(educationInfo.endDate,"MMM yyyy")}` : '' }` } </h1>
             </div>
 
         </main>

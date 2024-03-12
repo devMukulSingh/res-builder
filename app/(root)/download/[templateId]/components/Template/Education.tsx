@@ -1,5 +1,6 @@
 'use client'
 import { useAppSelector } from '@/redux/hooks/hooks';
+import { format } from 'date-fns';
 import React from 'react'
 
 const Education = () => {
@@ -25,7 +26,7 @@ const Education = () => {
                             <h1>
                                 {` ${item.degree ? `${item?.degree} in ${item.fieldOfStudy}` : '' } `}
                             </h1>
-                            <h1>{item?.endDate}</h1>
+                            <h1>{format(item?.endDate,"MMM yyyy")}</h1>
                         </div>
 
                     </div>
