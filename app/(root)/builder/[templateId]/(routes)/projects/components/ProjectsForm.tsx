@@ -20,7 +20,6 @@ const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor
 const ProjectsForm = () => {
 
     const [expanded, setExpanded] = useState<string | false>("");
-    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
@@ -54,7 +53,7 @@ const ProjectsForm = () => {
         }
     })
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = () => {
         router.push(`/builder/${templateId}/achievements`);
         if (progress <= 70) {
             dispatch(setProgress())
@@ -99,7 +98,6 @@ const ProjectsForm = () => {
     }
 
     useEffect(() => {
-        setIsMounted(true);
         setExpanded(controlledFields[0]?.id);
     }, [])
 
@@ -125,7 +123,6 @@ const ProjectsForm = () => {
 
     }, [controlledFields.length]);
 
-    if (!isMounted) return null;
     return (
         <main className="p-5">
             <Form {...form} >

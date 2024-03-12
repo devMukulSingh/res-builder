@@ -36,7 +36,6 @@ const PersonalForm = () => {
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
-    const [isMounted, setIsMounted] = useState(false);
 
     const schema = z.object({
         fullName: z.string().min(3, {
@@ -111,11 +110,6 @@ const PersonalForm = () => {
     const handleChange = () => {
         dispatch(setPersonalInfo(form.getValues()));
     }
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    if (!isMounted) return null;
 
     return (
         <main className="p-5">

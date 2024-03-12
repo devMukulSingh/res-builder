@@ -14,10 +14,6 @@ import SuggestedBio from './SuggestedBio'
 const Resume = () => {
 
     const pathName = usePathname();
-    const [isMounted, setIsMounted] = useState(false);
-    useEffect(() => {
-        setIsMounted(true);
-    }, [])
     const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
     const experience = useAppSelector(state => state.persistedReducer.experience);
     const education = useAppSelector(state => state.persistedReducer.education);
@@ -29,12 +25,9 @@ const Resume = () => {
     const bioFromDb = useAppSelector(state => state.persistedReducer.bioFromDb);
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
 
-
-    if (!isMounted) return null;
-
     return (
         <>
-            <main className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-calc(100vw-37rem)'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>
+            <div className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>
 
                 <div className='text-neutral-700 pb-10  min-w-[40rem]  flex flex-col gap-5 p-5  '>
 
@@ -124,7 +117,7 @@ const Resume = () => {
                 </div>
 
 
-            </main>
+            </div>
         </>
 
     )

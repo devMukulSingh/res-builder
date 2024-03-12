@@ -16,7 +16,6 @@ import toast from "react-hot-toast";
 const EducationForm = () => {
 
     const [expanded, setExpanded] = useState<string | false>("");
-    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
@@ -55,7 +54,7 @@ const EducationForm = () => {
         }
     })
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = () => {
         router.push(`/builder/${templateId}/social`);
         if (progress <= 46) {
             dispatch(setProgress())
@@ -109,7 +108,6 @@ const EducationForm = () => {
         }
     }
     useEffect(() => {
-        setIsMounted(true);
         setExpanded(controlledFields[0]?.id);
     }, [])
 
@@ -135,7 +133,7 @@ const EducationForm = () => {
 
     }, [controlledFields.length]);
 
-    if (!isMounted) return null;
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <main className="p-5">

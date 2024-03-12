@@ -16,24 +16,12 @@ const SkillsForm = ({
     
 }) => {
 
-    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills);
     const skillsFromDb = useAppSelector(state => state.persistedReducer.skillsFromDb);
-
-
-
-    // const skills = [
-    //     'Typescript',
-    //     'Reactjs',
-    //     'Nextjs',
-    //     'MongoDB',
-    //     'MySQL',
-    //     'ExpressJs'
-    // ]
 
     const form = useForm({
         defaultValues: {
@@ -79,10 +67,7 @@ const SkillsForm = ({
             skillName: ''
         })
     }
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-    if (!isMounted) return null;
+
     return (
         <main className="p-5 space-y-5">
             <section>

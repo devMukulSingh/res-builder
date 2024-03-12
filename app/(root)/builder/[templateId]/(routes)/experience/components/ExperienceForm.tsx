@@ -20,7 +20,6 @@ const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor
 
 const ExperienceForm = () => {
 
-    const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
@@ -61,7 +60,7 @@ const ExperienceForm = () => {
         }
     })
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = () => {
         router.push(`/builder/${templateId}/technical`);
         if (progress <= 22) {
             dispatch(setProgress())
@@ -117,7 +116,6 @@ const ExperienceForm = () => {
     }
 
     useEffect(() => {
-        setIsMounted(true);
         setExpanded(controlledFields[0]?.id);
     }, [])
 
@@ -139,7 +137,6 @@ const ExperienceForm = () => {
         }
 
     }, [controlledFields.length]);
-    if (!isMounted) return null;
 
     return (
         <main className="p-5">

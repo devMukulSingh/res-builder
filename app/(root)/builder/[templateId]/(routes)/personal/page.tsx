@@ -1,12 +1,11 @@
-import Resume from '../../components/Resume'
-import PersonalForm from './components/PersonalForm'
-import ResumeLayout from './components/ResumeLayout'
+import dynamic from 'next/dynamic'
+const PersonalForm = dynamic( () => import('./components/PersonalForm'), {ssr:false})
 
 const Personal = () => {
   return (
-    <main>
+    <>
       <PersonalForm />
-    </main>
+    </>
   )
 }
 

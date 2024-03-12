@@ -29,12 +29,12 @@ import { useState } from "react";
 import axios from "axios"
 import { Bio, Skills } from "@prisma/client";
 
+
 const PersonalForm = () => {
 
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const dispatch = useAppDispatch();
-
 
     const schema = z.object({
         fullName: z.string().min(3, {

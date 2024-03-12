@@ -1,7 +1,7 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {  FieldValues, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
@@ -17,7 +17,7 @@ const SocialForm = () => {
     const progress = useAppSelector( state => state.persistedReducer.progress);
 
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = () => {
         router.push(`/builder/${templateId}/projects`);
         if(progress <= 58){
             dispatch(setProgress())

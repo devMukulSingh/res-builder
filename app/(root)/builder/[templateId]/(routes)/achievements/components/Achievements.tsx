@@ -13,7 +13,6 @@ import { setProgress } from "@/redux/slice/userSlice";
 
 const AchievementsForm = () => {
 
-    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { templateId } = useParams();
@@ -64,10 +63,7 @@ const AchievementsForm = () => {
     const handleAddMore = () => {
         fieldArray.append({ value: '' });
     }
-    useEffect( ( ) => {
-        setIsMounted(true);
-    },[]);  
-    if(!isMounted ) return null;
+
     return (
         <main className="p-5">
             <Form {...form}>

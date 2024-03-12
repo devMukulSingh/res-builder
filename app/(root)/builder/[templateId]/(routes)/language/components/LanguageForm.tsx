@@ -13,7 +13,6 @@ import { useParams, useRouter } from "next/navigation";
 const LanguageForm = () => {
 
     const { templateId } = useParams();
-    const [isMounted, setIsMounted] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const languages = useAppSelector(state => state.persistedReducer.languages);
@@ -58,16 +57,10 @@ const LanguageForm = () => {
         }
     })
 
-
     const handleAddMore = () => {
         fieldArray.append({ language: '', strength: '' });
-
     }
 
-    useEffect( () => {
-        setIsMounted(true);
-    },[]);
-    if(!isMounted) return null;
     return (
         <main className="p-5">
             <Form {...form} >

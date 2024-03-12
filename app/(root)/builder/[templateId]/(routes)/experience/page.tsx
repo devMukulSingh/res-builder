@@ -1,5 +1,7 @@
-'use client'
-import ExperienceForm from "./components/ExperienceForm"
+import dynamic from 'next/dynamic'
+
+const ExperienceForm = dynamic( () => import('./components/ExperienceForm'), {ssr:false})
+
 
 const Experience = () => {
   return (
