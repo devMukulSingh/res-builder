@@ -1,21 +1,21 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form"
+import {  FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useEffect, useState } from "react";
 import { PlusCircle, Trash } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Iexperience } from "@/lib/types";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
-import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import toast from "react-hot-toast";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import dynamic from "next/dynamic";
+const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
+    ssr: false
+})
 
 
 const ExperienceForm = () => {
@@ -27,16 +27,6 @@ const ExperienceForm = () => {
     const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();
     const experience = useAppSelector(state => state.persistedReducer.experience);
-    const modules = {
-        toolbar: [
-            ["bold", "italic", "underline", "strike"],
-            [
-                { list: "ordered" },
-                { list: "bullet" },
-            ]
-        ]
-    }
-
 
     const form = useForm({
         defaultValues: {
@@ -262,15 +252,12 @@ const ExperienceForm = () => {
                                                     <FormItem >
                                                         <FormLabel>Description</FormLabel>
                                                         <FormControl>
-                                                            <ReactQuill
+                                                            <RichTextEditor
                                                                 value={field.value || ''}
-                                                                onChange={(content, delta, source, editor) => {
+                                                                onChange={(content) => {
                                                                     field.onChange(content);
                                                                     handleChange();
                                                                 }}
-                                                                style={{ height: '8rem', marginBottom: '3rem' }}
-                                                                theme="snow"
-                                                                modules={modules}
                                                             />
                                                         </FormControl>
                                                         <FormMessage />

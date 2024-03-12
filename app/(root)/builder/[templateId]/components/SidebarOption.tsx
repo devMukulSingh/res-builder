@@ -1,8 +1,7 @@
 'use client'
-import { useAppSelector } from "@/redux/hooks/hooks";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { IconType } from "react-icons/lib";
 
 interface SidebarOptionProps {

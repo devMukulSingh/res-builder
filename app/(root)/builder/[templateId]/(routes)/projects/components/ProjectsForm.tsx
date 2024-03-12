@@ -1,11 +1,10 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form"
+import { FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-import { setContact, setProjects } from "@/redux/slice/userSlice";
-import { Textarea } from "@/components/ui/textarea";
+import {  setProjects } from "@/redux/slice/userSlice";
 import { PlusCircle, Trash } from "lucide-react";
 import { setProgress } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
@@ -13,8 +12,10 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import dynamic from "next/dynamic";
+const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
+    ssr: false
+})
 
 const ProjectsForm = () => {
 
@@ -25,15 +26,6 @@ const ProjectsForm = () => {
     const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const projects = useAppSelector(state => state.persistedReducer.projects);
-    const modules = {
-        toolbar: [
-            ["bold", "italic", "underline", "strike"],
-            [
-                { list: "ordered" },
-                { list: "bullet" },
-            ]
-        ]
-    }
 
 
     const form = useForm({
@@ -215,15 +207,12 @@ const ProjectsForm = () => {
                                                     <FormItem >
                                                         <FormLabel>Description</FormLabel>
                                                         <FormControl>
-                                                            <ReactQuill
+                                                            <RichTextEditor
                                                                 value={field.value || ''}
-                                                                onChange={(content, delta, source, editor) => {
-                                                                    field.onChange(content);
-                                                                    handleChange();
+                                                                onChange={(content) => {
+                                                                field.onChange(content);
+                                                                handleChange();
                                                                 }}
-                                                                style={{ height: '8rem', marginBottom: '4rem' }}
-                                                                theme="snow"
-                                                                modules={modules}
                                                             />
                                                         </FormControl>
                                                         <FormMessage />

@@ -28,7 +28,6 @@ import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import 'react-quill/dist/quill.snow.css';
 
 
 const PersonalForm = () => {

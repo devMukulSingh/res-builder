@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation"
 
 const Landing = () => {
-  const router = useRouter();
   return (
     <main className='flex flex-col gap-20 justify-center basis-2/3 '>
       <section className='space-y-5'>

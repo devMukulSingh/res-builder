@@ -1,4 +1,3 @@
-import { Iachievements } from "@/lib/types"
 
 interface AchievementsSectionProps{
     achievement:string

@@ -1,5 +1,4 @@
 import { Ieducation } from '@/lib/types'
-import { format } from 'date-fns';
 import React from 'react'
 
 interface EducationSectionProps {

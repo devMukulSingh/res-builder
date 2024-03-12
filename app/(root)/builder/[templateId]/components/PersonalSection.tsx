@@ -3,9 +3,9 @@ import { HTMLRenderer } from "@/lib/HTMLRenderer";
 import { IpersonalInfo } from "@/lib/types"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setSelectedBio } from "@/redux/slice/userSlice";
-import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import 'react-quill/dist/quill.snow.css';
+import dynamic from "next/dynamic";
 const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
     ssr: false
 })
@@ -21,7 +21,6 @@ const PersonalSection: React.FC<PersonalSection> = ({
     const pathName = usePathname();
     const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
     
-
     return (
         <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
             {/* ABOUT */}

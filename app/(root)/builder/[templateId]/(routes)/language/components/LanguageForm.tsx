@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,7 +8,6 @@ import { PlusCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useEffect, useRef, useState } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
-import { setProgress } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
 
 const LanguageForm = () => {

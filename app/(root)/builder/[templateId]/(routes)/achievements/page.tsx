@@ -1,10 +1,10 @@
 import React from 'react'
-import CertificationForm from './components/Achievements'
+import AchievementsForm from './components/Achievements'
 
 const Certification = () => {
   return (
     <>
-        <CertificationForm/>
+        <AchievementsForm/>
     </>
   )
 }

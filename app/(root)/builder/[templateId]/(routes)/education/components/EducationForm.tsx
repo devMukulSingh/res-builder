@@ -1,11 +1,11 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form"
+import {  FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setEducation } from "@/redux/slice/userSlice";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Ieducation } from "@/lib/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useParams, useRouter } from "next/navigation";

@@ -5,8 +5,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import Template from './components/Template';
 import { templatesUrl } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
-import toast from 'react-hot-toast';
-import Link from 'next/link';
+
 
 const TemplatesPage = () => {
 

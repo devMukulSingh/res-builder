@@ -5,10 +5,9 @@ import { useForm } from "react-hook-form"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
-import { resetForm, setDbBio, setDbSkills, setPersonalInfo, setTechnicalSkills } from "@/redux/slice/userSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { resetForm, setDbBio, setDbSkills, setPersonalInfo } from "@/redux/slice/userSlice";
+import { useAppDispatch } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { countryCodes } from "@/lib/constants";
 import {
     Command,
@@ -23,15 +22,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { BiSort } from "react-icons/bi";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Check, Loader, Loader2 } from "lucide-react";
+import { Check } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
 import axios from "axios"
 import { Bio, Skills } from "@prisma/client";
-import 'react-quill/dist/quill.snow.css';
 
 const PersonalForm = () => {
 

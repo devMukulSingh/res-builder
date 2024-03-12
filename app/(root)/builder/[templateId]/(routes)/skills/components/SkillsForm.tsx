@@ -1,19 +1,16 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { FieldValue, FieldValues, useFieldArray, useForm } from "react-hook-form"
+import {  FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-import { setExperience, setTechnicalSkills } from "@/redux/slice/userSlice";
+import {  setTechnicalSkills } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
 import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
 
-interface SkillsFormProps{
-
-}
 
 const SkillsForm = ({
     
