@@ -11,7 +11,7 @@ export async function GET(req:NextRequest,res:NextResponse){
 
         if(!profession ) return NextResponse.json({ error:'profession is required'}, { status:400});
         
-        const skillPrompt = `Suggest 10 technologies used in ${profession} for resume `;
+        const skillPrompt = `My profession is ${profession}, give me a list of 10 technology names used in this profession`;
         
         const skill  = await ChatGPT(skillPrompt);
         

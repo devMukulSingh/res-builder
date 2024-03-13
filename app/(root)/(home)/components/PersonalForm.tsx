@@ -90,9 +90,9 @@ const PersonalForm = () => {
                     profession: data.profession
                 }
             });
-            console.log(res);
-            const parsedBio = res?.replace(/[0-9]/g,'').split('\n').filter((item:string) => item !== '');
+            const parsedBio = res.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
             dispatch(setAiSuggestedBio(parsedBio));
+            console.log(parsedBio);
         }
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
@@ -104,9 +104,10 @@ const PersonalForm = () => {
                     profession: data.profession
                 }
             });
-            console.log(res);
-            const parsedSkills = res?.replace(/[0-9]/g,'').split('\n').filter((item:string) => item !== '');
+            const parsedSkills = res?.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
             dispatch(setAiSuggestedSkills(parsedSkills));
+            console.log(parsedSkills);
+
         }
         catch (e) {
             console.log(`Error in onSubmit ${e}`);

@@ -13,7 +13,6 @@ const LanguageSection = dynamic(() => import('./LanguageSection'), { ssr: false 
 
 const Resume = () => {
 
-    const pathName = usePathname();
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
     const formComp = useAppSelector(state => state.commonSlice.formComp);
 

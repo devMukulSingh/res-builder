@@ -11,14 +11,15 @@ const SuggestedBio = () => {
 
     return (
         <main className='flex flex-col gap-3 bg-white p-5'>
-            <h1 className='text-xl font-semibold'>Suggested Bio</h1>
+            <h1 className='text-xl font-semibold'>AI Suggested BIO</h1>
+            <h1 className="text-sm">Select and edit</h1>
             <ol className='list-decimal pl-5 text-sm text-neutral-500 space-y-2'>
                 {
                     aiSuggestedBio.map((bio: string, index: number) => (
                         <li
                             key={index}
                             onClick={() => dispatch(setSelectedBio(bio))}
-                            className="cursor-pointer list-none"
+                            className="cursor-pointer"
                         >
                             {bio}
                         </li>
