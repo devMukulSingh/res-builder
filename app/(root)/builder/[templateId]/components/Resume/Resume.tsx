@@ -18,9 +18,9 @@ const Resume = () => {
 
     return (
         <>
-            <div className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>
+            <div className={`max-h-[calc(100vh-6rem)] overflow-auto no-scrollbar ${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  max-w-[60rem] shrink-0`}>
 
-                <div className='text-neutral-700 pb-10  min-w-[40rem]  flex flex-col gap-5 p-5  '>
+                <div className='text-neutral-700 pb-10 min-w-[40rem] flex flex-col gap-5 p-5  '>
 
                     {/* PersonalInfo */}
                     <PersonalSection />

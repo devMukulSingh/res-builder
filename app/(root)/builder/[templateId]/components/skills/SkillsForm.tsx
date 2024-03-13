@@ -20,7 +20,7 @@ const SkillsForm = () => {
     const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills);
-    const skillsFromDb = useAppSelector(state => state.persistedReducer.skillsFromDb);
+    const aiSuggestedSkills = useAppSelector(state => state.persistedReducer.aiSuggestedSkills);
 
     const form = useForm({
         defaultValues: {
@@ -68,13 +68,13 @@ const SkillsForm = () => {
     }
 
     return (
-        <main className="p-5 space-y-5">
+        <div className="p-5 space-y-5">
             <section>
                 <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
 
                 <div className="grid grid-cols-2 gap-5" >
                     {
-                        skillsFromDb.map((skill) => (
+                        aiSuggestedSkills.map((skill) => (
                             <Skill
                                 skill={skill}
                                 key={skill}
@@ -124,7 +124,7 @@ const SkillsForm = () => {
                     </div>
                 </form>
             </Form>
-        </main>
+        </div>
     )
 }
 

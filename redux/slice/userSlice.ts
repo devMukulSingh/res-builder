@@ -21,7 +21,7 @@ export interface IinitialState {
   projects: Iprojects[] | null
   progress: number
   sidebar: boolean,
-  skillsFromDb:string[],
+  aiSuggestedSkills:string[],
   aiSuggestedBio : string[]
 }
 
@@ -54,7 +54,7 @@ const initialState: IinitialState = {
   projects: null,
   progress: 10,
   sidebar: true,
-  skillsFromDb:[],
+  aiSuggestedSkills:[],
   aiSuggestedBio:[],
 }
 
@@ -113,10 +113,12 @@ export const userSlice = createSlice({
             skillName:''
           }
         ]
-      }
+      },
+      state.aiSuggestedSkills = [],
+      state.aiSuggestedBio = []
     },
     setAiSuggestedSkills : (state,action) => {
-      state.skillsFromDb = action.payload;
+      state.aiSuggestedSkills = action.payload;
     },
     setAiSuggestedBio : (state,action) => {
       state.aiSuggestedBio = action.payload;

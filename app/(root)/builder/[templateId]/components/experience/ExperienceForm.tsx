@@ -1,7 +1,7 @@
 'use client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {  FieldValues, useFieldArray, useForm } from "react-hook-form"
+import {   useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { setExperience } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
@@ -21,9 +21,7 @@ const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor
 
 const ExperienceForm = () => {
 
-    const router = useRouter();
-    const templateId = "temp1";
-    // const { templateId } = useParams();
+    const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();
@@ -141,7 +139,7 @@ const ExperienceForm = () => {
     }, [controlledFields.length]);
 
     return (
-        <main className="p-5">
+        <div className="p-5">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange} >
                     <div className="flex flex-col gap-5 ">
@@ -343,7 +341,7 @@ const ExperienceForm = () => {
                     </div>
                 </form>
             </Form>
-        </main>
+        </div>
     )
 }
 

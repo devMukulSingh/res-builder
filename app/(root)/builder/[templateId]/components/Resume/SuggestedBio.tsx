@@ -10,7 +10,7 @@ const SuggestedBio = () => {
 
 
     return (
-        <main className='flex flex-col gap-3 bg-white p-5'>
+        <div className='flex flex-col gap-3 bg-white p-5'>
             <h1 className='text-xl font-semibold'>AI Suggested BIO</h1>
             <h1 className="text-sm">Select and edit</h1>
             <ol className='list-decimal pl-5 text-sm text-neutral-500 space-y-2'>
@@ -26,7 +26,7 @@ const SuggestedBio = () => {
                     ))
                 }
             </ol>
-        </main>
+        </div>
     )
 }
 

@@ -137,7 +137,7 @@ const EducationForm = () => {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
-        <main className="p-5">
+        <div className="p-5">
 
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
@@ -327,7 +327,7 @@ const EducationForm = () => {
 
                 </form>
             </Form>
-        </main >
+        </div >
     )
 }
 

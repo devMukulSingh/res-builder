@@ -125,7 +125,7 @@ const ProjectsForm = () => {
     }, [controlledFields.length]);
 
     return (
-        <main className="p-5">
+        <div className="p-5">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
                     <div className="flex flex-col gap-5">
@@ -246,7 +246,7 @@ const ProjectsForm = () => {
                     </div>
                 </form>
             </Form>
-        </main >
+        </div >
     )
 }
 

@@ -22,7 +22,7 @@ const PersonalSection: React.FC<PersonalSection> = ({
 
 
     return (
-        <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
+        <div className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
             {/* ABOUT */}
             <div className='space-y-2'>
                 <h1 className='text-2xl font-semibold'>
@@ -61,7 +61,7 @@ const PersonalSection: React.FC<PersonalSection> = ({
                 }
             </div>
 
-        </main>
+        </div>
     )
 }
 

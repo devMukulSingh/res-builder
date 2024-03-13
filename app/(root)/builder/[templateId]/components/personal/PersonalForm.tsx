@@ -118,7 +118,7 @@ const PersonalForm = () => {
     }
 
     return (
-        <main className="p-5">
+        <div className="p-5">
             <Form {...form} >
                 <form onChange={handleChange}
                     onSubmit={form.handleSubmit(onSubmit)}>
@@ -335,7 +335,7 @@ const PersonalForm = () => {
                     </div>
                 </form>
             </Form>
-        </main>
+        </div>
     )
 }
 

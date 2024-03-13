@@ -79,7 +79,7 @@ const Sidebar = () => {
     }, []);
     if (!isMounted) return null;
     return (
-        <div className={`flex flex-col h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
+        <div className={`flex flex-col max-h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
             <MdOutlineSort
                 onClick={() => dispatch(toggleSidebar())}
                 className={`

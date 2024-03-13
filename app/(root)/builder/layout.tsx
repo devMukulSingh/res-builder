@@ -10,16 +10,16 @@ export default function TemplateLayout({ children }: {
 }) {
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
     return (
-        <main className="flex gap-5">
+        <div className="flex gap-5">
             <Sidebar />
             <div className={`md:flex-row flex flex-col w-full ${!sidebar ? 'ml-[7rem]' : 'ml-[20rem]'} `} >
-                <div className="w-[30rem]">
+                <div className="w-[30rem] no-scrollbar max-h-[calc(100vh-6rem)] overflow-auto">
                     {children}
                 </div>
                 <>
                     <Resume />
                 </>
             </div>
-        </main>
+        </div>
     )
 }
