@@ -18,7 +18,7 @@ const SuggestedBio = () => {
                         <li
                             key={index}
                             onClick={() => dispatch(setSelectedBio(bio))}
-                            className="cursor-pointer"
+                            className="cursor-pointer list-none"
                         >
                             {bio}
                         </li>

@@ -2,7 +2,6 @@
 import { HTMLRenderer } from "@/lib/HTMLRenderer";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setSelectedBio } from "@/redux/slice/userSlice";
-import { usePathname } from "next/navigation";
 import 'react-quill/dist/quill.snow.css';
 import dynamic from "next/dynamic";
 const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
@@ -17,10 +16,11 @@ const PersonalSection: React.FC<PersonalSection> = ({
 
 }) => {
     const dispatch = useAppDispatch();
-    const pathName = usePathname();
     const personalInfo = useAppSelector(state => state.persistedReducer.personalInfo);
+    const formComp = useAppSelector(state => state.commonSlice.formComp);
     const selectedBio = useAppSelector(state => state.persistedReducer?.personalInfo?.bio);
-    
+
+
     return (
         <main className="bg-white px-8 pt-10 pb-5 flex flex-col gap-5 h-fit">
             {/* ABOUT */}
@@ -50,7 +50,7 @@ const PersonalSection: React.FC<PersonalSection> = ({
                     Bio
                 </h1>
                 {
-                    pathName.endsWith('/personal') ?
+                   formComp === 'Personal Information' ?
                         <RichTextEditor
                             value={selectedBio}
                             onChange={(content) => dispatch(setSelectedBio(content))}

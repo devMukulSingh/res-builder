@@ -9,13 +9,14 @@ import ExperienceSection from './ExperienceSection'
 import PersonalSection from './PersonalSection'
 import { usePathname } from 'next/navigation'
 import SuggestedBio from './SuggestedBio'
-const LanguageSection = dynamic( () => import('./LanguageSection'), {ssr:false})
+const LanguageSection = dynamic(() => import('./LanguageSection'), { ssr: false })
 
 const Resume = () => {
 
     const pathName = usePathname();
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-        
+    const formComp = useAppSelector(state => state.commonSlice.formComp);
+
     return (
         <>
             <div className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>
@@ -25,26 +26,26 @@ const Resume = () => {
                     {/* PersonalInfo */}
                     <PersonalSection />
                     {
-                        pathName.endsWith('/personal') &&
+                        formComp === 'Personal Information' &&
                         <SuggestedBio />
                     }
 
                     <ExperienceSection />
-                    
+
                     {/* SKILLS */}
-                        <SkillsSection />
+                    <SkillsSection />
 
                     {/* Education */}
-                        <EducationSection />
+                    <EducationSection />
 
                     {/* Project */}
-                    <ProjectSection/>
+                    <ProjectSection />
 
                     {/* Achievements */}
-                    <AchievementSection/>
+                    <AchievementSection />
 
                     {/* Languages */}
-                    <LanguageSection/>
+                    <LanguageSection />
 
                 </div>
 

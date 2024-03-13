@@ -9,7 +9,6 @@ import {
   ItechnicalSkills
 } from '@/lib/types'
 import { createSlice } from '@reduxjs/toolkit'
-import { Stalemate } from 'next/font/google'
 
 export interface IinitialState {
   personalInfo: IpersonalInfo 
