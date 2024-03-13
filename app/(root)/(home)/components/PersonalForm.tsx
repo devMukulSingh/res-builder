@@ -26,8 +26,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useState } from "react";
-import axios from "axios"
-import { Bio, Skills } from "@prisma/client";
 
 
 const PersonalForm = () => {
@@ -82,24 +80,10 @@ const PersonalForm = () => {
     });
 
     const onSubmit = async (data: formSchema) => {
-        router.push(`/templates`);
+        window.location.href="/templates"
+        // router.push(`/templates`);
         dispatch(resetForm());
         dispatch(setPersonalInfo(data));
-        const { data: res } = await axios.get(`/api/skills`, {
-            params: {
-                profession: data.profession
-            }
-        });
-        const parsedSkills = res.skills.map((skill: Skills) => skill.name);
-        dispatch(setDbSkills(parsedSkills));
-        const { data: response } = await axios.get(`/api/bio`, {
-            params: {
-                profession: data.profession
-            }
-        });
-        const parsedBio = response.bio.map((item: Bio) => item.point);
-        dispatch(setDbBio(parsedBio));
-
     }
     return (
         <main className=" text-neutral-500">

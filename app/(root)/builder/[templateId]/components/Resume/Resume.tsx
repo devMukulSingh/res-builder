@@ -15,7 +15,7 @@ const Resume = () => {
 
     const pathName = usePathname();
     const sidebar = useAppSelector(state => state.commonSlice.sidebar);
-
+        
     return (
         <>
             <div className={`${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  pr-10 max-w-[60rem] shrink-0 `}>

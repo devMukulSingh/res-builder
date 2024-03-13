@@ -13,7 +13,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
-
 const Sidebar = () => {
 
     const [isMounted, setIsMounted] = useState(false);
@@ -26,48 +25,47 @@ const Sidebar = () => {
         {
             icon: User,
             title: 'Personal Information',
-            isActive: pathName.endsWith('/personal')
+            isActive: pathName.endsWith('/personal'),
         },
         {
             icon: FaUserPen,
             title: 'Experience',
-            isActive: pathName.endsWith('/experience')
-
+            isActive: pathName.endsWith('/experience'),
         },
         {
             icon: GiSkills,
             title: 'Skills',
-            isActive: pathName.endsWith('/skills')
+            isActive: pathName.endsWith('/skills'),
 
         },
         {
             icon: GraduationCap,
             title: 'Education',
-            isActive: pathName.endsWith('/education')
+            isActive: pathName.endsWith('/education'),
 
         },
         {
             icon: Contact,
             title: 'Social Links',
-            isActive: pathName.endsWith('/social')
+            isActive: pathName.endsWith('/social'),
 
         },
         {
             icon: FaDiagramProject,
             title: 'Projects',
-            isActive: pathName.endsWith('/projects')
+            isActive: pathName.endsWith('/projects'),
 
         },
         {
             icon: BiCertification,
             title: 'Achievements',
-            isActive: pathName.endsWith('achievements')
+            isActive: pathName.endsWith('achievements'),
 
         },
         {
             icon: Languages,
             title: 'Language',
-            isActive: pathName.endsWith('/language')
+            isActive: pathName.endsWith('/language'),
 
         },
 

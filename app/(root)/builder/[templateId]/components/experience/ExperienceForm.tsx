@@ -21,7 +21,8 @@ const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor
 const ExperienceForm = () => {
 
     const router = useRouter();
-    const { templateId } = useParams();
+    const templateId = "temp1";
+    // const { templateId } = useParams();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const [expanded, setExpanded] = useState<string | false>("");
     const dispatch = useAppDispatch();

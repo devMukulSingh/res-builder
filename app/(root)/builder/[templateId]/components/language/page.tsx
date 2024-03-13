@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
-const LanguageForm = dynamic( () => import('./components/LanguageForm'),{ssr:false}  )
+const LanguageForm = dynamic(() => import('./LanguageForm'), { ssr: false })
 
 const Language = () => {
   return (
     <div>
-        <LanguageForm/>
+      <LanguageForm />
     </div>
   )
 }

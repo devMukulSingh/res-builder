@@ -6,7 +6,7 @@ import { setSelectedBio } from "@/redux/slice/userSlice";
 const SuggestedBio = () => {
 
     const dispatch = useAppDispatch();
-    const bioFromDb = useAppSelector(state => state.persistedReducer.bioFromDb);
+    const aiSuggestedBio = useAppSelector(state => state.persistedReducer.aiSuggestedBio);
 
 
     return (
@@ -14,7 +14,7 @@ const SuggestedBio = () => {
             <h1 className='text-xl font-semibold'>Suggested Bio</h1>
             <ol className='list-decimal pl-5 text-sm text-neutral-500 space-y-2'>
                 {
-                    bioFromDb.map((bio: string, index: number) => (
+                    aiSuggestedBio.map((bio: string, index: number) => (
                         <li
                             key={index}
                             onClick={() => dispatch(setSelectedBio(bio))}

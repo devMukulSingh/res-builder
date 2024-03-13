@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
-import { setPersonalInfo } from "@/redux/slice/userSlice";
+import { setDbBio, setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
@@ -29,6 +29,9 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
+// export interface PersonalFormProps{
+//     // aiSuggestedBio:string | null
+// }
 
 const PersonalForm = () => {
 
@@ -36,6 +39,8 @@ const PersonalForm = () => {
     const dispatch = useAppDispatch();
     const { templateId } = useParams();
     const router = useRouter();
+    // const parsedBio = aiSuggestedBio?.split('\n').filter( item => item!=='')
+    // dispatch(setDbBio(parsedBio));
 
     const schema = z.object({
         fullName: z.string().min(3, {

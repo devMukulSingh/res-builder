@@ -1,31 +1,37 @@
 'use client'
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { setFormComp } from "@/redux/slice/commonSlice";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { ReactNode, useState } from "react";
 import { IconType } from "react-icons/lib";
 
 interface SidebarOptionProps {
     option: {
         title: string,
         icon: IconType | LucideIcon,
-        isActive: boolean
+        isActive: boolean,
     },
-    sidebar: boolean
+    sidebar: boolean,
+
 }
 
 const SidebarOption: React.FC<SidebarOptionProps> = ({
     option,
-    sidebar
+    sidebar,
 }) => {
+    const dispatch = useAppDispatch();
     const { templateId } = useParams();
-    const optionRoute = option.title.split(" ")[0].toLowerCase();
+    const formComp = useAppSelector( state => state.commonSlice.formComp);
+
 
     return (
-        <Link
-            href={`/builder/${templateId}/${optionRoute}`}
-        >
-            <li className={`
-        ${option.isActive ? 'bg-red-100' : ''}
+            <li
+            onClick={  () => dispatch(setFormComp(option.title)) } 
+            
+            className={`
+        ${option.title===formComp ? 'bg-red-100' : ''}
         flex 
         gap-3 
         hover:bg-red-100 
@@ -37,7 +43,6 @@ const SidebarOption: React.FC<SidebarOptionProps> = ({
                 {sidebar && option.title}
             </li>
 
-        </Link>
     )
 }
 

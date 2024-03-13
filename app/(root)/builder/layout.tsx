@@ -1,7 +1,7 @@
 'use client'
 import { useAppSelector } from "@/redux/hooks/hooks"
-const Resume = dynamic( () => import('./[templateId]/components/Resume'), {ssr:false})
-import Sidebar from "./[templateId]/components/Sidebar"
+const Resume = dynamic(() => import('./[templateId]/components/Resume/Resume'), { ssr: false })
+import Sidebar from "./[templateId]/components/commons/Sidebar"
 import dynamic from "next/dynamic"
 
 

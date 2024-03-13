@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
 import { templatesUrl } from '@/lib/constants';
+import { useAppSelector } from '@/redux/hooks/hooks';
 const Template = dynamic( () => import('./components/Template'))
 
 
@@ -12,10 +13,10 @@ const TemplatesPage = () => {
 
     const router = useRouter();
     const [templateId, setTemplateId] = useState("");
+    const profession = useAppSelector( state => state.persistedReducer.personalInfo.profession);
 
     const handleTemplateSelect = () => {
-        window.location.href= `/builder/${templateId}/personal`;
-        // router.push(`/builder/${templateId}/personal`);
+        window.location.href= `/builder/${templateId}?profession=${profession}`;
     }
     return (
         <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
