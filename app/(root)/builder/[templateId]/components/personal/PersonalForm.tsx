@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
-import { setDbBio, setPersonalInfo } from "@/redux/slice/userSlice";
+import { setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { setFormComp } from "@/redux/slice/commonSlice";
 
 // export interface PersonalFormProps{
 //     // aiSuggestedBio:string | null
@@ -107,7 +108,7 @@ const PersonalForm = () => {
     });
 
     const onSubmit = (data: formSchema) => {
-        router.push(`/builder/${templateId}/experience`);
+        dispatch(setFormComp("Experience")) 
         if (progress <= 10) {
             dispatch(setProgress())
         }

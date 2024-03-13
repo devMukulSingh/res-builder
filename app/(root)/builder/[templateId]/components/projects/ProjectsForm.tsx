@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { FieldValues, useFieldArray, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-import {  setProjects } from "@/redux/slice/userSlice";
+import { setProjects } from "@/redux/slice/userSlice";
 import { PlusCircle, Trash } from "lucide-react";
 import { setProgress } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
 import dynamic from "next/dynamic";
+import { setFormComp } from "@/redux/slice/commonSlice";
 const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
     ssr: false
 })
@@ -54,7 +55,7 @@ const ProjectsForm = () => {
     })
 
     const onSubmit = () => {
-        router.push(`/builder/${templateId}/achievements`);
+        dispatch(setFormComp("Achievements"));
         if (progress <= 70) {
             dispatch(setProgress())
         }
@@ -207,8 +208,8 @@ const ProjectsForm = () => {
                                                             <RichTextEditor
                                                                 value={field.value || ''}
                                                                 onChange={(content) => {
-                                                                field.onChange(content);
-                                                                handleChange();
+                                                                    field.onChange(content);
+                                                                    handleChange();
                                                                 }}
                                                             />
                                                         </FormControl>

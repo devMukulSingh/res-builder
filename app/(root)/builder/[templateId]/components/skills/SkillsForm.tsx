@@ -10,6 +10,7 @@ import { setProgress } from "@/redux/slice/userSlice";
 import Skill from "./Skill";
 import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
+import { setFormComp } from "@/redux/slice/commonSlice";
 
 
 const SkillsForm = () => {
@@ -43,8 +44,8 @@ const SkillsForm = () => {
         }
     })
 
-    const onSubmit = (data: FieldValues) => {
-        router.push(`/builder/${templateId}/education`);
+    const onSubmit = () => {
+        dispatch(setFormComp("Education"));
         if (progress <= 34) {
             dispatch(setProgress())
         }

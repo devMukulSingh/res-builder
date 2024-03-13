@@ -1,19 +1,33 @@
-'use client'
+import { ChatGPT } from "@/lib/ChatGPT";
+import dynamic from "next/dynamic";
+const MainComp = dynamic( () => import('./components/main/MainComp'))
 
-import { Components } from "@/lib/Components";
-import { useAppSelector } from "@/redux/hooks/hooks"
 
-const page = () => {
+const BuilderPage = async({
+  searchParams
+}: { searchParams: { profession: string}}) => {
 
-    const formComp = useAppSelector( state => state.commonSlice.formComp);
-    const Comp = Components[formComp || 'Personal Information']
-    
+  const { profession } = searchParams;
+  const bioPrompt = `Suggest 4 short bio for ${profession} for resume`;
+  const skillPrompt = `Suggest few skills for ${profession} for resume`;
+
+  // const aiSuggestedBio = await ChatGPT(bioPrompt);
+  // const aiSuggestedSkills = await ChatGPT(skillPrompt);
+
+  // console.log(aiSuggestedBio,"aiSuggestedBio");
+  // console.log(aiSuggestedSkills);
+
+  
+  
+
   return (
     <>
-       <Comp/>
-
+       <MainComp 
+        // aiSuggestedBio={aiSuggestedBio}
+        // aiSuggestedSkills={aiSuggestedSkills}
+        />
     </>
   )
 }
 
-export default page
+export default BuilderPage

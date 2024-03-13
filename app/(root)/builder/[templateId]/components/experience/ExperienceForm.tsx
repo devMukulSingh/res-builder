@@ -13,6 +13,7 @@ import { setProgress } from "@/redux/slice/userSlice";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import toast from "react-hot-toast";
 import dynamic from "next/dynamic";
+import { setFormComp } from "@/redux/slice/commonSlice";
 const RichTextEditor = dynamic(() => import('@/components/commons/RichTextEditor'), {
     ssr: false
 })
@@ -62,7 +63,7 @@ const ExperienceForm = () => {
     })
 
     const onSubmit = () => {
-        router.push(`/builder/${templateId}/technical`);
+        dispatch(setFormComp("Skills"))
         if (progress <= 22) {
             dispatch(setProgress())
         }

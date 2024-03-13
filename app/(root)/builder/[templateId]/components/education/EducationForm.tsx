@@ -12,6 +12,7 @@ import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
+import { setFormComp } from "@/redux/slice/commonSlice";
 
 const EducationForm = () => {
 
@@ -55,7 +56,7 @@ const EducationForm = () => {
     })
 
     const onSubmit = () => {
-        router.push(`/builder/${templateId}/social`);
+        dispatch(setFormComp("Social Links"))
         if (progress <= 46) {
             dispatch(setProgress())
         }

@@ -10,6 +10,7 @@ import { useFieldArray } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
+import { setFormComp } from "@/redux/slice/commonSlice";
 
 const AchievementsForm = () => {
 
@@ -22,7 +23,7 @@ const AchievementsForm = () => {
 
     const form = useForm({
         defaultValues: {
-            achievements: achievements|| [
+            achievements: achievements || [
                 { value: '' },
                 { value: '' },
                 { value: '' }
@@ -43,8 +44,8 @@ const AchievementsForm = () => {
         }
     })
 
-    const onSubmit = (data: FieldValues) => {
-        router.push(`/builder/${templateId}/language`);
+    const onSubmit = () => {
+        dispatch(setFormComp("Language"));
         if (progress <= 82) {
             dispatch(setProgress())
         }
@@ -52,9 +53,9 @@ const AchievementsForm = () => {
 
     const handleChange = () => {
         const achievements = form.getValues().achievements;
-        const parsedAchievements = achievements.map(  achievement => (
+        const parsedAchievements = achievements.map(achievement => (
             {
-                value:achievement.value
+                value: achievement.value
             }
         ));
         dispatch(setAchievements(parsedAchievements));

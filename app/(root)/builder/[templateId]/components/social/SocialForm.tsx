@@ -7,25 +7,26 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setContact } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
+import { setFormComp } from "@/redux/slice/commonSlice";
 
 const SocialForm = () => {
 
     const dispatch = useAppDispatch();
     const form = useForm();
     const { templateId } = useParams();
-    const router = useRouter();    
-    const progress = useAppSelector( state => state.persistedReducer.progress);
+    const router = useRouter();
+    const progress = useAppSelector(state => state.persistedReducer.progress);
 
 
     const onSubmit = () => {
-        router.push(`/builder/${templateId}/projects`);
-        if(progress <= 58){
+        dispatch(setFormComp("Projects"));
+        if (progress <= 58) {
             dispatch(setProgress())
         }
     }
 
     const handleChange = () => {
-        dispatch(setContact(form.getValues()));     
+        dispatch(setContact(form.getValues()));
     }
 
     return (

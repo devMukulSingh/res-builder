@@ -116,10 +116,10 @@ export const userSlice = createSlice({
         ]
       }
     },
-    setDbSkills : (state,action) => {
+    setAiSuggestedSkills : (state,action) => {
       state.skillsFromDb = action.payload;
     },
-    setDbBio : (state,action) => {
+    setAiSuggestedBio : (state,action) => {
       state.aiSuggestedBio = action.payload;
     },
     setSelectedBio : (state,action ) => {
@@ -142,7 +142,7 @@ export const {
   setProjects,
   setProgress,
   resetForm,
-  setDbSkills,
-  setDbBio,
+  setAiSuggestedSkills,
+  setAiSuggestedBio,
   setSelectedBio
 } = userSlice.actions
