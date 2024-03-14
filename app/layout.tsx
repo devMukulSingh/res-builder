@@ -22,9 +22,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <PersistProvider>
+            {children}
             <Toaster />
           </PersistProvider>
-          {children}
         </Providers>
       </body>
     </html>

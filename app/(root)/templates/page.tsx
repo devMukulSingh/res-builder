@@ -6,7 +6,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
 import { templatesUrl } from '@/lib/constants';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
-const Template = dynamic( () => import('./components/Template'))
+const Template = dynamic(() => import('./components/Template'))
 import axios from "axios";
 import { setAiSuggestedBio, setAiSuggestedSkills } from "@/redux/slice/userSlice";
 
@@ -16,9 +16,9 @@ const TemplatesPage = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const [templateId, setTemplateId] = useState("");
-    const profession = useAppSelector( state => state.persistedReducer.personalInfo.profession);
+    const profession = useAppSelector(state => state.persistedReducer.personalInfo.profession);
 
-    const handleTemplateSelect = async() => {
+    const handleTemplateSelect = async () => {
         router.push(`/builder/${templateId}?profession=${profession}`)
         // window.location.href= `/builder/${templateId}?profession=${profession}`;
         try {
@@ -50,11 +50,11 @@ const TemplatesPage = () => {
         }
     }
     return (
-        <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
+        <main className=' flex flex-col h-[calc(100vh-6rem)] px-10 py-5'>
             <BiArrowBack
                 onClick={() => router.push('/')}
                 className='text-xl size-10 cursor-pointer' />
-            <section className='flex items-center flex-col gap-10'>
+            <section className='flex items-center flex-col gap-10 h-full'>
                 <h1
                     className='text-xl slef-start sm:text-3xl font-bold whitespace-nowrap'>
                     Select your Template
@@ -71,12 +71,12 @@ const TemplatesPage = () => {
                         ))
                     }
                 </div>
-                    <Button
-                        disabled={templateId==='' ? true : false}
-                        onClick={handleTemplateSelect}
-                        className='w-60 rounded-sm'>
-                        Select
-                    </Button>
+                <Button
+                    disabled={templateId === '' ? true : false}
+                    onClick={handleTemplateSelect}
+                    className='w-60 rounded-sm mt-auto'>
+                    Select
+                </Button>
             </section>
         </main>
     )
