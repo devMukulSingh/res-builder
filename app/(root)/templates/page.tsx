@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
 const Template = dynamic(() => import('./components/Template'))
 import axios from "axios";
 import { setAiSuggestedBio, setAiSuggestedSkills } from "@/redux/slice/userSlice";
+import { setBioLoading, setSkillsLoading } from '@/redux/slice/commonSlice';
 
 
 const TemplatesPage = () => {
@@ -19,9 +20,10 @@ const TemplatesPage = () => {
     const profession = useAppSelector(state => state.persistedReducer.personalInfo.profession);
 
     const handleTemplateSelect = async () => {
-        router.push(`/builder/${templateId}?profession=${profession}`)
+        router.push(`/builder/${templateId}?profession=${profession}`);
         // window.location.href= `/builder/${templateId}?profession=${profession}`;
         try {
+            setBioLoading(true);
             const { data: res } = await axios.get(`/api/ai/get-bio`, {
                 params: {
                     profession: profession
@@ -34,8 +36,12 @@ const TemplatesPage = () => {
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
         }
+        finally{
+            setBioLoading(false);
+        }
 
         try {
+            setSkillsLoading(true);
             const { data: res } = await axios.get(`/api/ai/get-skills`, {
                 params: {
                     profession: profession
@@ -47,6 +53,9 @@ const TemplatesPage = () => {
         }
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
+        }
+        finally{
+            setSkillsLoading(false);
         }
     }
     return (

@@ -127,7 +127,8 @@ export const userSlice = createSlice({
         state.personalInfo.bio = action.payload;
       
     }
-  }
+  },
+
 })
 
 export default userSlice.reducer

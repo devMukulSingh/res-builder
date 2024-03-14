@@ -11,6 +11,7 @@ import Skill from "./Skill";
 import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
 import { setFormComp } from "@/redux/slice/commonSlice";
+import Spinner from "@/components/commons/Spinner";
 
 
 const SkillsForm = () => {
@@ -71,17 +72,22 @@ const SkillsForm = () => {
         <div className="p-5 space-y-5">
             <section>
                 <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
+                {
+                    aiSuggestedSkills.length > 0 ?
+                        <div className="grid grid-cols-2 gap-5" >
+                            {
+                                aiSuggestedSkills.map((skill) => (
+                                    <Skill
+                                        skill={skill}
+                                        key={skill}
+                                    />
+                                ))
+                            }
 
-                <div className="grid grid-cols-2 gap-5" >
-                    {
-                        aiSuggestedSkills.map((skill) => (
-                            <Skill
-                                skill={skill}
-                                key={skill}
-                            />
-                        ))
-                    }
-                </div>
+                        </div>
+                        :
+                        <Spinner />
+                }
             </section>
 
             <Form {...form} >

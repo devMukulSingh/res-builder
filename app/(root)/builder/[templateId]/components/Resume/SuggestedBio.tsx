@@ -1,6 +1,6 @@
+import Spinner from "@/components/commons/Spinner";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
 import { setSelectedBio } from "@/redux/slice/userSlice";
-
 
 
 const SuggestedBio = () => {
@@ -15,15 +15,17 @@ const SuggestedBio = () => {
             <h1 className="text-sm">Select and edit</h1>
             <ol className='list-decimal pl-5 text-sm text-neutral-500 space-y-2'>
                 {
-                    aiSuggestedBio.map((bio: string, index: number) => (
-                        <li
-                            key={index}
-                            onClick={() => dispatch(setSelectedBio(bio))}
-                            className="cursor-pointer"
-                        >
-                            {bio}
-                        </li>
-                    ))
+                     aiSuggestedBio.length > 0 ?   aiSuggestedBio.map((bio: string, index: number) => (
+                            <li
+                                key={index}
+                                onClick={() => dispatch(setSelectedBio(bio))}
+                                className="cursor-pointer"
+                            >
+                                {bio}
+                            </li>
+                        ))
+                        :
+                    <Spinner  />
                 }
             </ol>
         </div>

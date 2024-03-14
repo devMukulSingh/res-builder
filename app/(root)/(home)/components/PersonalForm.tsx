@@ -80,7 +80,6 @@ const PersonalForm = () => {
 
     const onSubmit = async (data: formSchema) => {
         router.push('/templates');
-        // window.location.href = "/templates"
         dispatch(resetForm());
         dispatch(setPersonalInfo(data));
     }

@@ -1,11 +1,9 @@
 'use client'
 
 import { useAppSelector } from '@/redux/hooks/hooks';
-import React from 'react'
 
 const Skills = () => {
     const skills = useAppSelector(state => state.persistedReducer.technicalSkills);
-    console.log(skills.aiGenSkills);
 
 
     return (
