@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button";
-import { resetForm, setAiSuggestedBio, setAiSuggestedSkills, setPersonalInfo } from "@/redux/slice/userSlice";
+import { resetForm, setPersonalInfo } from "@/redux/slice/userSlice";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
 import { countryCodes } from "@/lib/constants";
@@ -26,7 +26,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useState } from "react";
-import axios from "axios";
 
 const PersonalForm = () => {
 
@@ -84,34 +83,6 @@ const PersonalForm = () => {
         // window.location.href = "/templates"
         dispatch(resetForm());
         dispatch(setPersonalInfo(data));
-        try {
-            const { data: res } = await axios.get(`/api/ai/get-bio`, {
-                params: {
-                    profession: data.profession
-                }
-            });
-            const parsedBio = res.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
-            dispatch(setAiSuggestedBio(parsedBio));
-            console.log(parsedBio);
-        }
-        catch (e) {
-            console.log(`Error in onSubmit ${e}`);
-        }
-
-        try {
-            const { data: res } = await axios.get(`/api/ai/get-skills`, {
-                params: {
-                    profession: data.profession
-                }
-            });
-            const parsedSkills = res?.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
-            dispatch(setAiSuggestedSkills(parsedSkills));
-            console.log(parsedSkills);
-
-        }
-        catch (e) {
-            console.log(`Error in onSubmit ${e}`);
-        }
     }
     return (
         <main className=" text-neutral-500">

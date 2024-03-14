@@ -5,18 +5,49 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
 import { templatesUrl } from '@/lib/constants';
-import { useAppSelector } from '@/redux/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
 const Template = dynamic( () => import('./components/Template'))
+import axios from "axios";
+import { setAiSuggestedBio, setAiSuggestedSkills } from "@/redux/slice/userSlice";
 
 
 const TemplatesPage = () => {
 
     const router = useRouter();
+    const dispatch = useAppDispatch();
     const [templateId, setTemplateId] = useState("");
     const profession = useAppSelector( state => state.persistedReducer.personalInfo.profession);
 
-    const handleTemplateSelect = () => {
-        window.location.href= `/builder/${templateId}?profession=${profession}`;
+    const handleTemplateSelect = async() => {
+        router.push(`/builder/${templateId}?profession=${profession}`)
+        // window.location.href= `/builder/${templateId}?profession=${profession}`;
+        try {
+            const { data: res } = await axios.get(`/api/ai/get-bio`, {
+                params: {
+                    profession: profession
+                }
+            });
+            const parsedBio = res.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
+            dispatch(setAiSuggestedBio(parsedBio));
+            console.log(parsedBio);
+        }
+        catch (e) {
+            console.log(`Error in onSubmit ${e}`);
+        }
+
+        try {
+            const { data: res } = await axios.get(`/api/ai/get-skills`, {
+                params: {
+                    profession: profession
+                }
+            });
+            const parsedSkills = res?.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
+            dispatch(setAiSuggestedSkills(parsedSkills));
+
+        }
+        catch (e) {
+            console.log(`Error in onSubmit ${e}`);
+        }
     }
     return (
         <main className=' flex flex-col [h-calc(100vh-6rem)] px-10 py-3'>
