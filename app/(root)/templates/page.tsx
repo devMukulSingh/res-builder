@@ -21,7 +21,6 @@ const TemplatesPage = () => {
 
     const handleTemplateSelect = async () => {
         router.push(`/builder/${templateId}?profession=${profession}`);
-        // window.location.href= `/builder/${templateId}?profession=${profession}`;
         try {
             setBioLoading(true);
             const { data: res } = await axios.get(`/api/ai/get-bio`, {
@@ -31,7 +30,6 @@ const TemplatesPage = () => {
             });
             const parsedBio = res.replace(/\d+(\.\s*|\.)?/g, '').split('\n').filter((item: string) => item !== '');
             dispatch(setAiSuggestedBio(parsedBio));
-            console.log(parsedBio);
         }
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
