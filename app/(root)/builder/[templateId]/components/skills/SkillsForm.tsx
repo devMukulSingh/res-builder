@@ -12,13 +12,12 @@ import { useEffect, useState } from "react";
 import { PlusCircle } from "lucide-react";
 import { setFormComp } from "@/redux/slice/commonSlice";
 import Spinner from "@/components/commons/Spinner";
+import SkillsSkeleton from "./SkillsSkeleton";
 
 
 const SkillsForm = () => {
 
     const dispatch = useAppDispatch();
-    const { templateId } = useParams();
-    const router = useRouter();
     const progress = useAppSelector(state => state.persistedReducer.progress);
     const customSkills = useAppSelector(state => state.persistedReducer.technicalSkills?.customSkills);
     const aiSuggestedSkills = useAppSelector(state => state.persistedReducer.aiSuggestedSkills);
@@ -72,22 +71,20 @@ const SkillsForm = () => {
         <div className="p-5 space-y-5">
             <section>
                 <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
-                {
-                    aiSuggestedSkills.length > 0 ?
-                        <div className="grid grid-cols-2 gap-5" >
-                            {
-                                aiSuggestedSkills.map((skill) => (
-                                    <Skill
-                                        skill={skill}
-                                        key={skill}
-                                    />
-                                ))
-                            }
+                <div className="grid grid-cols-2 gap-5" >
+                    {
+                        aiSuggestedSkills.length > 0 ? aiSuggestedSkills.map((skill) => (
+                            <Skill
+                                skill={skill}
+                                key={skill}
+                            />
+                        ))
+                            :
+                            <SkillsSkeleton />
+                    }
 
-                        </div>
-                        :
-                        <Spinner />
-                }
+                </div>
+
             </section>
 
             <Form {...form} >
@@ -124,7 +121,7 @@ const SkillsForm = () => {
                         </Button>
                         <Button
                             type="submit"
-                            className="w-full mt-10 py-6">
+                            className="w-full py-6">
                             Next
                         </Button>
                     </div>
