@@ -1,3 +1,5 @@
+export const maxDuration = 20; // This function can run for a maximum of 5 seconds
+export const dynamic = 'force-dynamic';
 import { ChatGPT } from "@/lib/ChatGPT";
 import { NextRequest, NextResponse } from "next/server";
 
