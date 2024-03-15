@@ -16,9 +16,7 @@ export default function TemplateLayout({ children }: {
                 <div className="w-[30rem] no-scrollbar max-h-[calc(100vh-6rem)] overflow-auto">
                     {children}
                 </div>
-                <>
-                    <Resume />
-                </>
+                <Resume />
             </div>
         </div>
     )

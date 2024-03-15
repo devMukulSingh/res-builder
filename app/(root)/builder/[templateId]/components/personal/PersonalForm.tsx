@@ -29,19 +29,13 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { setFormComp } from "@/redux/slice/commonSlice";
+import { motion } from "framer-motion"
 
-// export interface PersonalFormProps{
-//     // aiSuggestedBio:string | null
-// }
 
 const PersonalForm = () => {
 
     const [open, setOpen] = useState(false);
     const dispatch = useAppDispatch();
-    const { templateId } = useParams();
-    const router = useRouter();
-    // const parsedBio = aiSuggestedBio?.split('\n').filter( item => item!=='')
-    // dispatch(setDbBio(parsedBio));
 
     const schema = z.object({
         fullName: z.string().min(3, {
@@ -107,7 +101,7 @@ const PersonalForm = () => {
         }
     });
 
-    const onSubmit = (data: formSchema) => {
+    const onSubmit = () => {
         dispatch(setFormComp("Experience")) 
         if (progress <= 10) {
             dispatch(setProgress())
@@ -118,6 +112,11 @@ const PersonalForm = () => {
     }
 
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5">
             <Form {...form} >
                 <form onChange={handleChange}
@@ -336,6 +335,7 @@ const PersonalForm = () => {
                 </form>
             </Form>
         </div>
+        </motion.div>
     )
 }
 

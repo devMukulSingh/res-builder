@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const config = {
+
     images:{
         remotePatterns:[
             {
@@ -7,7 +8,13 @@ const nextConfig = {
                 protocol:'https'
             }
         ]
+    },
+    webpack5:true,
+    webpack : (config) => {
+        config.resolve.fallback = { fs:false };
+        return config
     }
-};
 
-export default nextConfig;
+}
+
+export default config;

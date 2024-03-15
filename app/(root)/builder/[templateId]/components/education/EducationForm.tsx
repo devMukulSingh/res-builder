@@ -13,6 +13,7 @@ import { setProgress } from "@/redux/slice/userSlice";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import { setFormComp } from "@/redux/slice/commonSlice";
+import { motion } from "framer-motion"
 
 const EducationForm = () => {
 
@@ -137,6 +138,11 @@ const EducationForm = () => {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5">
 
             <Form {...form} >
@@ -328,6 +334,7 @@ const EducationForm = () => {
                 </form>
             </Form>
         </div >
+        </motion.div>
     )
 }
 

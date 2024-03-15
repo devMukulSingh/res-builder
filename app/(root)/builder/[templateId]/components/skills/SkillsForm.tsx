@@ -13,6 +13,7 @@ import { PlusCircle } from "lucide-react";
 import { setFormComp } from "@/redux/slice/commonSlice";
 import Spinner from "@/components/commons/Spinner";
 import SkillsSkeleton from "./SkillsSkeleton";
+import { motion } from "framer-motion"
 
 
 const SkillsForm = () => {
@@ -68,6 +69,11 @@ const SkillsForm = () => {
     }
 
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5 space-y-5">
             <section>
                 <h1 className=" font-semibold mb-5">Select AI Suggested Skill</h1>
@@ -128,7 +134,9 @@ const SkillsForm = () => {
                 </form>
             </Form>
         </div>
+    </motion.div>
     )
+
 }
 
 export default SkillsForm

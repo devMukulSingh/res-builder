@@ -1,5 +1,5 @@
 'use client'
-
+import { motion } from "framer-motion"
 import { Components } from "@/lib/Components";
 import { useAppSelector } from "@/redux/hooks/hooks"
 
@@ -15,10 +15,7 @@ const MainComp: React.FC<MainCompProps> = ({
 
 
   return (
-    <>
-      <FormComponent />
-    </>
-
+    <FormComponent />
   )
 }
 

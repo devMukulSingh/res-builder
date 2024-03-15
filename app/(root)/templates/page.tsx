@@ -10,6 +10,7 @@ const Template = dynamic(() => import('./components/Template'))
 import axios from "axios";
 import { setAiSuggestedBio, setAiSuggestedSkills } from "@/redux/slice/userSlice";
 import { setBioLoading, setSkillsLoading } from '@/redux/slice/commonSlice';
+import Link from 'next/link';
 
 
 const TemplatesPage = () => {
@@ -34,7 +35,7 @@ const TemplatesPage = () => {
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
         }
-        finally{
+        finally {
             setBioLoading(false);
         }
 
@@ -52,15 +53,16 @@ const TemplatesPage = () => {
         catch (e) {
             console.log(`Error in onSubmit ${e}`);
         }
-        finally{
+        finally {
             setSkillsLoading(false);
         }
     }
     return (
         <main className=' flex flex-col h-[calc(100vh-6rem)] px-10 py-5'>
-            <BiArrowBack
-                onClick={() => router.push('/')}
-                className='text-xl size-10 cursor-pointer' />
+            <Link href={'/'} >
+                <BiArrowBack
+                    className='text-xl size-10 cursor-pointer' />
+            </Link>
             <section className='flex items-center flex-col gap-10 h-full'>
                 <h1
                     className='text-xl slef-start sm:text-3xl font-bold whitespace-nowrap'>

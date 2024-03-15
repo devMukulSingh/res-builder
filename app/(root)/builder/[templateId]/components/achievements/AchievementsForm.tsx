@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import { setFormComp } from "@/redux/slice/commonSlice";
+import { motion } from "framer-motion"
 
 const AchievementsForm = () => {
 
@@ -66,6 +67,11 @@ const AchievementsForm = () => {
     }
 
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5">
             <Form {...form}>
 
@@ -117,6 +123,7 @@ const AchievementsForm = () => {
             </Form>
 
         </div>
+        </motion.div>
     )
 }
 

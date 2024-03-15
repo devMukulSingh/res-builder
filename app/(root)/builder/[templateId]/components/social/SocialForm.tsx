@@ -8,6 +8,8 @@ import { setContact } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
 import { setProgress } from "@/redux/slice/userSlice";
 import { setFormComp } from "@/redux/slice/commonSlice";
+import { motion } from "framer-motion"
+
 
 const SocialForm = () => {
 
@@ -30,6 +32,11 @@ const SocialForm = () => {
     }
 
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
@@ -107,6 +114,7 @@ const SocialForm = () => {
                 </form>
             </Form>
         </div>
+        </motion.div>
     )
 }
 

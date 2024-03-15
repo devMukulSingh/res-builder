@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useEffect, useRef, useState } from "react";
 import { setLanguages } from "@/redux/slice/userSlice";
 import { useParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion"
 
 const LanguageForm = () => {
 
@@ -62,6 +63,11 @@ const LanguageForm = () => {
     }
 
     return (
+        <motion.div
+        animate={{ x: 1 }}
+        initial={{ x: -150 }}
+        transition={{ duration: 0.2 }}
+      >
         <div className="p-5">
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleChange}>
@@ -162,6 +168,7 @@ const LanguageForm = () => {
                 </form>
             </Form>
         </div>
+        </motion.div>
     )
 }
 

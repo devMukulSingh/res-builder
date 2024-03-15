@@ -10,7 +10,9 @@ const Template1 = () => {
 
     return (
         <>
-            <main className='w-[calc(100vw-53rem)] pb-20 whitespace-nowrap px-5 md:px-10 max-w-[60rem] shrink-0' suppressHydrationWarning>
+            <div 
+                id="template1" 
+                className='w-[calc(100vw-53rem)] pb-20 whitespace-nowrap px-5 md:px-10 max-w-[60rem] shrink-0'>
 
                 <div className=' bg-white pb-10  min-w-[40rem] '>
                     <hr className='h-4 bg-blue-400 w-full ' />
@@ -23,7 +25,7 @@ const Template1 = () => {
                     </div>
                 </div>
 
-            </main>
+            </div>
         </>
 
     )

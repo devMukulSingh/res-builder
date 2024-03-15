@@ -13,7 +13,7 @@ const DownloadSection: React.FC<DownloadSectionProps> = ({
 
     return (
         <main className='flex flex-col gap-10 md:gap-20 w-full md:w-1/2  h-fit  md:h-[calc(100vh-8.5rem)] '>
-            <Link href={`/builder/${templateId}/language`}>
+            <Link href={`/builder/${templateId}`}>
                 <BiArrowBack
                     className='cursor-pointer'
                     size={30} />
