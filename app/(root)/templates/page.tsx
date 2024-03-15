@@ -59,7 +59,7 @@ const TemplatesPage = () => {
     }
     return (
         <main className=' flex flex-col h-[calc(100vh-6rem)] px-10 py-5'>
-            <Link href={'/'} >
+            <Link href={'/'} className='w-fit' >
                 <BiArrowBack
                     className='text-xl size-10 cursor-pointer' />
             </Link>

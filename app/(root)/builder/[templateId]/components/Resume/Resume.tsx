@@ -10,6 +10,7 @@ import PersonalSection from './PersonalSection'
 import { usePathname } from 'next/navigation'
 import SuggestedBio from './SuggestedBio'
 const LanguageSection = dynamic(() => import('./LanguageSection'), { ssr: false })
+import { motion } from "framer-motion"
 
 const Resume = () => {
 
@@ -17,7 +18,11 @@ const Resume = () => {
     const formComp = useAppSelector(state => state.commonSlice.formComp);
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1], scale: [0.9, 1] }}
+            transition={{ duration: 0.4 }}
+        >
             <div className={`max-h-[calc(100vh-6rem)] overflow-auto no-scrollbar ${sidebar ? 'w-[calc(100vw-52rem)]' : 'w-[calc(100vw-37rem)]'} pb-20  max-w-[60rem] shrink-0`}>
 
                 <div className='text-neutral-700 pb-10 min-w-[40rem] flex flex-col gap-5 p-5  '>
@@ -50,7 +55,7 @@ const Resume = () => {
 
 
             </div>
-        </>
+        </motion.div>
 
     )
 }

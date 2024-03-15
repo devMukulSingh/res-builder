@@ -12,6 +12,7 @@ import { toggleSidebar } from "@/redux/slice/commonSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion"
 
 const Sidebar = () => {
 
@@ -79,30 +80,38 @@ const Sidebar = () => {
     }, []);
     if (!isMounted) return null;
     return (
-        <div className={`flex flex-col max-h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
-            <MdOutlineSort
-                onClick={() => dispatch(toggleSidebar())}
-                className={`
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1], scale: [0.9, 1] }}
+            transition={{ duration: 0.4 }}
+        >
+
+            <div className={`flex flex-col max-h-[calc(100vh-6.5rem)] bg-white py-3 fixed transition-all ${sidebar ? 'w-[20rem]' : 'w-[7rem]'}  `}>
+                <MdOutlineSort
+                    onClick={() => dispatch(toggleSidebar())}
+                    className={`
                 size-8
                 cursor-pointer
                 ${sidebar ? 'ml-auto mr-5' : ' mr-0 ml-0 mb-5 self-center'}
                 `}
-            />
-            <ul >
-                {
-                    sidebarOptions.map((option) => (
-                        <SidebarOption option={option} key={option.title} sidebar={sidebar} />
-                    ))
-                }
-            </ul>
-            {sidebar && <Progressbar />}
-            <Button
-                className={`mx-10 self-center ${!sidebar && 'mt-10'}`}
-                onClick={handleResetForm}
-                variant="destructive">
-                Reset
-            </Button>
-        </div>
+                />
+                <ul >
+                    {
+                        sidebarOptions.map((option) => (
+                            <SidebarOption option={option} key={option.title} sidebar={sidebar} />
+                        ))
+                    }
+                </ul>
+                {sidebar && <Progressbar />}
+                <Button
+                    className={`mx-10 self-center ${!sidebar && 'mt-10'}`}
+                    onClick={handleResetForm}
+                    variant="destructive">
+                    Reset
+                </Button>
+            </div>
+        </motion.div>
+
     )
 }
 

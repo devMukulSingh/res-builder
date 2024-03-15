@@ -139,8 +139,8 @@ const EducationForm = () => {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <motion.div
-        animate={{ x: 1 }}
-        initial={{ x: -150 }}
+        animate={{ x: 1,opacity:[0,1]}}
+        initial={{ x: -150 ,opacity:0 }}
         transition={{ duration: 0.2 }}
       >
         <div className="p-5">

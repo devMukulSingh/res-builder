@@ -26,6 +26,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion"
 
 const PersonalForm = () => {
 
@@ -84,164 +85,39 @@ const PersonalForm = () => {
         dispatch(setPersonalInfo(data));
     }
     return (
-        <main className=" text-neutral-500">
-            <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="py-8 px-10 bg-red-100 flex flex-col gap-3 lg:w-4/5 w-full ml-auto ">
-
-                        <FormField
-                            name="fullName"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Full Name</FormLabel>
-                                    <FormControl>
-                                        <Input className="bg-white" {...field} placeholder="Deepak Prakash" />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            name="email"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Email Address</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="bg-white" {...field}
-                                            placeholder="deepak@gmail.com"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            name="profession"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Profession</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="bg-white" {...field}
-                                            placeholder="Frontend Developer"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            name="address"
-                            control={form.control}
-                            render={({ field }) => (
-                                <FormItem >
-                                    <FormLabel>Address</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            className="bg-white" {...field}
-                                            placeholder="Wagholi"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <div className="flex gap-5 w-full">
-                            <FormField
-                                defaultValue="+91"
-                                name="countryCode"
-                                control={form.control}
-                                render={({ field }) => (
-                                    <FormItem className="w-1/2">
-                                        <FormLabel>Country Code</FormLabel>
-                                        <Popover open={open} onOpenChange={setOpen}>
-                                            <PopoverTrigger asChild >
-                                                <FormControl>
-
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn(
-                                                            "w-full bg-white justify-between",
-                                                            !field.value && "text-muted-foreground"
-                                                        )}
-                                                    >
-                                                        {
-                                                            countryCodes.find(
-                                                                (countryCode) => countryCode.mobileCode === field.value
-                                                            )?.mobileCode
-                                                        }
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-
-                                            <PopoverContent className=" p-0">
-                                                <Command>
-                                                    <CommandInput placeholder="Search country code..." className="h-9" />
-                                                    <CommandEmpty>No country code found.</CommandEmpty>
-                                                    <CommandGroup >
-                                                        <ScrollArea className="h-72 rounded-md border">
-                                                            {countryCodes.map((code) => (
-                                                                <CommandItem
-                                                                    key={code.name}
-                                                                    value={code.name}
-                                                                    onSelect={() => {
-                                                                        form.setValue('countryCode', code.mobileCode);
-                                                                        setOpen(false);
-                                                                    }}
-                                                                >
-                                                                    {code.mobileCode} ({code.name})
-                                                                    <Check
-                                                                        className={cn(
-                                                                            "ml-auto h-4 w-4",
-                                                                            code.mobileCode === field.value ? "opacity-100" : "opacity-0"
-                                                                        )}
-                                                                    />
-                                                                </CommandItem>
-                                                            ))}
-                                                        </ScrollArea>
-                                                    </CommandGroup>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1], scale: [0.9, 1] }}
+            transition={{ duration: 0.4 }}
+        >
+            <div className=" text-neutral-500">
+                <Form {...form} >
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <div className="py-8 px-10 bg-red-100 flex flex-col gap-3 lg:w-4/5 w-full ml-auto ">
 
                             <FormField
-                                name="mobile"
+                                name="fullName"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <FormItem className="w-1/2" >
-                                        <FormLabel>Mobile</FormLabel>
+                                    <FormItem >
+                                        <FormLabel>Full Name</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                className="bg-white" {...field}
-                                                placeholder="9808808098"
-                                            />
+                                            <Input className="bg-white" {...field} placeholder="Deepak Prakash" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                        </div>
-
-                        <div className="flex gap-5">
                             <FormField
-                                name="city"
+                                name="email"
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem >
-                                        <FormLabel>City</FormLabel>
+                                        <FormLabel>Email Address</FormLabel>
                                         <FormControl>
                                             <Input
                                                 className="bg-white" {...field}
-                                                placeholder="Pune"
+                                                placeholder="deepak@gmail.com"
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -249,30 +125,162 @@ const PersonalForm = () => {
                                 )}
                             />
                             <FormField
-                                name="state"
+                                name="profession"
                                 control={form.control}
                                 render={({ field }) => (
                                     <FormItem >
-                                        <FormLabel>State</FormLabel>
+                                        <FormLabel>Profession</FormLabel>
                                         <FormControl>
                                             <Input
-                                                placeholder="Maharastra"
-                                                className="bg-white" {...field} />
+                                                className="bg-white" {...field}
+                                                placeholder="Frontend Developer"
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
+                            <FormField
+                                name="address"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <FormItem >
+                                        <FormLabel>Address</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                className="bg-white" {...field}
+                                                placeholder="Wagholi"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className="flex gap-5 w-full">
+                                <FormField
+                                    defaultValue="+91"
+                                    name="countryCode"
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <FormItem className="w-1/2">
+                                            <FormLabel>Country Code</FormLabel>
+                                            <Popover open={open} onOpenChange={setOpen}>
+                                                <PopoverTrigger asChild >
+                                                    <FormControl>
+
+                                                        <Button
+                                                            variant="outline"
+                                                            role="combobox"
+                                                            className={cn(
+                                                                "w-full bg-white justify-between",
+                                                                !field.value && "text-muted-foreground"
+                                                            )}
+                                                        >
+                                                            {
+                                                                countryCodes.find(
+                                                                    (countryCode) => countryCode.mobileCode === field.value
+                                                                )?.mobileCode
+                                                            }
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+
+                                                <PopoverContent className=" p-0">
+                                                    <Command>
+                                                        <CommandInput placeholder="Search country code..." className="h-9" />
+                                                        <CommandEmpty>No country code found.</CommandEmpty>
+                                                        <CommandGroup >
+                                                            <ScrollArea className="h-72 rounded-md border">
+                                                                {countryCodes.map((code) => (
+                                                                    <CommandItem
+                                                                        key={code.name}
+                                                                        value={code.name}
+                                                                        onSelect={() => {
+                                                                            form.setValue('countryCode', code.mobileCode);
+                                                                            setOpen(false);
+                                                                        }}
+                                                                    >
+                                                                        {code.mobileCode} ({code.name})
+                                                                        <Check
+                                                                            className={cn(
+                                                                                "ml-auto h-4 w-4",
+                                                                                code.mobileCode === field.value ? "opacity-100" : "opacity-0"
+                                                                            )}
+                                                                        />
+                                                                    </CommandItem>
+                                                                ))}
+                                                            </ScrollArea>
+                                                        </CommandGroup>
+                                                    </Command>
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    name="mobile"
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <FormItem className="w-1/2" >
+                                            <FormLabel>Mobile</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    className="bg-white" {...field}
+                                                    placeholder="9808808098"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="flex gap-5">
+                                <FormField
+                                    name="city"
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <FormItem >
+                                            <FormLabel>City</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    className="bg-white" {...field}
+                                                    placeholder="Pune"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    name="state"
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <FormItem >
+                                            <FormLabel>State</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="Maharastra"
+                                                    className="bg-white" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <Button
+                                type="submit"
+                                className="w-full py-3 mt-4">
+                                Next
+                            </Button>
                         </div>
-                        <Button
-                            type="submit"
-                            className="w-full py-3 mt-4">
-                            Next
-                        </Button>
-                    </div>
-                </form>
-            </Form>
-        </main>
+                    </form>
+                </Form>
+            </div>
+        </motion.div>
+
     )
 }
 

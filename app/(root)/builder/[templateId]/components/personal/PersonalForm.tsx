@@ -113,9 +113,9 @@ const PersonalForm = () => {
 
     return (
         <motion.div
-        animate={{ x: 1 }}
-        initial={{ x: -150 }}
-        transition={{ duration: 0.2 }}
+        animate={{ x: 1,opacity:[0,1] }}
+        initial={{ x: -150,opacity:0 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="p-5">
             <Form {...form} >
