@@ -6,7 +6,7 @@ export interface IpersonalInfo {
   countryCode: string
   mobile: string
   state: string
-  dob: Date | string
+  dob: string
   birthPlace: string
   bio: string
 }
