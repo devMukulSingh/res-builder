@@ -6,27 +6,27 @@ import {
   Ilanguages,
   IpersonalInfo,
   Iprojects,
-  ItechnicalSkills
-} from '@/lib/types'
-import { createSlice } from '@reduxjs/toolkit'
+  ItechnicalSkills,
+} from "@/lib/types";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface IinitialState {
-  personalInfo: IpersonalInfo 
-  experience: Iexperience[] | null
-  technicalSkills: ItechnicalSkills 
-  education: Ieducation[] | null
-  contact: Icontact | null
-  achievements: Iachievements[] | null
-  languages: Ilanguages[] | null
-  projects: Iprojects[] | null
-  progress: number
-  sidebar: boolean,
-  aiSuggestedSkills:string[],
-  aiSuggestedBio : string[]
+  personalInfo: IpersonalInfo;
+  experience: Iexperience[] | null;
+  technicalSkills: ItechnicalSkills;
+  education: Ieducation[] | null;
+  contact: Icontact | null;
+  achievements: Iachievements[] | null;
+  languages: Ilanguages[] | null;
+  projects: Iprojects[] | null;
+  progress: number;
+  sidebar: boolean;
+  aiSuggestedSkills: string[];
+  aiSuggestedBio: string[];
 }
 
 const initialState: IinitialState = {
-    personalInfo: {
+  personalInfo: {
     fullName: "",
     email: "",
     profession: "",
@@ -40,11 +40,11 @@ const initialState: IinitialState = {
   },
   experience: null,
   technicalSkills: {
-    aiGenSkills:[],
+    aiGenSkills: [],
     customSkills: [
       {
-        skillName:''
-      }
+        skillName: "",
+      },
     ],
   },
   education: null,
@@ -54,84 +54,80 @@ const initialState: IinitialState = {
   projects: null,
   progress: 10,
   sidebar: true,
-  aiSuggestedSkills:[],
-  aiSuggestedBio:[],
-}
+  aiSuggestedSkills: [],
+  aiSuggestedBio: [],
+};
 
 export const userSlice = createSlice({
-  name: 'userSlice',
+  name: "userSlice",
   initialState,
   reducers: {
     setPersonalInfo: (state, action) => {
-      state.personalInfo = action.payload
+      state.personalInfo = action.payload;
     },
     setExperience: (state, action) => {
-      state.experience = action.payload
+      state.experience = action.payload;
     },
     setTechnicalSkills: (state, action) => {
-      if(action.payload.aiGenSkills){
+      if (action.payload.aiGenSkills) {
         state.technicalSkills.aiGenSkills = action.payload.aiGenSkills;
+      } else {
+        state.technicalSkills.customSkills = action.payload.customSkills;
       }
-      else{
-        state.technicalSkills.customSkills = action.payload.customSkills
-      }
-
     },
     setEducation: (state, action) => {
-      state.education = action.payload
+      state.education = action.payload;
     },
     setContact: (state, action) => {
-      state.contact = action.payload
+      state.contact = action.payload;
     },
     setAchievements: (state, action) => {
-      state.achievements = action.payload
+      state.achievements = action.payload;
     },
     setLanguages: (state, action) => {
-      state.languages = action.payload
+      state.languages = action.payload;
     },
     setProjects: (state, action) => {
-      state.projects = action.payload
+      state.projects = action.payload;
     },
 
-    setProgress: state => {
-      const singleProgress = Math.floor(100 / 8)
-      state.progress = state.progress + singleProgress
+    setProgress: (state) => {
+      const singleProgress = Math.floor(100 / 8);
+      state.progress = state.progress + singleProgress;
     },
-    resetForm: state => {
+    resetForm: (state) => {
       state.progress = 10;
-      state.achievements = null,
-      state.contact = null,
-      state.education = null,
-      state.experience = null,
-      state.languages = null,
-      state.personalInfo = initialState.personalInfo,
-      state.projects = null,
-      state.technicalSkills={
-        aiGenSkills:[],
-        customSkills:[
-          {
-            skillName:''
-          }
-        ]
-      },
-      state.aiSuggestedSkills = [],
-      state.aiSuggestedBio = []
+      (state.achievements = null),
+        (state.contact = null),
+        (state.education = null),
+        (state.experience = null),
+        (state.languages = null),
+        (state.personalInfo = initialState.personalInfo),
+        (state.projects = null),
+        (state.technicalSkills = {
+          aiGenSkills: [],
+          customSkills: [
+            {
+              skillName: "",
+            },
+          ],
+        }),
+        (state.aiSuggestedSkills = []),
+        (state.aiSuggestedBio = []);
     },
-    setAiSuggestedSkills : (state,action) => {
+    setAiSuggestedSkills: (state, action) => {
       state.aiSuggestedSkills = action.payload;
     },
-    setAiSuggestedBio : (state,action) => {
+    setAiSuggestedBio: (state, action) => {
       state.aiSuggestedBio = action.payload;
     },
-    setSelectedBio : (state,action ) => {
-        state.personalInfo.bio = action.payload;
-      
-    }
+    setSelectedBio: (state, action) => {
+      state.personalInfo.bio = action.payload;
+    },
   },
+});
 
-})
-
-export default userSlice.reducer
+export default userSlice.reducer;
 
 export const {
   setPersonalInfo,
@@ -146,5 +142,5 @@ export const {
   resetForm,
   setAiSuggestedSkills,
   setAiSuggestedBio,
-  setSelectedBio
-} = userSlice.actions
+  setSelectedBio,
+} = userSlice.actions;

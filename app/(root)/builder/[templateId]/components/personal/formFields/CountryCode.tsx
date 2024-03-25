@@ -29,7 +29,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const CountryCode: FC<IForm> = ({ form }) => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <FormField
@@ -46,12 +46,12 @@ const CountryCode: FC<IForm> = ({ form }) => {
                   role="combobox"
                   className={cn(
                     "w-[200px] bg-white justify-between",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   {field.value
                     ? countryCodes.find(
-                        (countryCode) => countryCode.mobileCode === field.value
+                        (countryCode) => countryCode.mobileCode === field.value,
                       )?.mobileCode
                     : "Select country code"}
                 </Button>
@@ -82,7 +82,7 @@ const CountryCode: FC<IForm> = ({ form }) => {
                             "ml-auto h-4 w-4",
                             code.mobileCode === field.value
                               ? "opacity-100"
-                              : "opacity-0"
+                              : "opacity-0",
                           )}
                         />
                       </CommandItem>

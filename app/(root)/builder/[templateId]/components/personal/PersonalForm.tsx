@@ -109,7 +109,7 @@ const PersonalForm = () => {
 
   type formSchema = z.infer<typeof schema>;
   const personalInfo = useAppSelector(
-    (state) => state.persistedReducer.personalInfo
+    (state) => state.persistedReducer.personalInfo,
   );
   const progress = useAppSelector((state) => state.persistedReducer.progress);
 
