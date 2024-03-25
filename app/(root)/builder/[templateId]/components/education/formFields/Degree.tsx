@@ -1,6 +1,4 @@
-import { IForm } from "../ExperienceForm";
 import {
-  Form,
   FormControl,
   FormField,
   FormItem,
@@ -9,18 +7,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FC } from "react";
+import { IForm } from "../EducationForm";
 
-const Role: FC<IForm> = ({ form, index }) => {
+const Degree:FC<IForm> = ({
+    form,
+    index
+}) => {
   return (
     <FormField
-      name={`experience.${index}.role`}
+      name={`education.${index}.degree`}
       control={form.control}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Role</FormLabel>
+          <FormLabel>Degree/Program</FormLabel>
           <FormControl>
             <Input
-              placeholder="Jr. Frontend Developer"
+              placeholder="B.Sc in Computer Science"
               className="bg-white"
               {...field}
             />
@@ -30,6 +32,6 @@ const Role: FC<IForm> = ({ form, index }) => {
       )}
     />
   );
-};
+}
 
-export default Role;
+export default Degree

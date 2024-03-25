@@ -1,4 +1,4 @@
-import { IForm } from '../ExperienceForm'
+import { IForm } from "../ExperienceForm";
 import {
   Form,
   FormControl,
@@ -8,12 +8,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FC } from 'react';
+import { FC } from "react";
 
-const Employer:FC<IForm> = ({
-    form,
-    index
-}) => {
+const Employer: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`experience.${index}.employer`}
@@ -29,6 +26,6 @@ const Employer:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default Employer
+export default Employer;

@@ -1,14 +1,6 @@
 "use client";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { FieldValues, useFieldArray, useForm } from "react-hook-form";
+import { Form } from "@/components/ui/form";
+import { useFieldArray, useForm, UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setEducation } from "@/redux/slice/userSlice";
@@ -25,7 +17,24 @@ import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import { setFormComp } from "@/redux/slice/commonSlice";
 import { motion } from "framer-motion";
+import SchoolName from "./formFields/SchoolName";
+import SchoolLocation from "./formFields/SchoolLocation";
+import Degree from "./formFields/Degree";
+import Field from "./formFields/Field";
+import Percentage from "./formFields/Percentage";
+import StartDate from "./formFields/StartDate";
+import EndDate from "./formFields/EndDate";
 
+export interface IForm {
+  form: UseFormReturn<
+    {
+      education: Ieducation[];
+    },
+    any,
+    undefined
+  >;
+  index: number;
+}
 const EducationForm = () => {
   const [expanded, setExpanded] = useState<string | false>("");
   const dispatch = useAppDispatch();
@@ -166,7 +175,6 @@ const EducationForm = () => {
                               className="w-full hover:bg-red-300"
                             >
                               {education?.[index]?.schoolName || "University"}
-                              {/* {education?.[expanded + 1]?.schoolName || 'Delhi University'} */}
                             </Button>
                           </CollapsibleTrigger>
                           <Trash
@@ -185,145 +193,24 @@ const EducationForm = () => {
                                                        data-[state=open]:animate-accordion-down 
                                                        `}
                         >
-                          {/* schoolName */}
-                          <FormField
-                            name={`education.${index}.schoolName`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>School Name</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    className="bg-white"
-                                    {...field}
-                                    placeholder="Delhi University"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          {/* schoolLocation */}
-                          <FormField
-                            name={`education.${index}.schoolLocation`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>School Location</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    className="bg-white"
-                                    {...field}
-                                    placeholder="New Delhi"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <SchoolName form={form} index={index} />
 
-                          {/* degree */}
-                          <FormField
-                            name={`education.${index}.degree`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Degree/Program</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    placeholder="B.Sc in Computer Science"
-                                    className="bg-white"
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <SchoolLocation form={form} index={index} />
 
-                          {/* fieldOfStudy */}
-                          <FormField
-                            name={`education.${index}.fieldOfStudy`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Field of Study</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    className="bg-white"
-                                    {...field}
-                                    placeholder=""
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <Degree form={form} index={index} />
 
-                          {/* GPA percentage */}
-                          <FormField
-                            name={`education.${index}.percentage`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>GPA/Percentage</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    className="bg-white"
-                                    {...field}
-                                    placeholder="88%"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <Field form={form} index={index} />
 
-                          {/* startDate */}
+                          <Percentage form={form} index={index} />
 
-                          <FormField
-                            defaultValue="2018-05"
-                            name={`education.${index}.startDate`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Start Date</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    className="bg-white"
-                                    {...field}
-                                    type="month"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <StartDate form={form} index={index} />
 
-                          {/* endDate */}
-                          <FormField
-                            defaultValue="2018-05"
-                            name={`education.${index}.endDate`}
-                            control={form.control}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>End Date</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="month"
-                                    className="bg-white"
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          <EndDate form={form} index={index} />
                         </CollapsibleContent>
                       </Collapsible>
                     </>
                   );
-                },
+                }
               )}
 
               <div className="flex gap-5">

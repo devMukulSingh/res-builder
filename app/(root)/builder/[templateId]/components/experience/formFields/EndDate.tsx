@@ -1,4 +1,4 @@
-import { IForm } from '../ExperienceForm'
+import { IForm } from "../ExperienceForm";
 import {
   Form,
   FormControl,
@@ -8,12 +8,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FC } from 'react';
+import { FC } from "react";
 
-const EndDate:FC<IForm> = ({
-    form,
-    index
-}) => {
+const EndDate: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`experience.${index}.endDate`}
@@ -34,6 +31,6 @@ const EndDate:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default EndDate
+export default EndDate;

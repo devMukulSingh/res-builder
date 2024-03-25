@@ -1,5 +1,5 @@
 "use client";
-import {Form} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { useFieldArray, useForm, UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { setExperience } from "@/redux/slice/userSlice";
@@ -27,9 +27,13 @@ import CheckboxWorkingStatus from "./formFields/CheckboxWorkingStatus";
 import EndDate from "./formFields/EndDate";
 
 export interface IForm {
-  form: UseFormReturn<{
-    experience:Iexperience[]
-  }, any, undefined>;
+  form: UseFormReturn<
+    {
+      experience: Iexperience[];
+    },
+    any,
+    undefined
+  >;
   index: number;
   handleChange?: () => void;
 }
@@ -40,7 +44,7 @@ const ExperienceForm = () => {
   const [expanded, setExpanded] = useState<string | false>("");
   const dispatch = useAppDispatch();
   const experience = useAppSelector(
-    (state) => state.persistedReducer.experience
+    (state) => state.persistedReducer.experience,
   );
 
   const form = useForm({
@@ -216,12 +220,12 @@ const ExperienceForm = () => {
                             <EndDate form={form} index={index} />
                           )}
                         </div>
-                        
+
                         <CheckboxWorkingStatus form={form} index={index} />
                       </CollapsibleContent>
                     </Collapsible>
                   );
-                }
+                },
               )}
 
               <Button

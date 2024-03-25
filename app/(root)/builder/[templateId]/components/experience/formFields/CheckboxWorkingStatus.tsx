@@ -1,5 +1,5 @@
-import { Checkbox } from '@/components/ui/checkbox';
-import { IForm } from '../ExperienceForm'
+import { Checkbox } from "@/components/ui/checkbox";
+import { IForm } from "../ExperienceForm";
 import {
   Form,
   FormControl,
@@ -9,12 +9,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FC } from 'react';
+import { FC } from "react";
 
-const CheckboxWorkingStatus:FC<IForm> = ({
-    form,
-    index
-}) => {
+const CheckboxWorkingStatus: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`experience.${index}.checkbox`}
@@ -33,6 +30,6 @@ const CheckboxWorkingStatus:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default CheckboxWorkingStatus
+export default CheckboxWorkingStatus;

@@ -1,25 +1,20 @@
-import { IForm } from '../ExperienceForm'
+import { IForm } from "../ExperienceForm";
 import {
-
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import dynamic from 'next/dynamic';
-import { FC } from 'react';
+import dynamic from "next/dynamic";
+import { FC } from "react";
 const RichTextEditor = dynamic(
   () => import("@/components/commons/RichTextEditor"),
   {
     ssr: false,
-  }
+  },
 );
-const Description:FC<IForm> = ({
-    form,
-    index,
-    handleChange
-}) => {
+const Description: FC<IForm> = ({ form, index, handleChange }) => {
   return (
     <FormField
       defaultValue="Creative Frontend Developer with expertise in HTML, CSS, and JavaScript. Proven ability to transform design concepts into responsive web applications. Passionate about delivering visually appealing and user-centric experiences"
@@ -42,6 +37,6 @@ const Description:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default Description
+export default Description;
