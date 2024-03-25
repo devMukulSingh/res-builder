@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 import { IForm } from "../EducationForm";
 
-const Degree:FC<IForm> = ({
-    form,
-    index
-}) => {
+const Degree: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`education.${index}.degree`}
@@ -32,6 +29,6 @@ const Degree:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default Degree
+export default Degree;

@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 import { IForm } from "../EducationForm";
 
-const Field:FC<IForm> = ({
-    form,
-    index
-}) => {
+const Field: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`education.${index}.fieldOfStudy`}
@@ -28,6 +25,6 @@ const Field:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default Field
+export default Field;

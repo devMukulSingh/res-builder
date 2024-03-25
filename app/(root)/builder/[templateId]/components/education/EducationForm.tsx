@@ -210,7 +210,7 @@ const EducationForm = () => {
                       </Collapsible>
                     </>
                   );
-                }
+                },
               )}
 
               <div className="flex gap-5">

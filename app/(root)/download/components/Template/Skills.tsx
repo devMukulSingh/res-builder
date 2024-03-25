@@ -4,7 +4,7 @@ import { useAppSelector } from "@/redux/hooks/hooks";
 
 const Skills = () => {
   const skills = useAppSelector(
-    (state) => state.persistedReducer.technicalSkills,
+    (state) => state.persistedReducer.technicalSkills
   );
 
   return (

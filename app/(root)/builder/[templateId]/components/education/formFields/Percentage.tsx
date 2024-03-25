@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 import { IForm } from "../EducationForm";
 
-const Percentage:FC<IForm> = ({
-    form,
-    index
-}) => {
+const Percentage: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`education.${index}.percentage`}
@@ -28,6 +25,6 @@ const Percentage:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default Percentage
+export default Percentage;

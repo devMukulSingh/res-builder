@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 import { IForm } from "../EducationForm";
 
-const SchoolName:FC<IForm> = ({
-    form,
-    index
-}) => {
+const SchoolName: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       name={`education.${index}.schoolName`}
@@ -32,6 +29,6 @@ const SchoolName:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default SchoolName
+export default SchoolName;

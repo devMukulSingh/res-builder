@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FC } from "react";
 import { IForm } from "../EducationForm";
 
-const EndDate:FC<IForm> = ({
-    form,
-    index
-}) => {
+const EndDate: FC<IForm> = ({ form, index }) => {
   return (
     <FormField
       defaultValue="2018-05"
@@ -29,6 +26,6 @@ const EndDate:FC<IForm> = ({
       )}
     />
   );
-}
+};
 
-export default EndDate
+export default EndDate;
